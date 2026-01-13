@@ -2,12 +2,12 @@
   "updated": "2026-01-13",
   "deals": [
     {
-      "title": "Citizen Eco-Drive Example Model",
-      "now": 149,
-      "was": 249,
-      "dropPercent": 40,
-      "url": "https://www.amazon.com/dp/ASINHERE?tag=YOURTAG-20",
-      "notes": "Great value under $150"
+      "asin": "B0FL9156F6",
+      "title": "Citizen Men's Automatic Promaster Sea Dive Watch",
+      "now": 237.95,
+      "was": 373.95,
+      "dropPercent": 36,
+      "notes": "Classic dive watch, $100+ off! "
     }
   ]
 }
