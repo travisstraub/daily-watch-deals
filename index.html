@@ -35,9 +35,26 @@
   </footer>
 
   <script>
+    const ASSOC_TAG = "straubmediagr-20";
+    const AMAZON_BASE = "https://www.amazon.com/dp/";
+
     function money(x) {
       if (x == null) return "";
       return "$" + Number(x).toFixed(2).replace(/\.00$/, "");
+    }
+
+    function buildUrl(deal) {
+      // If you ever want to override with a custom URL, you can still include deal.url in deals.json
+      if (deal.url && deal.url.startsWith("http")) return deal.url;
+
+      const asin = (deal.asin || "").trim();
+      if (!asin) return "#";
+
+      const params = new URLSearchParams({
+        tag: ASSOC_TAG
+      });
+
+      return `${AMAZON_BASE}${encodeURIComponent(asin)}?${params.toString()}`;
     }
 
     async function run() {
@@ -51,6 +68,8 @@
       list.innerHTML = "";
 
       for (const d of deals) {
+        const url = buildUrl(d);
+
         const nowText = d.now != null ? `Now ${money(d.now)}` : "";
         const wasText = d.was != null ? `Was ${money(d.was)}` : "";
         const dropText = d.dropPercent != null ? `${d.dropPercent}% off` : "";
@@ -59,14 +78,14 @@
         el.className = "card";
         el.innerHTML = `
           <div class="row">
-            <a class="title" href="${d.url}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
+            <a class="title" href="${url}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
             <div class="drop">${dropText}</div>
           </div>
           <div class="meta">
             ${nowText}${(nowText && wasText) ? " • " : ""}${wasText}
             ${(d.notes && (nowText || wasText)) ? " • " : ""}${d.notes || ""}
           </div>
-          <a class="btn" href="${d.url}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
+          <a class="btn" href="${url}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
         `;
         list.appendChild(el);
       }
