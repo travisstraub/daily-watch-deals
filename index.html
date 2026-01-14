@@ -6,18 +6,27 @@
   <title>Daily Watch Deals</title>
   <meta name="description" content="Daily watch deals with the biggest price drops." />
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; max-width: 860px; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; max-width: 920px; }
     header { margin-bottom: 18px; }
     h1 { margin: 0 0 6px; font-size: 28px; }
     .sub { color: #555; margin: 0 0 10px; }
     .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; border: 1px solid #ddd; font-size: 12px; color:#333; }
+
     .card { border: 1px solid #e6e6e6; border-radius: 14px; padding: 14px; margin: 12px 0; }
+    .deal { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: start; }
+    @media (max-width: 560px) { .deal { grid-template-columns: 1fr; } }
+
+    .imgWrap { width: 120px; }
+    .imgWrap img { width: 120px; height: auto; border-radius: 12px; border: 1px solid #eee; display:block; }
     .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .title { font-weight: 650; text-decoration: none; color: #111; }
     .meta { color: #555; font-size: 14px; margin-top: 6px; line-height: 1.35; }
     .drop { font-weight: 750; }
     .btn { display:inline-block; margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; }
+
+    .error { padding: 12px; border: 1px solid #f3c2c2; background: #fff7f7; border-radius: 12px; color:#7a1b1b; }
     footer { margin-top: 22px; font-size: 13px; color: #666; line-height: 1.4; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -35,65 +44,146 @@
   </footer>
 
   <script>
+    // Your Apps Script web app endpoint:
+    const SHEET_JSON_URL =
+      "https://script.google.com/macros/s/AKfycbxvB0ocZc1Ik8qQJzWEHASPt9JfJtkw08XjbHjbCvcJm-BCNBYQ3IpbVvj7ZSvM7wEsEQ/exec";
+
+    // Your Amazon Associates tag:
     const ASSOC_TAG = "straubmediagr-20";
     const AMAZON_BASE = "https://www.amazon.com/dp/";
 
     function money(x) {
-      if (x == null) return "";
-      return "$" + Number(x).toFixed(2).replace(/\.00$/, "");
+      if (x == null || x === "") return "";
+      const n = Number(x);
+      if (!isFinite(n)) return "";
+      return "$" + n.toFixed(2).replace(/\.00$/, "");
     }
 
-    function buildUrl(deal) {
-      // If you ever want to override with a custom URL, you can still include deal.url in deals.json
-      if (deal.url && deal.url.startsWith("http")) return deal.url;
+    function calcDropPercent(now, was) {
+      if (now == null || was == null || now === "" || was === "") return null;
+      const n = Number(now), w = Number(was);
+      if (!isFinite(n) || !isFinite(w) || w <= 0) return null;
+      return Math.round(((w - n) / w) * 100);
+    }
 
-      const asin = (deal.asin || "").trim();
-      if (!asin) return "#";
+    function buildAmazonUrl(asinOrUrl) {
+      const s = String(asinOrUrl || "").trim();
 
-      const params = new URLSearchParams({
-        tag: ASSOC_TAG
-      });
+      // Allow full custom URL if you ever include it in the Sheet:
+      if (s.startsWith("http://") || s.startsWith("https://")) return s;
 
-      return `${AMAZON_BASE}${encodeURIComponent(asin)}?${params.toString()}`;
+      // Otherwise treat as ASIN:
+      if (!s) return "#";
+      return `${AMAZON_BASE}${encodeURIComponent(s)}?tag=${encodeURIComponent(ASSOC_TAG)}`;
+    }
+
+    function normalizeDeal(d) {
+      const asin = (d.asin ?? d.ASIN ?? "").toString().trim();
+      const title = (d.title ?? d.Title ?? "").toString().trim();
+
+      // optional: your sheet can include "url" to override ASIN-based URL
+      const url = d.url ? String(d.url).trim() : asin;
+
+      const now = d.now ?? d.price ?? d.current ?? null;
+      const was = d.was ?? d.prev ?? d.previous ?? null;
+
+      const enabledRaw = (d.enabled ?? d.Enabled ?? true);
+      const enabledStr = String(enabledRaw).toLowerCase().trim();
+      const enabled = !(enabledStr === "false" || enabledStr === "0" || enabledStr === "no");
+
+      return {
+        asin,
+        title,
+        url,
+        now,
+        was,
+        notes: (d.notes ?? d.Notes ?? "").toString().trim(),
+        imageUrl: (d.imageUrl ?? d.imageURL ?? d.image ?? "").toString().trim(),
+        enabled
+      };
+    }
+
+    function renderError(msg) {
+      document.getElementById("list").innerHTML = `
+        <div class="error">
+          <div style="font-weight:700; margin-bottom:6px;">Couldn’t load deals</div>
+          <div>${msg}</div>
+          <div style="margin-top:10px;">
+            If this is a CORS issue, the “GitHub Actions fetch & commit” workaround fixes it.
+          </div>
+        </div>`;
     }
 
     async function run() {
-      const res = await fetch("./deals.json", { cache: "no-store" });
-      const data = await res.json();
+      // cache bust so edits appear quickly
+      const url = `${SHEET_JSON_URL}${SHEET_JSON_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
 
-      document.getElementById("asof").textContent = `Updated: ${data.updated}`;
+      let data;
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        data = await res.json();
+      } catch (e) {
+        console.error(e);
+        renderError(`Fetch failed. Details: <code>${String(e.message || e)}</code>`);
+        return;
+      }
 
-      const deals = [...(data.deals || [])].sort((a, b) => (b.dropPercent ?? 0) - (a.dropPercent ?? 0));
+      document.getElementById("asof").textContent =
+        `Updated: ${data.updated || new Date().toISOString().slice(0,10)}`;
+
+      const rawDeals = Array.isArray(data.deals) ? data.deals : [];
+      const deals = rawDeals
+        .map(normalizeDeal)
+        .filter(d => d.enabled)
+        .filter(d => d.title && (d.asin || (d.url && d.url.startsWith("http"))))
+        .map(d => ({ ...d, dropPercent: calcDropPercent(d.now, d.was) }))
+        .sort((a, b) => (b.dropPercent ?? -999) - (a.dropPercent ?? -999));
+
       const list = document.getElementById("list");
       list.innerHTML = "";
 
       for (const d of deals) {
-        const url = buildUrl(d);
-
-        const nowText = d.now != null ? `Now ${money(d.now)}` : "";
-        const wasText = d.was != null ? `Was ${money(d.was)}` : "";
+        const link = buildAmazonUrl(d.url || d.asin);
         const dropText = d.dropPercent != null ? `${d.dropPercent}% off` : "";
+        const nowText = d.now != null && d.now !== "" ? `Now ${money(d.now)}` : "";
+        const wasText = d.was != null && d.was !== "" ? `Was ${money(d.was)}` : "";
 
-        const el = document.createElement("div");
-        el.className = "card";
-        el.innerHTML = `
-          <div class="row">
-            <a class="title" href="${url}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
-            <div class="drop">${dropText}</div>
+        const img = d.imageUrl
+          ? `<div class="imgWrap">
+               <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
+                 <img src="${d.imageUrl}" alt="" loading="lazy" />
+               </a>
+             </div>`
+          : `<div class="imgWrap"></div>`;
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="deal">
+            ${img}
+            <div>
+              <div class="row">
+                <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
+                <div class="drop">${dropText}</div>
+              </div>
+              <div class="meta">
+                ${nowText}${(nowText && wasText) ? " • " : ""}${wasText}
+                ${(d.notes && (nowText || wasText)) ? " • " : ""}${d.notes || ""}
+              </div>
+              <a class="btn" href="${link}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
+            </div>
           </div>
-          <div class="meta">
-            ${nowText}${(nowText && wasText) ? " • " : ""}${wasText}
-            ${(d.notes && (nowText || wasText)) ? " • " : ""}${d.notes || ""}
-          </div>
-          <a class="btn" href="${url}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
         `;
-        list.appendChild(el);
+        list.appendChild(card);
+      }
+
+      if (deals.length === 0) {
+        renderError(`No enabled deals found. Make sure your sheet has columns like <code>asin</code>, <code>title</code>, <code>now</code>, <code>was</code>, and optionally <code>enabled</code>.`);
       }
     }
 
-    run().catch(() => {
-      document.getElementById("list").textContent = "Could not load deals.json";
-    });
+    run();
   </script>
 </body>
 </html>
