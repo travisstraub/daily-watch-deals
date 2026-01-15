@@ -116,7 +116,6 @@
       if (x == null) return null;
       const s = String(x).trim();
       if (!s) return null;
-      // Strip currency symbols, commas, and anything that's not digit/dot/minus
       const cleaned = s.replace(/[^0-9.\-]/g, "");
       if (!cleaned) return null;
       const n = Number(cleaned);
@@ -183,7 +182,7 @@
       let data;
       try {
         const res = await fetch(url, { cache: "no-store" });
-        if (!res.ok) throw new Error(\`HTTP \${res.status}\`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         data = await res.json();
       } catch (e) {
         console.error(e);
