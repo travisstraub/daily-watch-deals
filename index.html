@@ -24,6 +24,33 @@
     .drop { font-weight: 750; }
     .btn { display:inline-block; margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; }
 
+    /* Hot deal highlight */
+    .hot {
+      border: 2px solid #ffb020;
+      background: linear-gradient(180deg, rgba(255,176,32,0.14), rgba(255,176,32,0.05));
+      box-shadow: 0 10px 30px rgba(255,176,32,0.18);
+    }
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #ffd28a;
+      background: rgba(255,176,32,0.18);
+      color: #5a3a00;
+      letter-spacing: 0.2px;
+    }
+
     .error { padding: 12px; border: 1px solid #f3c2c2; background: #fff7f7; border-radius: 12px; color:#7a1b1b; }
     footer { margin-top: 22px; font-size: 13px; color: #666; line-height: 1.4; }
     code { background: #f5f5f5; padding: 2px 6px; border-radius: 6px; }
@@ -143,7 +170,10 @@
       const list = document.getElementById("list");
       list.innerHTML = "";
 
-      for (const d of deals) {
+      for (let i = 0; i < deals.length; i++) {
+        const d = deals[i];
+        const isHot = i === 0 && d.dropPercent != null; // biggest drop
+
         const link = buildAmazonUrl(d.url || d.asin);
         const dropText = d.dropPercent != null ? `${d.dropPercent}% off` : "";
         const nowText = d.now != null && d.now !== "" ? `Now ${money(d.now)}` : "";
@@ -157,15 +187,23 @@
              </div>`
           : `<div class="imgWrap"></div>`;
 
+        const hotHeader = isHot ? `
+          <div class="badge-row">
+            <span class="badge">🔥 HOT DEAL • Biggest drop</span>
+            <span class="pill">${dropText || "Top deal"}</span>
+          </div>
+        ` : "";
+
         const card = document.createElement("div");
-        card.className = "card";
+        card.className = `card${isHot ? " hot" : ""}`;
         card.innerHTML = `
+          ${hotHeader}
           <div class="deal">
             ${img}
             <div>
               <div class="row">
                 <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
-                <div class="drop">${dropText}</div>
+                <div class="drop">${isHot ? "" : dropText}</div>
               </div>
               <div class="meta">
                 ${nowText}${(nowText && wasText) ? " • " : ""}${wasText}
