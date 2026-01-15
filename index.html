@@ -21,7 +21,6 @@
     .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .title { font-weight: 650; text-decoration: none; color: #111; }
     .meta { color: #555; font-size: 14px; margin-top: 6px; line-height: 1.35; }
-    .drop { font-weight: 750; }
     .btn { display:inline-block; margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; }
 
     /* PRICE STYLES */
@@ -57,12 +56,7 @@
       50% { text-shadow: 0 0 22px rgba(15,138,60,0.6); }
     }
 
-    /* HOT DEAL HIGHLIGHT */
-    .hot {
-      border: 2px solid #ffb020;
-      background: linear-gradient(180deg, rgba(255,176,32,0.14), rgba(255,176,32,0.05));
-      box-shadow: 0 10px 30px rgba(255,176,32,0.18);
-    }
+    /* BADGES (unified) */
     .badge-row {
       display: flex;
       align-items: center;
@@ -82,6 +76,14 @@
       background: rgba(255,176,32,0.18);
       color: #5a3a00;
       letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+
+    /* HOT DEAL CARD */
+    .hot {
+      border: 2px solid #ffb020;
+      background: linear-gradient(180deg, rgba(255,176,32,0.14), rgba(255,176,32,0.05));
+      box-shadow: 0 10px 30px rgba(255,176,32,0.18);
     }
 
     .error { padding: 12px; border: 1px solid #f3c2c2; background: #fff7f7; border-radius: 12px; color:#7a1b1b; }
@@ -126,42 +128,24 @@
 
     function buildAmazonUrl(asinOrUrl) {
       const s = String(asinOrUrl || "").trim();
-      if (s.startsWith("http://") || s.startsWith("https://")) return s;
+      if (s.startsWith("http")) return s;
       if (!s) return "#";
       return `${AMAZON_BASE}${encodeURIComponent(s)}?tag=${encodeURIComponent(ASSOC_TAG)}`;
     }
 
-    function normalizeDeal(d) {
-      const asin = (d.asin ?? d.ASIN ?? "").toString().trim();
-      const title = (d.title ?? d.Title ?? "").toString().trim();
-      const url = d.url ? String(d.url).trim() : asin;
-      const now = d.now ?? d.price ?? null;
-      const was = d.was ?? d.prev ?? null;
-
-      return {
-        asin,
-        title,
-        url,
-        now,
-        was,
-        notes: (d.notes ?? "").toString().trim(),
-        imageUrl: (d.imageUrl ?? "").toString().trim(),
-        enabled: String(d.enabled).toLowerCase() !== "false"
-      };
-    }
-
     async function run() {
-      const url = `${SHEET_JSON_URL}?t=${Date.now()}`;
-      const res = await fetch(url, { cache: "no-store" });
+      const res = await fetch(`${SHEET_JSON_URL}?t=${Date.now()}`, { cache: "no-store" });
       const data = await res.json();
 
       document.getElementById("asof").textContent =
         `Updated: ${data.updated || new Date().toISOString().slice(0,10)}`;
 
       const deals = (data.deals || [])
-        .map(normalizeDeal)
-        .filter(d => d.enabled && d.title)
-        .map(d => ({ ...d, dropPercent: calcDropPercent(d.now, d.was) }))
+        .filter(d => String(d.enabled).toLowerCase() !== "false")
+        .map(d => ({
+          ...d,
+          dropPercent: calcDropPercent(d.now, d.was)
+        }))
         .sort((a, b) => (b.dropPercent ?? -999) - (a.dropPercent ?? -999));
 
       const list = document.getElementById("list");
@@ -174,12 +158,14 @@
         const card = document.createElement("div");
         card.className = `card${isHot ? " hot" : ""}`;
         card.innerHTML = `
-          ${isHot ? `
-            <div class="badge-row">
-              <span class="badge">🔥 HOT DEAL • Biggest drop</span>
-              <span class="pill">${d.dropPercent}% off</span>
-            </div>
-          ` : ""}
+          <div class="badge-row">
+            ${isHot
+              ? `<span class="badge">🔥 HOT DEAL • Biggest drop</span>`
+              : d.dropPercent != null
+                ? `<span class="badge">${d.dropPercent}% OFF</span>`
+                : `<span></span>`
+            }
+          </div>
 
           <div class="deal">
             ${d.imageUrl ? `
@@ -187,26 +173,20 @@
                 <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
                   <img src="${d.imageUrl}" alt="" loading="lazy" />
                 </a>
-              </div>
-            ` : `<div class="imgWrap"></div>`}
+              </div>` : `<div class="imgWrap"></div>`}
 
             <div>
-              <div class="row">
-                <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
-                ${!isHot && d.dropPercent != null ? `<div class="drop">${d.dropPercent}% off</div>` : ""}
-              </div>
+              <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
 
               <div class="price">
                 ${d.now != null ? `
                   <span class="price-now ${isHot ? "hot" : ""}">
                     <span class="price-label">Now</span> ${money(d.now)}
-                  </span>
-                ` : ""}
+                  </span>` : ""}
                 ${d.was != null ? `
                   <span class="price-was">
                     <span class="price-label">Was</span> ${money(d.was)}
-                  </span>
-                ` : ""}
+                  </span>` : ""}
               </div>
 
               ${d.notes ? `<div class="meta">${d.notes}</div>` : ""}
