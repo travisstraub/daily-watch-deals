@@ -24,7 +24,40 @@
     .drop { font-weight: 750; }
     .btn { display:inline-block; margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; }
 
-    /* Hot deal highlight */
+    /* PRICE STYLES */
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .price-label {
+      font-size: 11px;
+      color: #777;
+      margin-right: 4px;
+    }
+    .price-now {
+      font-weight: 800;
+      font-size: 18px;
+      color: #0f8a3c;
+    }
+    .price-now.hot {
+      text-shadow: 0 0 14px rgba(15,138,60,0.35);
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    .price-was {
+      font-size: 14px;
+      color: #a14a4a;
+      text-decoration: line-through;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 14px rgba(15,138,60,0.35); }
+      50% { text-shadow: 0 0 22px rgba(15,138,60,0.6); }
+    }
+
+    /* HOT DEAL HIGHLIGHT */
     .hot {
       border: 2px solid #ffb020;
       background: linear-gradient(180deg, rgba(255,176,32,0.14), rgba(255,176,32,0.05));
@@ -71,11 +104,9 @@
   </footer>
 
   <script>
-    // Your Apps Script web app endpoint:
     const SHEET_JSON_URL =
       "https://script.google.com/macros/s/AKfycbxvB0ocZc1Ik8qQJzWEHASPt9JfJtkw08XjbHjbCvcJm-BCNBYQ3IpbVvj7ZSvM7wEsEQ/exec";
 
-    // Your Amazon Associates tag:
     const ASSOC_TAG = "straubmediagr-20";
     const AMAZON_BASE = "https://www.amazon.com/dp/";
 
@@ -95,11 +126,7 @@
 
     function buildAmazonUrl(asinOrUrl) {
       const s = String(asinOrUrl || "").trim();
-
-      // Allow full custom URL if you ever include it in the Sheet:
       if (s.startsWith("http://") || s.startsWith("https://")) return s;
-
-      // Otherwise treat as ASIN:
       if (!s) return "#";
       return `${AMAZON_BASE}${encodeURIComponent(s)}?tag=${encodeURIComponent(ASSOC_TAG)}`;
     }
@@ -107,16 +134,9 @@
     function normalizeDeal(d) {
       const asin = (d.asin ?? d.ASIN ?? "").toString().trim();
       const title = (d.title ?? d.Title ?? "").toString().trim();
-
-      // optional: your sheet can include "url" to override ASIN-based URL
       const url = d.url ? String(d.url).trim() : asin;
-
-      const now = d.now ?? d.price ?? d.current ?? null;
-      const was = d.was ?? d.prev ?? d.previous ?? null;
-
-      const enabledRaw = (d.enabled ?? d.Enabled ?? true);
-      const enabledStr = String(enabledRaw).toLowerCase().trim();
-      const enabled = !(enabledStr === "false" || enabledStr === "0" || enabledStr === "no");
+      const now = d.now ?? d.price ?? null;
+      const was = d.was ?? d.prev ?? null;
 
       return {
         asin,
@@ -124,101 +144,79 @@
         url,
         now,
         was,
-        notes: (d.notes ?? d.Notes ?? "").toString().trim(),
-        imageUrl: (d.imageUrl ?? d.imageURL ?? d.image ?? "").toString().trim(),
-        enabled
+        notes: (d.notes ?? "").toString().trim(),
+        imageUrl: (d.imageUrl ?? "").toString().trim(),
+        enabled: String(d.enabled).toLowerCase() !== "false"
       };
     }
 
-    function renderError(msg) {
-      document.getElementById("list").innerHTML = `
-        <div class="error">
-          <div style="font-weight:700; margin-bottom:6px;">Couldn’t load deals</div>
-          <div>${msg}</div>
-          <div style="margin-top:10px;">
-            If this is a CORS issue, the “GitHub Actions fetch & commit” workaround fixes it.
-          </div>
-        </div>`;
-    }
-
     async function run() {
-      // cache bust so edits appear quickly
-      const url = `${SHEET_JSON_URL}${SHEET_JSON_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
-
-      let data;
-      try {
-        const res = await fetch(url, { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        data = await res.json();
-      } catch (e) {
-        console.error(e);
-        renderError(`Fetch failed. Details: <code>${String(e.message || e)}</code>`);
-        return;
-      }
+      const url = `${SHEET_JSON_URL}?t=${Date.now()}`;
+      const res = await fetch(url, { cache: "no-store" });
+      const data = await res.json();
 
       document.getElementById("asof").textContent =
         `Updated: ${data.updated || new Date().toISOString().slice(0,10)}`;
 
-      const rawDeals = Array.isArray(data.deals) ? data.deals : [];
-      const deals = rawDeals
+      const deals = (data.deals || [])
         .map(normalizeDeal)
-        .filter(d => d.enabled)
-        .filter(d => d.title && (d.asin || (d.url && d.url.startsWith("http"))))
+        .filter(d => d.enabled && d.title)
         .map(d => ({ ...d, dropPercent: calcDropPercent(d.now, d.was) }))
         .sort((a, b) => (b.dropPercent ?? -999) - (a.dropPercent ?? -999));
 
       const list = document.getElementById("list");
       list.innerHTML = "";
 
-      for (let i = 0; i < deals.length; i++) {
-        const d = deals[i];
-        const isHot = i === 0 && d.dropPercent != null; // biggest drop
-
+      deals.forEach((d, i) => {
+        const isHot = i === 0 && d.dropPercent != null;
         const link = buildAmazonUrl(d.url || d.asin);
-        const dropText = d.dropPercent != null ? `${d.dropPercent}% off` : "";
-        const nowText = d.now != null && d.now !== "" ? `Now ${money(d.now)}` : "";
-        const wasText = d.was != null && d.was !== "" ? `Was ${money(d.was)}` : "";
-
-        const img = d.imageUrl
-          ? `<div class="imgWrap">
-               <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
-                 <img src="${d.imageUrl}" alt="" loading="lazy" />
-               </a>
-             </div>`
-          : `<div class="imgWrap"></div>`;
-
-        const hotHeader = isHot ? `
-          <div class="badge-row">
-            <span class="badge">🔥 HOT DEAL • Biggest drop</span>
-            <span class="pill">${dropText || "Top deal"}</span>
-          </div>
-        ` : "";
 
         const card = document.createElement("div");
         card.className = `card${isHot ? " hot" : ""}`;
         card.innerHTML = `
-          ${hotHeader}
+          ${isHot ? `
+            <div class="badge-row">
+              <span class="badge">🔥 HOT DEAL • Biggest drop</span>
+              <span class="pill">${d.dropPercent}% off</span>
+            </div>
+          ` : ""}
+
           <div class="deal">
-            ${img}
+            ${d.imageUrl ? `
+              <div class="imgWrap">
+                <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
+                  <img src="${d.imageUrl}" alt="" loading="lazy" />
+                </a>
+              </div>
+            ` : `<div class="imgWrap"></div>`}
+
             <div>
               <div class="row">
                 <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
-                <div class="drop">${isHot ? "" : dropText}</div>
+                ${!isHot && d.dropPercent != null ? `<div class="drop">${d.dropPercent}% off</div>` : ""}
               </div>
-              <div class="meta">
-                ${nowText}${(nowText && wasText) ? " • " : ""}${wasText}
-                ${(d.notes && (nowText || wasText)) ? " • " : ""}${d.notes || ""}
+
+              <div class="price">
+                ${d.now != null ? `
+                  <span class="price-now ${isHot ? "hot" : ""}">
+                    <span class="price-label">Now</span> ${money(d.now)}
+                  </span>
+                ` : ""}
+                ${d.was != null ? `
+                  <span class="price-was">
+                    <span class="price-label">Was</span> ${money(d.was)}
+                  </span>
+                ` : ""}
               </div>
+
+              ${d.notes ? `<div class="meta">${d.notes}</div>` : ""}
+
               <a class="btn" href="${link}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
             </div>
           </div>
         `;
         list.appendChild(card);
-      }
-
-      if (deals.length === 0) {
-        renderError(`No enabled deals found. Make sure your sheet has columns like <code>asin</code>, <code>title</code>, <code>now</code>, <code>was</code>, and optionally <code>enabled</code>.`);
-      }
+      });
     }
 
     run();
