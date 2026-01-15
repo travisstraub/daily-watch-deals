@@ -112,81 +112,139 @@
     const ASSOC_TAG = "straubmediagr-20";
     const AMAZON_BASE = "https://www.amazon.com/dp/";
 
+    function parsePrice(x) {
+      if (x == null) return null;
+      const s = String(x).trim();
+      if (!s) return null;
+      // Strip currency symbols, commas, and anything that's not digit/dot/minus
+      const cleaned = s.replace(/[^0-9.\-]/g, "");
+      if (!cleaned) return null;
+      const n = Number(cleaned);
+      return Number.isFinite(n) ? n : null;
+    }
+
     function money(x) {
-      if (x == null || x === "") return "";
-      const n = Number(x);
-      if (!isFinite(n)) return "";
+      const n = parsePrice(x);
+      if (n == null) return "";
       return "$" + n.toFixed(2).replace(/\.00$/, "");
     }
 
     function calcDropPercent(now, was) {
-      if (now == null || was == null || now === "" || was === "") return null;
-      const n = Number(now), w = Number(was);
-      if (!isFinite(n) || !isFinite(w) || w <= 0) return null;
-      return Math.round(((w - n) / w) * 100);
+      const n = parsePrice(now);
+      const w = parsePrice(was);
+      if (n == null || w == null || w <= 0) return null;
+      const pct = ((w - n) / w) * 100;
+      if (!Number.isFinite(pct)) return null;
+      return Math.round(pct);
     }
 
     function buildAmazonUrl(asinOrUrl) {
       const s = String(asinOrUrl || "").trim();
-      if (s.startsWith("http")) return s;
+      if (s.startsWith("http://") || s.startsWith("https://")) return s;
       if (!s) return "#";
       return `${AMAZON_BASE}${encodeURIComponent(s)}?tag=${encodeURIComponent(ASSOC_TAG)}`;
     }
 
+    function normalizeDeal(d) {
+      const asin = (d.asin ?? d.ASIN ?? "").toString().trim();
+      const title = (d.title ?? d.Title ?? "").toString().trim();
+      const url = d.url ? String(d.url).trim() : asin;
+
+      const now = d.now ?? d.price ?? d.current ?? null;
+      const was = d.was ?? d.prev ?? d.previous ?? null;
+
+      const enabledRaw = (d.enabled ?? d.Enabled ?? true);
+      const enabledStr = String(enabledRaw).toLowerCase().trim();
+      const enabled = !(enabledStr === "false" || enabledStr === "0" || enabledStr === "no");
+
+      return {
+        asin,
+        title,
+        url,
+        now,
+        was,
+        notes: (d.notes ?? d.Notes ?? "").toString().trim(),
+        imageUrl: (d.imageUrl ?? d.imageURL ?? d.image ?? "").toString().trim(),
+        enabled
+      };
+    }
+
+    function renderError(msg) {
+      document.getElementById("list").innerHTML = `
+        <div class="error">
+          <div style="font-weight:700; margin-bottom:6px;">Couldn’t load deals</div>
+          <div>${msg}</div>
+        </div>`;
+    }
+
     async function run() {
-      const res = await fetch(`${SHEET_JSON_URL}?t=${Date.now()}`, { cache: "no-store" });
-      const data = await res.json();
+      const url = `${SHEET_JSON_URL}${SHEET_JSON_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
+
+      let data;
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(\`HTTP \${res.status}\`);
+        data = await res.json();
+      } catch (e) {
+        console.error(e);
+        renderError(`Fetch failed. Details: <code>${String(e.message || e)}</code>`);
+        return;
+      }
 
       document.getElementById("asof").textContent =
         `Updated: ${data.updated || new Date().toISOString().slice(0,10)}`;
 
-      const deals = (data.deals || [])
-        .filter(d => String(d.enabled).toLowerCase() !== "false")
-        .map(d => ({
-          ...d,
-          dropPercent: calcDropPercent(d.now, d.was)
-        }))
+      const rawDeals = Array.isArray(data.deals) ? data.deals : [];
+      const deals = rawDeals
+        .map(normalizeDeal)
+        .filter(d => d.enabled)
+        .filter(d => d.title && (d.asin || (d.url && d.url.startsWith("http"))))
+        .map(d => ({ ...d, dropPercent: calcDropPercent(d.now, d.was) }))
         .sort((a, b) => (b.dropPercent ?? -999) - (a.dropPercent ?? -999));
 
       const list = document.getElementById("list");
       list.innerHTML = "";
 
-      deals.forEach((d, i) => {
+      for (let i = 0; i < deals.length; i++) {
+        const d = deals[i];
         const isHot = i === 0 && d.dropPercent != null;
         const link = buildAmazonUrl(d.url || d.asin);
+
+        const badgeHtml = isHot
+          ? `<span class="badge">🔥 HOT DEAL • Biggest drop</span>`
+          : (d.dropPercent != null ? `<span class="badge">${d.dropPercent}% OFF</span>` : `<span></span>`);
+
+        const img = d.imageUrl
+          ? `<div class="imgWrap">
+               <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
+                 <img src="${d.imageUrl}" alt="" loading="lazy" />
+               </a>
+             </div>`
+          : `<div class="imgWrap"></div>`;
 
         const card = document.createElement("div");
         card.className = `card${isHot ? " hot" : ""}`;
         card.innerHTML = `
           <div class="badge-row">
-            ${isHot
-              ? `<span class="badge">🔥 HOT DEAL • Biggest drop</span>`
-              : d.dropPercent != null
-                ? `<span class="badge">${d.dropPercent}% OFF</span>`
-                : `<span></span>`
-            }
+            ${badgeHtml}
           </div>
 
           <div class="deal">
-            ${d.imageUrl ? `
-              <div class="imgWrap">
-                <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
-                  <img src="${d.imageUrl}" alt="" loading="lazy" />
-                </a>
-              </div>` : `<div class="imgWrap"></div>`}
-
+            ${img}
             <div>
               <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
 
               <div class="price">
-                ${d.now != null ? `
+                ${parsePrice(d.now) != null ? `
                   <span class="price-now ${isHot ? "hot" : ""}">
                     <span class="price-label">Now</span> ${money(d.now)}
-                  </span>` : ""}
-                ${d.was != null ? `
+                  </span>
+                ` : ""}
+                ${parsePrice(d.was) != null ? `
                   <span class="price-was">
                     <span class="price-label">Was</span> ${money(d.was)}
-                  </span>` : ""}
+                  </span>
+                ` : ""}
               </div>
 
               ${d.notes ? `<div class="meta">${d.notes}</div>` : ""}
@@ -196,7 +254,11 @@
           </div>
         `;
         list.appendChild(card);
-      });
+      }
+
+      if (deals.length === 0) {
+        renderError(`No enabled deals found. Make sure your sheet has <code>title</code>, and price columns <code>now</code>/<code>was</code> if you want % off badges.`);
+      }
     }
 
     run();
