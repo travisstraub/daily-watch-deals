@@ -63,6 +63,7 @@
       justify-content: space-between;
       gap: 12px;
       margin-bottom: 8px;
+      flex-wrap: wrap;
     }
     .badge {
       display: inline-flex;
@@ -209,9 +210,13 @@
         const isHot = i === 0 && d.dropPercent != null;
         const link = buildAmazonUrl(d.url || d.asin);
 
-        const badgeHtml = isHot
+        const badgeLeft = isHot
           ? `<span class="badge">🔥 HOT DEAL • Biggest drop</span>`
           : (d.dropPercent != null ? `<span class="badge">${d.dropPercent}% OFF</span>` : `<span></span>`);
+
+        const badgeRight = isHot && d.dropPercent != null
+          ? `<span class="badge">${d.dropPercent}% OFF</span>`
+          : `<span></span>`;
 
         const img = d.imageUrl
           ? `<div class="imgWrap">
@@ -225,7 +230,8 @@
         card.className = `card${isHot ? " hot" : ""}`;
         card.innerHTML = `
           <div class="badge-row">
-            ${badgeHtml}
+            ${badgeLeft}
+            ${badgeRight}
           </div>
 
           <div class="deal">
