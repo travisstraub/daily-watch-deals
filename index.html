@@ -4,163 +4,269 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Daily Watch Deals</title>
-  <meta name="description" content="Daily Amazon watch deals with the biggest price drops." />
-
+  <meta name="description" content="Daily watch deals with the biggest price drops." />
   <style>
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:#0f1115;
-      color:#fff;
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; max-width: 920px; }
+    header { margin-bottom: 18px; }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    .sub { color: #555; margin: 0 0 10px; }
+    .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; border: 1px solid #ddd; font-size: 12px; color:#333; }
+
+    .card { border: 1px solid #e6e6e6; border-radius: 14px; padding: 14px; margin: 12px 0; }
+    .deal { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: start; }
+    @media (max-width: 560px) { .deal { grid-template-columns: 1fr; } }
+
+    .imgWrap { width: 120px; }
+    .imgWrap img { width: 120px; height: auto; border-radius: 12px; border: 1px solid #eee; display:block; }
+    .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .title { font-weight: 650; text-decoration: none; color: #111; }
+    .meta { color: #555; font-size: 14px; margin-top: 6px; line-height: 1.35; }
+    .btn { display:inline-block; margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid #ddd; text-decoration:none; color:#111; }
+
+    /* PRICE STYLES */
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+    .price-label {
+      font-size: 11px;
+      color: #777;
+      margin-right: 4px;
+    }
+    .price-now {
+      font-weight: 800;
+      font-size: 18px;
+      color: #0f8a3c;
+    }
+    .price-now.hot {
+      text-shadow: 0 0 14px rgba(15,138,60,0.35);
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    .price-was {
+      font-size: 14px;
+      color: #a14a4a;
+      text-decoration: line-through;
     }
 
-    header{
-      max-width:1100px;
-      margin:0 auto;
-      padding:24px 16px 8px;
-      text-align:center;
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 14px rgba(15,138,60,0.35); }
+      50% { text-shadow: 0 0 22px rgba(15,138,60,0.6); }
     }
 
-    header h1{
-      margin:0 0 6px;
-      font-size:2rem;
+    /* BADGES (unified) */
+    .badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #ffd28a;
+      background: rgba(255,176,32,0.18);
+      color: #5a3a00;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
     }
 
-    header p{
-      margin:0 0 18px;
-      opacity:.85;
+    /* HOT DEAL CARD */
+    .hot {
+      border: 2px solid #ffb020;
+      background: linear-gradient(180deg, rgba(255,176,32,0.14), rgba(255,176,32,0.05));
+      box-shadow: 0 10px 30px rgba(255,176,32,0.18);
     }
 
-    .newsletter{
-      max-width:900px;
-      margin:18px auto 28px;
-      padding:16px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      background:rgba(255,255,255,.04);
-      text-align:center;
-    }
-
-    .newsletter h2{
-      margin:0 0 6px;
-      font-size:1.4rem;
-    }
-
-    .newsletter p{
-      margin:0 0 14px;
-      opacity:.9;
-    }
-
-    .newsletter-fineprint{
-      display:block;
-      margin-top:10px;
-      font-size:.85rem;
-      opacity:.7;
-    }
-
-    .newsletter-embed{
-      max-width:420px;
-      margin:0 auto;
-    }
-
-    main{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 16px 24px;
-    }
-
-    .deals{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-      gap:16px;
-    }
-
-    .deal{
-      background:#161a21;
-      border-radius:14px;
-      padding:14px;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .deal h3{
-      margin:0 0 6px;
-      font-size:1rem;
-    }
-
-    .deal .price{
-      font-size:1.1rem;
-      font-weight:600;
-    }
-
-    footer{
-      max-width:1100px;
-      margin:0 auto;
-      padding:12px 16px 32px;
-      text-align:center;
-      opacity:.6;
-      font-size:.85rem;
-    }
+    .error { padding: 12px; border: 1px solid #f3c2c2; background: #fff7f7; border-radius: 12px; color:#7a1b1b; }
+    footer { margin-top: 22px; font-size: 13px; color: #666; line-height: 1.4; }
+    code { background: #f5f5f5; padding: 2px 6px; border-radius: 6px; }
   </style>
 </head>
-
 <body>
-
   <header>
     <h1>Daily Watch Deals</h1>
-    <p>Tracking Amazon price drops so you don’t have to.</p>
+    <p class="sub">Biggest price drops I found today (Keepa / CamelCamelCamel research).</p>
+    <span class="pill" id="asof">Loading…</span>
   </header>
 
-  <!-- 🔝 TOP NEWSLETTER SIGNUP -->
-  <section class="newsletter">
-    <h2>Get daily watch deals</h2>
-    <p>One email per day with the biggest price drops.</p>
-
-    <div class="newsletter-embed">
-      <script async
-        data-uid="72669905e1"
-        src="https://amazon-watch-deals.kit.com/72669905e1/index.js">
-      </script>
-    </div>
-
-    <small class="newsletter-fineprint">
-      No spam. Unsubscribe anytime.
-    </small>
-  </section>
-
-  <main>
-    <!-- Your existing deals rendering logic can stay exactly the same -->
-    <div class="deals" id="deals"></div>
-  </main>
-
-  <!-- 🔽 BOTTOM NEWSLETTER SIGNUP -->
-  <section class="newsletter">
-    <h2>Want these emailed daily?</h2>
-    <p>Never miss a great deal — straight to your inbox.</p>
-
-    <div class="newsletter-embed">
-      <script async
-        data-uid="72669905e1"
-        src="https://amazon-watch-deals.kit.com/72669905e1/index.js">
-      </script>
-    </div>
-
-    <small class="newsletter-fineprint">
-      Free forever. Unsubscribe anytime.
-    </small>
-  </section>
+  <main id="list"></main>
 
   <footer>
-    © <span id="year"></span> Daily Watch Deals
+    <p><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.</p>
+    <p>Prices can change at any time. Verify the current price on Amazon before buying.</p>
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const SHEET_JSON_URL =
+      "https://script.google.com/macros/s/AKfycbxvB0ocZc1Ik8qQJzWEHASPt9JfJtkw08XjbHjbCvcJm-BCNBYQ3IpbVvj7ZSvM7wEsEQ/exec";
 
-    /*
-      If you already have JS that fetches deals.json and renders cards,
-      you can keep it here exactly as-is.
-    */
+    const ASSOC_TAG = "straubmediagr-20";
+    const AMAZON_BASE = "https://www.amazon.com/dp/";
+
+    function parsePrice(x) {
+      if (x == null) return null;
+      const s = String(x).trim();
+      if (!s) return null;
+      const cleaned = s.replace(/[^0-9.\-]/g, "");
+      if (!cleaned) return null;
+      const n = Number(cleaned);
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function money(x) {
+      const n = parsePrice(x);
+      if (n == null) return "";
+      return "$" + n.toFixed(2).replace(/\.00$/, "");
+    }
+
+    function calcDropPercent(now, was) {
+      const n = parsePrice(now);
+      const w = parsePrice(was);
+      if (n == null || w == null || w <= 0) return null;
+      const pct = ((w - n) / w) * 100;
+      if (!Number.isFinite(pct)) return null;
+      return Math.round(pct);
+    }
+
+    function buildAmazonUrl(asinOrUrl) {
+      const s = String(asinOrUrl || "").trim();
+      if (s.startsWith("http://") || s.startsWith("https://")) return s;
+      if (!s) return "#";
+      return `${AMAZON_BASE}${encodeURIComponent(s)}?tag=${encodeURIComponent(ASSOC_TAG)}`;
+    }
+
+    function normalizeDeal(d) {
+      const asin = (d.asin ?? d.ASIN ?? "").toString().trim();
+      const title = (d.title ?? d.Title ?? "").toString().trim();
+      const url = d.url ? String(d.url).trim() : asin;
+
+      const now = d.now ?? d.price ?? d.current ?? null;
+      const was = d.was ?? d.prev ?? d.previous ?? null;
+
+      const enabledRaw = (d.enabled ?? d.Enabled ?? true);
+      const enabledStr = String(enabledRaw).toLowerCase().trim();
+      const enabled = !(enabledStr === "false" || enabledStr === "0" || enabledStr === "no");
+
+      return {
+        asin,
+        title,
+        url,
+        now,
+        was,
+        notes: (d.notes ?? d.Notes ?? "").toString().trim(),
+        imageUrl: (d.imageUrl ?? d.imageURL ?? d.image ?? "").toString().trim(),
+        enabled
+      };
+    }
+
+    function renderError(msg) {
+      document.getElementById("list").innerHTML = `
+        <div class="error">
+          <div style="font-weight:700; margin-bottom:6px;">Couldn’t load deals</div>
+          <div>${msg}</div>
+        </div>`;
+    }
+
+    async function run() {
+      const url = `${SHEET_JSON_URL}${SHEET_JSON_URL.includes("?") ? "&" : "?"}t=${Date.now()}`;
+
+      let data;
+      try {
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        data = await res.json();
+      } catch (e) {
+        console.error(e);
+        renderError(`Fetch failed. Details: <code>${String(e.message || e)}</code>`);
+        return;
+      }
+
+      document.getElementById("asof").textContent =
+        `Updated: ${data.updated || new Date().toISOString().slice(0,10)}`;
+
+      const rawDeals = Array.isArray(data.deals) ? data.deals : [];
+      const deals = rawDeals
+        .map(normalizeDeal)
+        .filter(d => d.enabled)
+        .filter(d => d.title && (d.asin || (d.url && d.url.startsWith("http"))))
+        .map(d => ({ ...d, dropPercent: calcDropPercent(d.now, d.was) }))
+        .sort((a, b) => (b.dropPercent ?? -999) - (a.dropPercent ?? -999));
+
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+
+      for (let i = 0; i < deals.length; i++) {
+        const d = deals[i];
+        const isHot = i === 0 && d.dropPercent != null;
+        const link = buildAmazonUrl(d.url || d.asin);
+
+        const badgeLeft = isHot
+          ? `<span class="badge">🔥 HOT DEAL • Biggest drop</span>`
+          : (d.dropPercent != null ? `<span class="badge">${d.dropPercent}% OFF</span>` : `<span></span>`);
+
+        const badgeRight = isHot && d.dropPercent != null
+          ? `<span class="badge">${d.dropPercent}% OFF</span>`
+          : `<span></span>`;
+
+        const img = d.imageUrl
+          ? `<div class="imgWrap">
+               <a href="${link}" target="_blank" rel="nofollow sponsored noopener">
+                 <img src="${d.imageUrl}" alt="" loading="lazy" />
+               </a>
+             </div>`
+          : `<div class="imgWrap"></div>`;
+
+        const card = document.createElement("div");
+        card.className = `card${isHot ? " hot" : ""}`;
+        card.innerHTML = `
+          <div class="badge-row">
+            ${badgeLeft}
+            ${badgeRight}
+          </div>
+
+          <div class="deal">
+            ${img}
+            <div>
+              <a class="title" href="${link}" target="_blank" rel="nofollow sponsored noopener">${d.title}</a>
+
+              <div class="price">
+                ${parsePrice(d.now) != null ? `
+                  <span class="price-now ${isHot ? "hot" : ""}">
+                    <span class="price-label">Now</span> ${money(d.now)}
+                  </span>
+                ` : ""}
+                ${parsePrice(d.was) != null ? `
+                  <span class="price-was">
+                    <span class="price-label">Was</span> ${money(d.was)}
+                  </span>
+                ` : ""}
+              </div>
+
+              ${d.notes ? `<div class="meta">${d.notes}</div>` : ""}
+
+              <a class="btn" href="${link}" target="_blank" rel="nofollow sponsored noopener">View deal</a>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      }
+
+      if (deals.length === 0) {
+        renderError(`No enabled deals found. Make sure your sheet has <code>title</code>, and price columns <code>now</code>/<code>was</code> if you want % off badges.`);
+      }
+    }
+
+    run();
   </script>
-
 </body>
 </html>
