@@ -15,7 +15,7 @@
     "ordinary navigation with throw sender",
     "ordinary navigation with reject sender",
     "ordinary navigation with pending sender",
-    "ordinary navigation when analytics configuration fails to load",
+    "ordinary navigation when consent controls fail to load",
     "ordinary navigation with JavaScript disabled"
   ],
   "outboundNavigationsIntercepted": 8,

@@ -78,15 +78,15 @@ test('sitemap exactly matches canonicals and internal fragments exist',async()=>
 test('comparison gives sourced exact variants and original accessible dimension diagrams',async()=>{
  const html=await readFile(new URL('compare/casio-f91w-vs-ae1200/index.html',root),'utf8');
  for(const text of ['F-91W-1 with black resin strap','AE-1200WHD-1AV with silver steel bracelet','AE1200WHD-1A','38.2 × 35.2 × 8.5 mm','45 × 42.1 × 12.5 mm','91 g','not hands-on testing','Original dimension diagram','not exact silhouettes','6.9 mm wider and 4 mm thicker'])assert.ok(html.includes(text),text);
- assert.equal([...html.matchAll(/<svg[^>]*role="img"[^>]*aria-label=/g)].length,2);
+ assert.equal([...html.matchAll(/<svg[^>]*role="img"[^>]*aria-label=/g)].length,2);assert.doesNotMatch(html,/<img\b/);
  assert.doesNotMatch(html,/B0094B79PA|AE-1200 link searches|39 g/);
  for(const slug of ['casio-f91w','casio-ae1200'])assert.ok(html.includes(catalog[slug].destination.replaceAll('&','&amp;')));
 });
 
-test('built browser sources match source files and privacy accurately states disabled collection',async()=>{
- for(const name of ['app.js','analytics.js','analytics-config.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
+test('built browser sources match source files and privacy describes optional consent-based analytics',async()=>{
+ for(const name of ['app.js','analytics.js','analytics-config.js','consent.js','ga4.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
  const privacy=await readFile(new URL('privacy/index.html',root),'utf8');
- assert.match(privacy,/Outbound-click analytics is disabled/);assert.match(privacy,/No analytics provider is connected/);
+ assert.match(privacy,/only after you choose Accept analytics/);assert.match(privacy,/A click is not an order/);assert.match(privacy,/Global Privacy Control and Do Not Track/);
  for(const page of await pages()){
   const html=await readFile(page,'utf8');
   const sources=[...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]);
@@ -101,4 +101,14 @@ test('catalog has 30 distinct references with clear affiliate destinations and v
 
 test('approved Search Console verification survives the build with exact bytes',async()=>{
  assert.equal(await readFile(new URL('google216684202c8a020c.html',root),'utf8'),'google-site-verification: google216684202c8a020c.html');
+});
+
+test('every editorial page offers equal consent choices and an accessible later settings control',async()=>{
+ for(const page of await pages()){const html=await readFile(page,'utf8');
+  assert.match(html,/id="analytics-consent"[^>]+hidden/);
+  assert.match(html,/<button class="button" type="button" data-consent="accepted">Accept analytics<\/button>/);
+  assert.match(html,/<button class="button" type="button" data-consent="rejected">Reject analytics<\/button>/);
+  assert.match(html,/id="analytics-settings" type="button" hidden>Analytics choices/);
+  assert.doesNotMatch(html,/googletagmanager\.com|google-analytics\.com|rel="preconnect"/);
+ }
 });

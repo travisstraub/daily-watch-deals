@@ -1,11 +1,20 @@
-// Load the integration only after explicit code configuration. Filtering is independent.
-import('./analytics-config.js').then(async ({ analytics }) => {
- if (analytics.enabled !== true || typeof analytics.send !== 'function') return;
- const [{ installOutboundTracking }, { catalog, pages }] = await Promise.all([
-  import('./analytics.js'), import('./tracking-catalog.js'),
- ]);
- installOutboundTracking({ document, location: window.location, catalog, pages, ...analytics });
-}).catch(() => {});
+// Local consent controls load independently of filtering. No Google tag before opt-in.
+Promise.all([import('./consent.js'), import('./tracking-catalog.js')])
+ .then(([{ installConsent }, { catalog, pages }]) => installConsent({ window, document, catalog, pages })).catch(() => {});
+
+function imageFallback(img) {
+ if (img.dataset.fallback) return;
+ img.dataset.fallback = 'shown';
+ img.hidden = true;
+ const note = document.createElement('p');
+ note.className = 'image-fallback';
+ note.textContent = 'Manufacturer image unavailable';
+ img.after(note);
+}
+for (const img of document.querySelectorAll('img')) {
+ img.addEventListener('error', () => imageFallback(img));
+ if (img.complete && img.naturalWidth === 0) imageFallback(img);
+}
 
 const search=document.querySelector('#search');
 if(search){

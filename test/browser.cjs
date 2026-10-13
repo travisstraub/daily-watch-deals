@@ -55,7 +55,6 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
         report.checked.push(`${name}: ${width}px, no page overflow`);
       }
     }
-    assert.ok(!requests.some(url => /\/(analytics|tracking-catalog)\.js(?:\?|$)/.test(url)), 'disabled integration loaded event collection modules');
     assert.ok(!requests.some(url => /google-analytics|googletagmanager|plausible|segment|vercel-insights/.test(url)), 'third-party analytics requested');
     const comparison = '/compare/casio-f91w-vs-ae1200/';
     await page.goto(baseURL + comparison + '?utm_source=google&utm_medium=cpc&utm_campaign=first50&utm_content=comparison&email=private@example.test&gclid=private', { waitUntil: 'networkidle' });
@@ -105,10 +104,10 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
       report.checked.push(`ordinary navigation with ${mode} sender`);
     }
     await page.evaluate(() => window.stopTestTracking());
-    await page.route('**/analytics-config.js', route => route.abort());
+    await page.route('**/consent.js', route => route.abort());
     await page.reload({ waitUntil: 'networkidle' });
     await navigate(() => link.click());
-    report.checked.push('ordinary navigation when analytics configuration fails to load');
+    report.checked.push('ordinary navigation when consent controls fail to load');
     await context.close();
     const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 900 } });
     await noJS.route('https://www.amazon.com/**', route => route.fulfill({ status: 200, contentType: 'text/html', body: 'Intercepted navigation' }));

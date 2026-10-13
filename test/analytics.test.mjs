@@ -36,10 +36,10 @@ function fixture(send, overrides = {}) {
   return { config, cleanup, activate, handlers };
 }
 
-test('shipped integration is disabled, attaches no listeners and never reads campaigns', () => {
-  assert.deepEqual(analytics, { enabled: false, send: null });
+test('listener stays disabled without explicit enablement; provider config is production-only', () => {
+  assert.deepEqual(analytics, { enabled: true, measurementId: 'G-LSGXWGSM9T', productionOrigin: 'https://dailywatchfinds.com' });
   const disabled = fixture(() => assert.fail('collection is disabled'), {
-    enabled: analytics.enabled,
+    enabled: false,
     location: { get search() { assert.fail('disabled configuration read the URL'); } },
   });
   disabled.activate();

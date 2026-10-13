@@ -1,27 +1,46 @@
-# Outbound click integration — disabled
+# Consent-gated GA4 integration — awaiting release review
 
-No analytics provider/account or approved backend exists in this repository. No
-third-party tracking was installed. `src/analytics-config.js` sets `enabled: false`
-and `send: null`; visitors' clicks are not collected, stored or queued. The app
-loads only this local configuration while disabled, not the event module/catalog.
-Search/filter choices stay in the browser. Hosting and manufacturer image requests
-remain covered by the privacy page.
+The approved public measurement ID is `G-LSGXWGSM9T`. This draft adds GA4 to the
+existing outbound-click seam; it is not deployed to production and no live dashboard
+receipt is claimed. No advertising service or cross-product link is configured by
+the code. Account operator details do not belong in this public repository.
 
-The future flow is an ordinary Amazon anchor activation → validated event → an
-explicitly configured sender. Anchors continue working with JavaScript disabled,
-module-load failure, a missing sender, a synchronous exception, a rejected promise,
-or a sender that never settles. There are no retries or delayed redirects. The
-future sender must be nonblocking and return promptly (optionally a promise).
+## Consent and provider lifecycle
 
-## Event contract
+- Every editorial page offers equally styled **Accept analytics** and **Reject
+  analytics** buttons. The footer's **Analytics choices** control reopens the choice.
+- Before affirmative consent there is no Google script, preconnect, beacon, analytics
+  cookie or denied-consent ping. This is basic consent mode, not advanced mode.
+- Only `https://dailywatchfinds.com` can start the provider. Acceptance on previews
+  and localhost never contacts GA4. No URL parameter or environment flag overrides it.
+- Global Privacy Control or Do Not Track overrides stored acceptance. Rejection is
+  synchronized across tabs and on return to a page. The preference and date are stored
+  locally for up to 180 days; unavailable or expired storage fails closed.
+- After consent the tag receives denied defaults, then grants only analytics storage.
+  `ad_storage`, `ad_user_data` and `ad_personalization` stay denied. Google Signals and
+  ad-personalization signals are false; URL passthrough is false and ads redaction true.
+- The adapter requests host-only root-path GA cookies, 30-day expiry and no expiry
+  extension on every hit. GA may use pseudonymous identifiers and request metadata;
+  the data is not anonymous. No custom user ID or user properties are sent.
+- Rejecting stops listeners and pending sends, sets Google's documented
+  `ga-disable-G-LSGXWGSM9T` flag before the denied consent update, removes the script
+  element and expires accessible `_ga` / `_ga_*` cookies. Already sent requests cannot
+  be recalled. After withdrawal, reacceptance takes effect on the next page visit;
+  it cannot revive the old provider instance or replay old events.
+- Provider failure/timeout drops data without retries. Up to 20 intentional clicks
+  after consent may wait in memory while the tag loads, for at most eight seconds.
+  They are discarded on failure or withdrawal. Nothing before consent is replayed.
 
-`outbound_amazon_click` has these fields:
+## Events and data minimization
 
-| Field | Allowed source |
+`send_page_view: false` prevents the configuration command's automatic view; the
+adapter sends one manual `page_view` per document after the tag loads. The only
+other event this site explicitly sends is `outbound_amazon_click`.
+
+| Custom click field | Allowed source |
 | --- | --- |
-| `event` | Literal `outbound_amazon_click` |
-| `model` | Exact reference from the generated watch catalog |
-| `page` | Generated canonical path, with no query or fragment |
+| `model` | Exact catalog reference |
+| `page` | Generated canonical path, no query/fragment |
 | `placement` | `catalog_card`, `related_card`, `product_primary`, `product_details`, `product_mobile`, `comparison_pick` |
 | `destination_type` | `direct_product` or `model_search` |
 | Optional `utm_source` | `google` |
@@ -29,37 +48,53 @@ future sender must be nonblocking and return promptly (optionally a promise).
 | Optional `utm_campaign` | `first50` |
 | Optional `utm_content` | `comparison` |
 
-These campaign values describe the existing review-only traffic-plan URL; they do
-not authorize or activate advertising. Missing, duplicate or unapproved parameter
-values are omitted. No arbitrary query strings, UTM terms, click IDs (including
-gclid/fbclid), destination URLs, referrers, search text, user/session identifiers,
-timestamps, cookies or browser storage enter the event. Campaign dimensions apply
-only to the current page; there is no cross-page persistence or cross-device identity.
+These campaign values describe a review-only traffic plan, not a launched campaign.
+Duplicate or unapproved values are omitted. GA's standard campaign fields also use
+only those values or fixed direct/not-set labels; arbitrary IDs and terms are not
+forwarded. Canonical page location and a fixed title are explicitly set before
+configuration and on each event. Referrer is always empty and ignored. No raw
+referrer, query, hash, search input, destination URL, email, click ID or form data
+is sent by the event code. The external script uses `no-referrer`.
 
-Only catalog-matched Amazon destinations with the existing `straubmediagr-20` tag
-qualify. Left clicks, keyboard activations and middle clicks are supported.
-Repeated intentional activations each produce one event; installing the listener
-twice does not double-count. Synthetic events, right clicks and already cancelled
-events are ignored. The return value from installation removes the listeners.
+The adapter reconstructs click dimensions from the catalog and discards extra
+caller fields. Each intentional repeated/keyboard/middle activation is one click;
+listener initialization is idempotent. Native links are never cancelled or delayed.
+They remain usable when JavaScript, consent code or Google is blocked or fails.
+GA itself may produce standard session/engagement bookkeeping after consent; these
+must not be presented as purchases or unique qualifying customers.
 
-## Before enabling
+## Dashboard settings and release validation
 
-1. Select and approve a provider/account, destination, retention and consent design.
-   Confirm what request metadata the provider receives; a minimal payload alone
-   cannot prevent a server from receiving IP/browser information.
-2. Implement a nonblocking `send(event)` adapter and its consent gate. Preserve the
-   field/value allowlist; do not add automatic page-view tracking, identifiers or
-   third-party SDKs without review. No endpoint is provided by this batch.
-3. Review accurate privacy text alongside that actual behavior, then change the
-   source configuration and rebuild. There is deliberately no environment or URL
-   flag that silently enables collection.
-4. Verify receipt using the approved backend and preview, including navigation and
-   sender failure; record evidence before release. Current tests use an in-memory
-   fake sender and do **not** establish live analytics collection.
+1. Turn **all Enhanced Measurement off**, including automatic page views/history
+   changes and outbound clicks. `send_page_view: false` alone does not disable
+   Enhanced Measurement history events; automatic `click` would also overlap the
+   custom Amazon event. Confirm this in the approved stream before release.
+2. Keep optional data sharing, Google Signals, user-provided data, granular device/
+   location collection and ad personalization off. Do not link Ads or other products.
+   These are dashboard settings; code tests cannot prove their current values.
+3. Keep the PR draft until the code, privacy wording and authenticated preview have
+   been reviewed. The production-only guard intentionally prevents preview pollution.
+4. After an approved production release, inspect real requests with one consenting
+   test browser. Verify one page view, the named custom event/fields, clean URLs,
+   denied ad consent, no automatic outbound duplicate, and withdrawal. Confirm the
+   events in GA4 Realtime/DebugView before claiming collection works. Request success
+   or mocked tests alone are not dashboard delivery evidence.
+5. Amazon reports remain the source of orders, shipped qualifying items, returns and
+   commissions. Never mark an outbound click as a purchase or infer affiliate sales
+   from GA4. No purchase, revenue or Google Ads conversion is emitted.
 
-An event measures an outbound activation, not an arrival, unique visitor, checkout,
-order, shipped item or qualifying sale. Only Amazon reporting establishes sales,
-returns and commissions. No purchase conversion or revenue event is emitted.
+## Reproducible verification
 
-Run `npm run build && npm test`; browser verification is described in the release
-evidence. Edit `src/` and `content/`, then rebuild their generated `public/` files.
+`npm run build && npm test` checks the event contract, consent, adapter, failure and
+site output. `node test/consent-browser.cjs` serves local files at a simulated
+production origin and intercepts every request with a mock tag. It checks consent,
+cookies, request gating, sanitization, revocation, cross-tab changes, GPC/DNT,
+provider failure, preview exclusion and native navigation without sending data to
+Google or Amazon. `node test/browser.cjs` checks local layout and the existing flow.
+Neither browser test establishes real GA4 collection. Edit `src/`, then rebuild.
+
+Official implementation references (reviewed October 13, 2026):
+- https://developers.google.com/tag-platform/security/guides/consent
+- https://developers.google.com/tag-platform/security/guides/privacy
+- https://developers.google.com/analytics/devguides/collection/ga4/reference/config
+- https://developers.google.com/analytics/devguides/collection/ga4/views
