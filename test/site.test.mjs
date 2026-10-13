@@ -14,5 +14,10 @@ test('indexable pages have unique canonical URLs and sitemap coverage',async()=>
   const canonical=html.match(/rel="canonical" href="([^"]+)"/)[1];assert.ok(canonical.startsWith('https://dailywatchfinds.com/'));assert.ok(!seen.has(canonical));seen.add(canonical);assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   if(page.pathname.includes('/watches/')){assert.match(html,/class="mobile-buy"/);assert.match(html,/Amazon affiliate link/);}
  }
- assert.equal(seen.size,14);
+ const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(seen.size,watches.length+11);
+});
+
+test('catalog has 30 distinct references with clear affiliate destinations and valid structured data',async()=>{
+ const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(watches.length,30);assert.equal(new Set(watches.map(w=>w.model)).size,30);
+ for(const page of await pages()){const html=await readFile(page,'utf8');for(const [,raw] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)){const data=JSON.parse(raw);assert.equal(data['@context'],'https://schema.org');}assert.doesNotMatch(html,/010 \/ THE SHORTLIST|Five watches/);}
 });
