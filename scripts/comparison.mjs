@@ -5,12 +5,13 @@ function caseDiagram({ model, width, length, thickness, weight, color }) {
 }
 
 export function comparisonPage({ f91, ae, buy, disclosure }) {
-  return `<article class="article section comparison"><p class="eyebrow">TWO CASIO DIGITALS / EXACT VARIANTS</p>
-<h1>F-91W vs AE-1200:<br>which fits <em>your day?</em></h1>
-<p class="lead">Start with weight and size. Then decide whether you need world time and a countdown timer.</p>
-<p>Here we compare the <strong>F-91W-1 with black resin strap</strong> and the <strong>AE-1200WHD-1AV with silver steel bracelet</strong>. Casio’s US name for the latter is <a href="https://www.casio.com/us/watches/casio/product.AE-1200WHD-1AV/">AE1200WHD-1A</a>. These notes use published specifications, not hands-on testing.</p>
+  return `<article class="article section comparison"><p class="eyebrow"><a href="/styles/digital/">DIGITAL WATCHES</a> / EXACT-VARIANT COMPARISON</p>
+<h1>Casio F-91W vs AE-1200</h1>
+<p class="lead quick-verdict"><strong>The quick choice:</strong> F-91W for a smaller, lighter watch. AE-1200 on a steel bracelet for world time, countdowns and more alarms.</p>
+<p class="research-note">Based on Casio’s published specifications, not hands-on testing.</p>
 ${disclosure}
-<div class="decision-picks"><div><p class="eyebrow">SMALLER & LIGHTER</p><h2>F-91W-1</h2><p>Black resin case and strap. Choose it if basic timekeeping, one alarm and a stopwatch cover your routine.</p>${buy(f91, 'comparison_pick')}<a class="text-link" href="/watches/casio-f91w/">Read the F-91W guide →</a></div><div><p class="eyebrow">WORLD TIME & TIMERS</p><h2>AE-1200WHD-1AV</h2><p>Silver resin case, black face and steel bracelet. Choose it if checking another time zone or setting countdowns is part of your day.</p>${buy(ae, 'comparison_pick')}<a class="text-link" href="/watches/casio-ae1200/">Read the AE-1200 guide →</a></div></div>
+<div class="decision-picks"><div><h2>F-91W-1</h2><p><strong>21 g · Black resin strap</strong><br>Smaller case, one alarm and a stopwatch.</p>${buy(f91, 'comparison_pick')}<a class="text-link" href="/watches/casio-f91w/">Read the F-91W guide →</a></div><div><h2>AE-1200WHD-1AV</h2><p><strong>91 g · Silver steel bracelet</strong><br>World time, countdown timer and five alarms.</p>${buy(ae, 'comparison_pick')}<a class="text-link" href="/watches/casio-ae1200/">Read the AE-1200 guide →</a></div></div>
+<p class="variant-context">Here we compare the <strong>F-91W-1 with black resin strap</strong> and the <strong>AE-1200WHD-1AV with silver steel bracelet</strong>. The AE-1200 has a silver resin case and black face; Casio’s US name for it is <a href="https://www.casio.com/us/watches/casio/product.AE-1200WHD-1AV/">AE1200WHD-1A</a>.</p>
 <h2>Compare the space on your wrist</h2>
 <figure class="fit-figure"><div class="fit-panels">${caseDiagram({model:'F-91W-1',width:35.2,length:38.2,thickness:8.5,weight:21,color:'#d9edaa'})}${caseDiagram({model:'AE-1200WHD-1AV',width:42.1,length:45,thickness:12.5,weight:91,color:'#d9ddd3'})}</div><figcaption>Original dimension diagram from Casio’s published case measurements <a href="#source-f91">[1]</a> <a href="#source-ae">[2]</a>. Rectangles show case envelopes at a shared relative scale, not exact silhouettes, strap shapes or a life-size ruler. Weight includes the supplied band.</figcaption></figure>
 <p>The AE-1200 is <strong>6.9 mm wider and 4 mm thicker</strong>; with its bracelet it weighs 70 g more. Those differences are useful starting points for fit, not a guarantee of comfort. Compare the width, length and thickness with a watch you already wear; a bracelet may also need sizing.</p>
@@ -29,7 +30,10 @@ ${disclosure}
 <ul class="decision-criteria"><li><strong>For a modest case:</strong> start with the F-91W’s smaller dimensions. Try a similarly sized watch before ordering if bulk or sleeve clearance is your main concern.</li><li><strong>For a recurring second time zone:</strong> the AE-1200 gives that task a dedicated function. If you only need local time, consider whether you want its extra modes.</li><li><strong>For timed routines:</strong> choose the AE-1200 for countdowns and multiple alarms. The F-91W covers an elapsed-time stopwatch and one daily alarm.</li><li><strong>For the silver look:</strong> the AE-1200’s bracelet is steel; its case is resin. Do not mistake its finish for an all-metal case or substitute the lighter black resin-band AE-1200 variant.</li></ul>
 <p>For water activities, follow Casio’s usage guidance rather than treating a depth rating as a universal permission. The F-91W’s basic rating and the AE-1200’s 100 m rating are different; neither comparison is a test of real-world durability.</p>
 <h2>Match the listing before buying</h2>
-<p>Both buttons open identity-matched Amazon product listings. Confirm the selected reference, band, color, seller, condition and return terms. Prices and availability are not live-verified here; an Amazon listing may switch between variants.</p>
+<p>These Amazon links open identity-matched product listings. Confirm the selected reference, band, color, seller, condition and return terms. Prices and availability are not live-verified here; an Amazon listing may switch between variants.</p>
+${disclosure}
+<div class="decision-picks final-picks"><div><h3>F-91W-1 · Black resin strap</h3><p>Choose the smaller, lighter option for basic timekeeping.</p>${buy(f91, 'comparison_final')}</div><div><h3>AE-1200WHD-1AV · Steel bracelet</h3><p>Choose world time and countdowns in the larger case.</p>${buy(ae, 'comparison_final')}</div></div>
+<p>Still deciding? <a href="/styles/digital/">Browse our digital watch guides</a> or use the <a href="/guide/">first-watch buying guide</a> to check fit, movement and seller terms.</p>
 <p class="micro">Sources reviewed October 13, 2026. <a id="source-f91" href="${f91.source}">[1] Casio F-91W-1 specifications</a>; <a id="source-ae" href="${ae.source}">[2] Casio AE-1200WHD-1AV specifications</a>. Size comparisons and decision criteria are our analysis of those specifications, not measurements from watches we tested.</p>
 </article>`;
 }

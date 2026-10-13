@@ -80,7 +80,7 @@ const mockTag = `(() => {
     assert.equal(sizes[0].width, sizes[1].width); assert.equal(sizes[0].height, sizes[1].height);
     assert.ok(await f.page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await f.page.screenshot({ path: path.join(output, 'consent-mobile.png'), fullPage: true });
-    await navigate(f.page, () => f.page.locator('[data-amazon-model="casio-ae1200"]').click());
+    await navigate(f.page, () => f.page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]').click());
     assert.equal(f.google.length, 0);
     await f.page.getByRole('button', { name: 'Reject analytics', exact: true }).click();
     await f.page.reload({ waitUntil: 'networkidle' });
@@ -91,15 +91,19 @@ const mockTag = `(() => {
     await f.page.waitForFunction(() => window.mockCommands?.some(c => c[0] === 'event' && c[1] === 'page_view'));
     assert.equal(f.google.filter(url => url.includes('gtag/js')).length, 1);
     assert.equal((await f.context.cookies()).filter(c => c.name === '_ga').length, 1);
-    const link = f.page.locator('[data-amazon-model="casio-ae1200"]');
+    const link = f.page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]');
     await navigate(f.page, () => link.click()); await navigate(f.page, () => link.click());
     await link.focus(); await navigate(f.page, () => f.page.keyboard.press('Enter'));
     await link.click({ button: 'middle' });
     await f.page.getByRole('button', { name: 'Analytics choices', exact: true }).click();
     await f.page.getByRole('button', { name: 'Accept analytics', exact: true }).click();
+    const finalLink = f.page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_final"]');
+    await navigate(f.page, () => finalLink.click());
+    await finalLink.focus(); await navigate(f.page, () => f.page.keyboard.press('Enter'));
     const commands = await f.page.evaluate(() => window.mockCommands);
     assert.equal(commands.filter(c => c[0] === 'event' && c[1] === 'page_view').length, 1);
-    assert.equal(commands.filter(c => c[0] === 'event' && c[1] === 'outbound_amazon_click').length, 4);
+    assert.equal(commands.filter(c => c[0] === 'event' && c[1] === 'outbound_amazon_click').length, 6);
+    assert.equal(commands.filter(c => c[0] === 'event' && c[1] === 'outbound_amazon_click' && c[2].placement === 'comparison_final').length, 2);
     assert.doesNotMatch(JSON.stringify(commands), /secret|private|email|gclid|purchase/);
     assert.ok(commands.filter(c => c[0] === 'event').every(c => c[2].page_location === origin + comparison && c[2].page_referrer === ''));
     report.passed.push('one tag/manual page view; repeated, keyboard and middle activations; sanitized fixed fields');
@@ -136,7 +140,7 @@ const mockTag = `(() => {
     for (const mode of ['blocked', 'pending']) {
       const f = await fixture({ mode });
       await f.page.getByRole('button', { name: 'Accept analytics', exact: true }).click();
-      await navigate(f.page, () => f.page.locator('[data-amazon-model="casio-ae1200"]').click());
+      await navigate(f.page, () => f.page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]').click());
       await f.page.getByRole('button', { name: 'Analytics choices', exact: true }).click();
       await f.page.getByRole('button', { name: 'Reject analytics', exact: true }).click();
       f.completeTag(); await f.page.waitForLoadState('networkidle');

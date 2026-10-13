@@ -1,8 +1,8 @@
-# Consent-gated GA4 integration — awaiting release review
+# Consent-gated GA4 integration
 
-The approved public measurement ID is `G-LSGXWGSM9T`. This draft adds GA4 to the
-existing outbound-click seam; it is not deployed to production and no live dashboard
-receipt is claimed. No advertising service or cross-product link is configured by
+The approved public measurement ID is `G-LSGXWGSM9T`. The consent-gated integration was released in PR #6 (merge
+`c33c256c96aae54e229f2f45dcc3263cc59320cb`). Live dashboard receipt still needs
+independent verification; code and mock tests do not establish delivery. No advertising service or cross-product link is configured by
 the code. Account operator details do not belong in this public repository.
 
 ## Consent and provider lifecycle
@@ -41,7 +41,7 @@ other event this site explicitly sends is `outbound_amazon_click`.
 | --- | --- |
 | `model` | Exact catalog reference |
 | `page` | Generated canonical path, no query/fragment |
-| `placement` | `catalog_card`, `related_card`, `product_primary`, `product_details`, `product_mobile`, `comparison_pick` |
+| `placement` | `catalog_card`, `related_card`, `product_primary`, `product_details`, `product_mobile`, `comparison_pick`, `comparison_final` |
 | `destination_type` | `direct_product` or `model_search` |
 | Optional `utm_source` | `google` |
 | Optional `utm_medium` | `cpc` |
@@ -65,15 +65,15 @@ must not be presented as purchases or unique qualifying customers.
 
 ## Dashboard settings and release validation
 
-1. Turn **all Enhanced Measurement off**, including automatic page views/history
+1. Keep **all Enhanced Measurement off** (the account operator confirmed this before PR #6 released), including automatic page views/history
    changes and outbound clicks. `send_page_view: false` alone does not disable
    Enhanced Measurement history events; automatic `click` would also overlap the
-   custom Amazon event. Confirm this in the approved stream before release.
+   custom Amazon event. Recheck the approved stream if duplicate events appear.
 2. Keep optional data sharing, Google Signals, user-provided data, granular device/
    location collection and ad personalization off. Do not link Ads or other products.
    These are dashboard settings; code tests cannot prove their current values.
-3. Keep the PR draft until the code, privacy wording and authenticated preview have
-   been reviewed. The production-only guard intentionally prevents preview pollution.
+3. Keep follow-up PRs draft until the code, applicable privacy wording and preview
+   evidence have been reviewed. The production-only guard intentionally prevents preview pollution.
 4. After an approved production release, inspect real requests with one consenting
    test browser. Verify one page view, the named custom event/fields, clean URLs,
    denied ad consent, no automatic outbound duplicate, and withdrawal. Confirm the

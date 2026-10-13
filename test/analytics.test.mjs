@@ -116,3 +116,18 @@ test('throwing, rejected and never-settling senders leave activation untouched',
     f.cleanup();
   }
 });
+
+test('final comparison placement preserves model identity and sends once per repeated activation',()=>{
+ const events=[];const f=fixture(event=>events.push(event));
+ installOutboundTracking(f.config);
+ for(const slug of ['casio-f91w','casio-ae1200']){
+  f.activate({},anchor(slug,'comparison_final'));
+  f.activate({detail:0},anchor(slug,'comparison_final'));
+ }
+ assert.equal(events.length,4);
+ assert.deepEqual(events.map(e=>[e.model,e.placement,e.destination_type]),[
+  ['F-91W-1','comparison_final','direct_product'],['F-91W-1','comparison_final','direct_product'],
+  ['AE-1200WHD-1AV','comparison_final','direct_product'],['AE-1200WHD-1AV','comparison_final','direct_product'],
+ ]);
+ f.cleanup();
+});
