@@ -1,0 +1,138 @@
+{
+  "reviewedOn": "2026-10-13",
+  "scope": "Model identity only. Review dates are not live inventory checks. Evidence supplied by parent research; retain manufacturer specifications where Amazon metadata disagrees.",
+  "approved": [
+    {
+      "slug": "citizen-tsuyosa",
+      "model": "NJ0150-56X",
+      "asin": "B0CDFN2NG3",
+      "variant": "NJ0150-56X; green dial, silver steel bracelet",
+      "amazonSource": "https://www.amazon.com/dp/B0CDFN2NG3",
+      "manufacturerSource": "https://www.citizenwatch.com/us/en/product/NJ0150-56X.html",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "timex-marlin",
+      "model": "TW2W10400",
+      "asin": "B0CDPPBWTZ",
+      "variant": "TW2W10400 / TW2W10400VQ; silver dial, steel bracelet",
+      "amazonSource": "https://www.amazon.com/dp/B0CDPPBWTZ",
+      "manufacturerSource": "https://timex.com/products/marlin-chronograph-tachymeter-40mm-stainless-steel-bracelet-watch-tw2w10400",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "citizen-brycen",
+      "model": "CA0649-06X",
+      "asin": "B06XYYF4BG",
+      "variant": "CA0649-06X; ivory dial, brown leather strap",
+      "amazonSource": "https://www.amazon.com/dp/B06XYYF4BG",
+      "manufacturerSource": "https://www.citizenwatch.com/ca/en/product/CA0649-06X.html",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "casio-f91w",
+      "model": "F-91W-1",
+      "asin": "B000GAWSDG",
+      "variant": "F91W-1 / F-91W-1X listing model; black resin case and strap",
+      "amazonSource": "https://www.amazon.com/dp/B000GAWSDG",
+      "manufacturerSource": "https://www.casio.com/europe/watches/casio/product.F-91W-1/",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "casio-ae1200",
+      "model": "AE-1200WHD-1AV",
+      "asin": "B0094B79CI",
+      "variant": "AE-1200WHD-1AV / US AE1200WHD-1A; silver resin case, black face, steel bracelet",
+      "amazonSource": "https://www.amazon.com/dp/B0094B79CI",
+      "manufacturerSource": "https://www.casio.com/intl/watches/casio/product.AE-1200WHD-1AV/",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "fresh-amazon-page",
+      "evidenceNote": "Parent research: fresh HTTP retrieval titled AE-1200WHD-1AV, selected style AE1200WHD-1A; Casio US page confirms the regional label.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "seiko-srpd51",
+      "model": "SRPD51",
+      "asin": "B07ZHQDQB2",
+      "variant": "SRPD51; blue dial and bezel, steel bracelet",
+      "amazonSource": "https://www.amazon.com/dp/B07ZHQDQB2",
+      "manufacturerSource": "https://seikousa.com/products/srpd51",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    },
+    {
+      "slug": "seiko-sur527",
+      "model": "SUR527",
+      "asin": "B09R9N2N86",
+      "variant": "SUR527; olive-green dial, steel bracelet",
+      "amazonSource": "https://www.amazon.com/dp/B09R9N2N86",
+      "manufacturerSource": "https://seikousa.com/products/sur527",
+      "reviewedOn": "2026-10-13",
+      "evidenceType": "indexed-amazon-page",
+      "evidenceNote": "Parent research: indexed Amazon page evidence from approximately one to two weeks before review, identity matched; not a live listing inspection.",
+      "livePriceVerified": false,
+      "liveSellerVerified": false,
+      "liveAvailabilityVerified": false
+    }
+  ],
+  "deferred": [
+    {
+      "slug": "gshock-ga2100",
+      "candidateAsin": "B07WJFS6LH",
+      "reason": "Identity matched but inconsistent listing; keep model search pending live inspection."
+    },
+    {
+      "slug": "seiko-srph33",
+      "candidateAsin": "B09MG7D243",
+      "reason": "Identity matched but inconsistent listing; keep model search pending live inspection."
+    },
+    {
+      "slug": "seiko-srpj85",
+      "reason": "Exact Amazon reference unverified."
+    },
+    {
+      "slug": "timex-tw2v00200",
+      "reason": "Exact Amazon reference unverified."
+    }
+  ],
+  "rejected": [
+    {
+      "slug": "casio-ae1200",
+      "asin": "B0094B79PA",
+      "reason": "Black resin-band variant; not the silver steel-bracelet watch in this guide."
+    }
+  ],
+  "metadataConflicts": [
+    "F-91W Amazon water rating: retain Casio basic water resistance.",
+    "AE-1200 Amazon 39 g: retain Casio 91 g for the steel-bracelet reference.",
+    "SUR527 Amazon solar/chronograph: retain manufacturer quartz specifications.",
+    "SRPD51 Amazon battery-powered: retain manufacturer automatic specifications."
+  ],
+  "regionalSource": "https://www.casio.com/us/watches/casio/product.AE-1200WHD-1AV/"
+}

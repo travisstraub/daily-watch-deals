@@ -21,14 +21,14 @@
       "Sapphire crystal",
       "Green dial with date"
     ],
-    "source": "https://www.citizenwatch.com/us/en/product/NJ0150-56X.html"
+    "source": "https://www.citizenwatch.com/us/en/product/NJ0150-56X.html",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B0CDFN2NG3"
   },
   {
     "slug": "timex-marlin",
     "brand": "Timex",
     "name": "Marlin Chronograph",
     "model": "TW2W10400",
-    "search": "Timex TW2W10400",
     "category": "Vintage style",
     "movement": "Quartz",
     "size": "40 mm",
@@ -45,7 +45,9 @@
       "Domed acrylic crystal",
       "Stainless steel bracelet"
     ],
-    "source": "https://timex.com/products/marlin-chronograph-tachymeter-40mm-stainless-steel-bracelet-watch-tw2w10400"
+    "source": "https://timex.com/products/marlin-chronograph-tachymeter-40mm-stainless-steel-bracelet-watch-tw2w10400",
+    "asin": "B0CDPPBWTZ",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B0CDPPBWTZ"
   },
   {
     "slug": "citizen-brycen",
@@ -69,7 +71,8 @@
       "Chronograph and date",
       "Brown leather strap"
     ],
-    "source": "https://www.citizenwatch.com/ca/en/product/CA0649-06X.html"
+    "source": "https://www.citizenwatch.com/ca/en/product/CA0649-06X.html",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B06XYYF4BG"
   },
   {
     "slug": "casio-f91w",
@@ -103,7 +106,6 @@
     "brand": "Casio",
     "name": "AE-1200 World Time",
     "model": "AE-1200WHD-1AV",
-    "search": "Casio AE-1200WHD-1AV",
     "category": "Digital",
     "movement": "Quartz",
     "size": "42.1 mm wide",
@@ -122,7 +124,9 @@
     ],
     "source": "https://www.casio.com/intl/watches/casio/product.AE-1200WHD-1AV/",
     "popularitySource": "https://www.casio.com/us/watches/best-sellers/",
-    "popularityNote": "Included on Casio’s US Best Sellers page, checked October 13, 2026. The page retains a 2025 heading; this is not a verified current sales rank."
+    "popularityNote": "Included on Casio’s US Best Sellers page, checked October 13, 2026. The page retains a 2025 heading; this is not a verified current sales rank.",
+    "asin": "B0094B79CI",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B0094B79CI"
   },
   {
     "slug": "gshock-ga2100",
@@ -155,7 +159,6 @@
     "brand": "Seiko",
     "name": "5 Sports Blue Dial",
     "model": "SRPD51",
-    "search": "Seiko SRPD51",
     "category": "Sport",
     "movement": "Automatic",
     "size": "42.5 mm",
@@ -174,7 +177,9 @@
     ],
     "source": "https://seikousa.com/products/srpd51",
     "popularitySource": "https://seikousa.com/collections/best-sellers",
-    "popularityNote": "Included in Seiko USA’s Best Sellers collection, checked October 13, 2026."
+    "popularityNote": "Included in Seiko USA’s Best Sellers collection, checked October 13, 2026.",
+    "asin": "B07ZHQDQB2",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B07ZHQDQB2"
   },
   {
     "slug": "seiko-srpj85",
@@ -259,7 +264,6 @@
     "brand": "Seiko",
     "name": "Essentials Green Sapphire",
     "model": "SUR527",
-    "search": "Seiko SUR527",
     "category": "Everyday",
     "movement": "Quartz",
     "size": "40.2 mm",
@@ -278,7 +282,9 @@
     ],
     "source": "https://seikousa.com/products/sur527",
     "popularitySource": "https://seikousa.com/collections/best-sellers",
-    "popularityNote": "Included in Seiko’s manufacturer Best Sellers collection, checked October 13, 2026. Collection inclusion is not a verified Amazon or market-wide sales rank."
+    "popularityNote": "Included in Seiko’s manufacturer Best Sellers collection, checked October 13, 2026. Collection inclusion is not a verified Amazon or market-wide sales rank.",
+    "asin": "B09R9N2N86",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B09R9N2N86"
   },
   {
     "slug": "seiko-srph87",

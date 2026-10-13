@@ -1,3 +1,12 @@
+// Load the integration only after explicit code configuration. Filtering is independent.
+import('./analytics-config.js').then(async ({ analytics }) => {
+ if (analytics.enabled !== true || typeof analytics.send !== 'function') return;
+ const [{ installOutboundTracking }, { catalog, pages }] = await Promise.all([
+  import('./analytics.js'), import('./tracking-catalog.js'),
+ ]);
+ installOutboundTracking({ document, location: window.location, catalog, pages, ...analytics });
+}).catch(() => {});
+
 const search=document.querySelector('#search');
 if(search){
  let selected='All';

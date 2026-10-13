@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir, access } from 'node:fs/promises';
-import { join } from 'node:path';
+import { catalog, pages as canonicalPaths } from '../public/tracking-catalog.js';
+import { placements } from '../src/analytics.js';
 const root=new URL('../public/',import.meta.url);
 async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html')&&entry.name!=='google216684202c8a020c.html')list.push(path);}return list;}
 test('all internal destinations resolve and affiliate links carry attribution',async()=>{let links=0;for(const page of await pages()){const html=await readFile(page,'utf8');assert.match(html,/As an Amazon Associate I earn from qualifying purchases/);for(const [,href] of html.matchAll(/href="([^"]+)"/g)){if(href.startsWith('/')&&!href.startsWith('//')){let path=href.split('#')[0];if(path.endsWith('/'))path+='index.html';await access(new URL(path.slice(1),root));}if(href.startsWith('https://www.amazon.com/')){assert.equal(new URL(href.replaceAll('&amp;','&')).searchParams.get('tag'),'straubmediagr-20');links++;}}assert.doesNotMatch(html,/\$\d|% OFF|HOT DEAL|SHEET_JSON_URL|AMAZON_CREATORS_CLIENT_SECRET/);}assert.ok(links>=6);});
@@ -15,6 +16,82 @@ test('indexable pages have unique canonical URLs and sitemap coverage',async()=>
   if(page.pathname.includes('/watches/')){assert.match(html,/class="mobile-buy"/);assert.match(html,/Amazon affiliate link/);}
  }
  const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(seen.size,watches.length+11);
+});
+
+test('seven direct destinations agree with identity evidence; uncertain references remain searches',async()=>{
+ const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));
+ const evidence=JSON.parse(await readFile(new URL('../content/amazon-link-evidence.json',import.meta.url)));
+ assert.equal(watches.filter(w=>w.asin).length,7);
+ assert.equal(watches.filter(w=>w.search).length,23);
+ for(const w of watches){
+  assert.notEqual(Boolean(w.asin),Boolean(w.search),'one destination type per watch');
+  if(w.asin){
+   const entry=evidence.approved.find(e=>e.slug===w.slug);
+   assert.equal(entry.asin,w.asin);assert.equal(entry.model,w.model);
+   assert.equal(entry.amazonSource,`https://www.amazon.com/dp/${w.asin}`);
+   assert.equal(entry.liveAvailabilityVerified,false);assert.equal(entry.livePriceVerified,false);
+  }
+ }
+ for(const entry of evidence.deferred)assert.ok(watches.find(w=>w.slug===entry.slug).search);
+ assert.equal(watches.find(w=>w.slug==='casio-ae1200').asin,'B0094B79CI');
+});
+
+test('all Amazon anchors have exact destinations, safe rel, disclosures and stable event metadata',async()=>{
+ let links=0;const observedPlacements=new Set();
+ for(const page of await pages()){
+  const html=await readFile(page,'utf8');
+  const pagePath=html.match(/<body data-page="([^"]+)"/)[1];
+  assert.ok(canonicalPaths.includes(pagePath));
+  for(const match of html.matchAll(/<a\b[^>]*href="https:\/\/www\.amazon\.com\/[^>]*>[\s\S]*?<\/a>/g)){
+   const anchor=match[0];const attrs=Object.fromEntries([...anchor.matchAll(/([\w-]+)="([^"]*)"/g)].map(([,k,v])=>[k,v.replaceAll('&amp;','&')]));
+   const entry=catalog[attrs['data-amazon-model']];assert.ok(entry);
+   assert.equal(attrs.href,entry.destination);
+   assert.equal(new URL(attrs.href).searchParams.getAll('tag').length,1);
+   assert.equal(new URL(attrs.href).searchParams.get('tag'),'straubmediagr-20');
+   for(const rel of ['sponsored','nofollow','noopener'])assert.ok(attrs.rel.split(' ').includes(rel));
+   assert.equal(attrs.target,'_blank');assert.ok(placements.includes(attrs['data-placement']));
+   observedPlacements.add(attrs['data-placement']);
+   assert.ok(html.indexOf('As an Amazon Associate I earn from qualifying purchases')<match.index);
+   assert.ok(anchor.includes(entry.destination_type==='direct_product'?'Check on Amazon':'Find this model on Amazon'));
+   links++;
+  }
+ }
+ assert.ok(links>150);assert.deepEqual([...observedPlacements].sort(),[...placements].sort());
+});
+
+test('sitemap exactly matches canonicals and internal fragments exist',async()=>{
+ const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
+ const locations=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
+ assert.equal(locations.length,41);assert.equal(new Set(locations).size,41);
+ assert.deepEqual(locations.sort(),canonicalPaths.map(p=>'https://dailywatchfinds.com'+p).sort());
+ for(const page of await pages()){
+  const html=await readFile(page,'utf8');
+  for(const [,href] of html.matchAll(/href="([^"]+)"/g)){
+   if(!href.startsWith('/')&&!href.startsWith('#'))continue;
+   const [path,fragment]=href.split('#');if(!fragment)continue;
+   const target=path?new URL(path.slice(1)+(path.endsWith('/')?'index.html':''),root):page;
+   assert.ok((await readFile(target,'utf8')).includes(`id="${fragment}"`),`${page.pathname} -> ${href}`);
+  }
+ }
+});
+
+test('comparison gives sourced exact variants and original accessible dimension diagrams',async()=>{
+ const html=await readFile(new URL('compare/casio-f91w-vs-ae1200/index.html',root),'utf8');
+ for(const text of ['F-91W-1 with black resin strap','AE-1200WHD-1AV with silver steel bracelet','AE1200WHD-1A','38.2 × 35.2 × 8.5 mm','45 × 42.1 × 12.5 mm','91 g','not hands-on testing','Original dimension diagram','not exact silhouettes','6.9 mm wider and 4 mm thicker'])assert.ok(html.includes(text),text);
+ assert.equal([...html.matchAll(/<svg[^>]*role="img"[^>]*aria-label=/g)].length,2);
+ assert.doesNotMatch(html,/B0094B79PA|AE-1200 link searches|39 g/);
+ for(const slug of ['casio-f91w','casio-ae1200'])assert.ok(html.includes(catalog[slug].destination.replaceAll('&','&amp;')));
+});
+
+test('built browser sources match source files and privacy accurately states disabled collection',async()=>{
+ for(const name of ['app.js','analytics.js','analytics-config.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
+ const privacy=await readFile(new URL('privacy/index.html',root),'utf8');
+ assert.match(privacy,/Outbound-click analytics is disabled/);assert.match(privacy,/No analytics provider is connected/);
+ for(const page of await pages()){
+  const html=await readFile(page,'utf8');
+  const sources=[...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]);
+  assert.deepEqual(sources,['/app.js']);
+ }
 });
 
 test('catalog has 30 distinct references with clear affiliate destinations and valid structured data',async()=>{
