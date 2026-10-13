@@ -2,3 +2,5 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 .mobile-buy{display:none}.fit-summary{border-left:3px solid #63774e;padding-left:12px}.decision-picks{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-picks>div{border:1px solid var(--line);padding:22px}.decision-picks h2{margin-top:0}@media(max-width:640px){.watch-page{padding-bottom:96px}.product-summary{grid-row:1}.product-image{grid-row:2}.product-summary h1{margin-top:16px}.mobile-buy{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;align-items:center;gap:10px;padding:12px 5% calc(12px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -3px 15px #202d2710}.mobile-buy>span{font-size:11px;line-height:1.4;flex:1}.mobile-buy small{display:block;font-size:9px;color:var(--muted)}.mobile-buy .buy{width:auto;max-width:62%;background:var(--green);color:white;padding:12px;font-size:11px;gap:8px}.decision-picks{grid-template-columns:1fr}}
+
+.collection-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0 32px}.related{margin:48px 0}.related .cards{margin-top:24px}
