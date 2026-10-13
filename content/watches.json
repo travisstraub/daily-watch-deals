@@ -76,7 +76,6 @@
     "brand": "Casio",
     "name": "F-91W Digital",
     "model": "F-91W-1",
-    "search": "Casio F-91W-1",
     "category": "Digital",
     "movement": "Quartz",
     "size": "35.2 mm wide",
@@ -95,7 +94,9 @@
     ],
     "source": "https://www.casio.com/europe/watches/casio/product.F-91W-1/",
     "popularitySource": "https://www.casio.com/us/watches/best-sellers/",
-    "popularityNote": "Included on Casio\u2019s US Best Sellers page, checked October 13, 2026. The page retains a 2025 heading; this is not a verified current sales rank."
+    "popularityNote": "Included on Casio\u2019s US Best Sellers page, checked October 13, 2026. The page retains a 2025 heading; this is not a verified current sales rank.",
+    "asin": "B000GAWSDG",
+    "amazonVerifiedSource": "https://www.amazon.com/dp/B000GAWSDG"
   },
   {
     "slug": "casio-ae1200",

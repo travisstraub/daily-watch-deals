@@ -6,3 +6,13 @@ const root=new URL('../public/',import.meta.url);
 async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html'))list.push(path);}return list;}
 test('all internal destinations resolve and affiliate links carry attribution',async()=>{let links=0;for(const page of await pages()){const html=await readFile(page,'utf8');assert.match(html,/As an Amazon Associate I earn from qualifying purchases/);for(const [,href] of html.matchAll(/href="([^"]+)"/g)){if(href.startsWith('/')&&!href.startsWith('//')){let path=href.split('#')[0];if(path.endsWith('/'))path+='index.html';await access(new URL(path.slice(1),root));}if(href.startsWith('https://www.amazon.com/')){assert.equal(new URL(href.replaceAll('&amp;','&')).searchParams.get('tag'),'straubmediagr-20');links++;}}assert.doesNotMatch(html,/\$\d|% OFF|HOT DEAL|SHEET_JSON_URL|AMAZON_CREATORS_CLIENT_SECRET/);}assert.ok(links>=6);});
 test('each curated model has a dedicated detail page and source',async()=>{const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(new Set(watches.map(w=>w.slug)).size,watches.length);for(const w of watches){const html=await readFile(new URL(`watches/${w.slug}/index.html`,root),'utf8');assert.ok(html.includes(w.model));assert.ok(html.includes(w.source));assert.ok(w.tradeoff.length>30);assert.ok(w.image.startsWith('https://'));}});
+
+test('indexable pages have unique canonical URLs and sitemap coverage',async()=>{
+ const seen=new Set();const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
+ for(const page of await pages()){
+  const html=await readFile(page,'utf8');if(page.pathname.endsWith('/404.html')){assert.match(html,/name="robots" content="noindex"/);continue;}
+  const canonical=html.match(/rel="canonical" href="([^"]+)"/)[1];assert.ok(canonical.startsWith('https://dailywatchfinds.com/'));assert.ok(!seen.has(canonical));seen.add(canonical);assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
+  if(page.pathname.includes('/watches/')){assert.match(html,/class="mobile-buy"/);assert.match(html,/Amazon affiliate link/);}
+ }
+ assert.equal(seen.size,14);
+});
