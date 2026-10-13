@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, access } from 'node:fs/promises';
 import { join } from 'node:path';
 const root=new URL('../public/',import.meta.url);
-async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html'))list.push(path);}return list;}
+async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html')&&entry.name!=='google216684202c8a020c.html')list.push(path);}return list;}
 test('all internal destinations resolve and affiliate links carry attribution',async()=>{let links=0;for(const page of await pages()){const html=await readFile(page,'utf8');assert.match(html,/As an Amazon Associate I earn from qualifying purchases/);for(const [,href] of html.matchAll(/href="([^"]+)"/g)){if(href.startsWith('/')&&!href.startsWith('//')){let path=href.split('#')[0];if(path.endsWith('/'))path+='index.html';await access(new URL(path.slice(1),root));}if(href.startsWith('https://www.amazon.com/')){assert.equal(new URL(href.replaceAll('&amp;','&')).searchParams.get('tag'),'straubmediagr-20');links++;}}assert.doesNotMatch(html,/\$\d|% OFF|HOT DEAL|SHEET_JSON_URL|AMAZON_CREATORS_CLIENT_SECRET/);}assert.ok(links>=6);});
 test('each curated model has a dedicated detail page and source',async()=>{const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(new Set(watches.map(w=>w.slug)).size,watches.length);for(const w of watches){const html=await readFile(new URL(`watches/${w.slug}/index.html`,root),'utf8');assert.ok(html.includes(w.model));assert.ok(html.includes(w.source));assert.ok(w.tradeoff.length>30);assert.ok(w.image.startsWith('https://'));}});
 
@@ -20,4 +20,8 @@ test('indexable pages have unique canonical URLs and sitemap coverage',async()=>
 test('catalog has 30 distinct references with clear affiliate destinations and valid structured data',async()=>{
  const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(watches.length,30);assert.equal(new Set(watches.map(w=>w.model)).size,30);
  for(const page of await pages()){const html=await readFile(page,'utf8');for(const [,raw] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)){const data=JSON.parse(raw);assert.equal(data['@context'],'https://schema.org');}assert.doesNotMatch(html,/010 \/ THE SHORTLIST|Five watches/);}
+});
+
+test('approved Search Console verification survives the build with exact bytes',async()=>{
+ assert.equal(await readFile(new URL('google216684202c8a020c.html',root),'utf8'),'google-site-verification: google216684202c8a020c.html');
 });
