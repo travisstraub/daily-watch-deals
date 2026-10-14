@@ -32,7 +32,7 @@ content across all 42 editorial HTML files is byte-identical to production;
 consent wording is also unchanged. Sitemap, canonicals, model data, exact ASINs,
 affiliate tags and Search Console ownership bytes are preserved.
 
-## Verification
+## Initial candidate verification
 
 - `npm run build`: PASS; generated HTML and browser modules refreshed.
 - `npm test`: **51 passed, 0 failed, 0 skipped**.
@@ -67,3 +67,34 @@ the general navigation suite. This is an existing environment limitation, not an
 image change. Preview deployment status and any remote-browser access limitation
 will be recorded in the PR; local captures do not prove served preview behavior.
 No production merge/deployment or additional real conversion is authorized here.
+
+
+## Fresh-load keyboard follow-up
+
+The additional check reproduced a gap in reviewed head `e0755b89`: before any
+pointer interaction or content focus, PageDown, Space and ArrowDown all failed
+to scroll at 1165, 390 and 320 px (nine failures). The browser targeted the body,
+which is locked while the separate page scroll area is open. The earlier tests
+focused links/controls first and did not cover that initial state.
+
+The layout helper now routes those background scroll keys, their reverse keys,
+and Home/End to the visible page area only while the panel is open. It does not
+move focus. Keys targeted at controls, links or content keep their native handling;
+Alt/Ctrl/Meta shortcuts and already-handled keys are left alone. The consent
+controller, measurement adapters, CSS, HTML and all measurement rules are unchanged.
+
+Current follow-up checks:
+
+- `node test/initial-keyboard-browser.cjs`: **nine fresh-load cases passed**,
+  with focus remaining on BODY and both checkboxes unchecked. At 1165/390/320 px,
+  PageDown and Space moved 478/439/227 px respectively; ArrowDown moved 40 px.
+- The same suite verifies PageUp, Shift+Space, ArrowUp, Home/End, the first Tab
+  reaching the skip link, native Space toggling checkboxes and activating Save,
+  persisted rejection, and ordinary document scrolling after the panel closes.
+  Each fresh-load case starts in its own context without clicks or focus calls.
+- Build and **51 Node tests passed**; the panel layout suite and 19-scenario Ads
+  mock suite passed again. No real measurement traffic or conversion was sent.
+
+[Before/after reports](../planning/evidence/floating-consent-panel/initial-keyboard/)
+record the failing baseline and current regression results. The published PR head
+changes with this fix and needs review; PR #11 remains unmerged.

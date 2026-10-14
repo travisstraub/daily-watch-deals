@@ -1,0 +1,271 @@
+{
+  "cases": [
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": false
+    }
+  ],
+  "errors": [],
+  "measurementRequests": [],
+  "failures": [
+    "1165px PageDown: page did not scroll",
+    "1165px Space: page did not scroll",
+    "1165px ArrowDown: page did not scroll",
+    "390px PageDown: page did not scroll",
+    "390px Space: page did not scroll",
+    "390px ArrowDown: page did not scroll",
+    "320px PageDown: page did not scroll",
+    "320px Space: page did not scroll",
+    "320px ArrowDown: page did not scroll"
+  ],
+  "type": "Local files at simulated production origin; all measurement mocked",
+  "status": "FAIL"
+}

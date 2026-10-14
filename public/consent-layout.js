@@ -30,6 +30,22 @@ export function installConsentLayout({ window, document }) {
   if (mobileBuy) resize.observe(mobileBuy);
   const mutations = new window.MutationObserver(measure);
   mutations.observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+  // Before a visitor focuses content, browser scroll keys target the locked body.
+  // Route only background keys to the visible page; controls keep native behavior.
+  document.addEventListener('keydown', event => {
+    if (panel.hidden || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey
+      || (event.shiftKey && event.key !== ' ')
+      || (event.target !== document.body && event.target !== root)) return;
+    const pageStep = Math.max(40, content.clientHeight * 0.875);
+    const steps = { ArrowDown: 40, ArrowUp: -40, PageDown: pageStep, PageUp: -pageStep, ' ': event.shiftKey ? -pageStep : pageStep };
+    if (Object.hasOwn(steps, event.key)) {
+      event.preventDefault();
+      content.scrollBy({ top: steps[event.key], behavior: 'auto' });
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      content.scrollTo({ top: event.key === 'Home' ? 0 : content.scrollHeight, behavior: 'auto' });
+    }
+  });
   window.addEventListener('resize', measure);
   window.visualViewport?.addEventListener('resize', measure);
   measure();

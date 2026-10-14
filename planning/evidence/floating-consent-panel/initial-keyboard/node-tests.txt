@@ -1,0 +1,63 @@
+
+> test
+> node --test test/*.test.mjs
+
+✔ listener stays disabled without explicit enablement; provider config is production-only (1.682227ms)
+✔ event contains stable catalog/page/placement/type plus approved campaign values only (2.385788ms)
+✔ campaign allowlist rejects personal data, arbitrary text, duplicate values and click IDs (0.380344ms)
+✔ altered URLs, attribution, unknown models, placements and noncanonical pages are rejected (0.227122ms)
+✔ repeated clicks, keyboard, modified and middle clicks each emit once; repeated install does not duplicate (0.674848ms)
+✔ nested text targets work without collecting text content (0.302426ms)
+✔ throwing, rejected and never-settling senders leave activation untouched (8.40626ms)
+✔ final comparison placement preserves model identity and sends once per repeated activation (0.424911ms)
+✔ missing credentials cause no requests (1.063494ms)
+✔ unsupported versions cause no requests (0.168244ms)
+✔ auth failure is sanitized (25.651099ms)
+✔ catalog access is verified without exposing response data or credentials (1.911032ms)
+✔ empty catalog response is not reported as verified access (0.63007ms)
+✔ throttled catalog and exception text never leak secrets (0.900959ms)
+✔ only recognized catalog reasons are disclosed (1.274252ms)
+✔ no consent, previews and unknown routes never load or configure Google (2.200168ms)
+✔ safe page context uses canonical catalog paths and allowed campaigns, with no raw URLs (0.867969ms)
+✔ grant loads one tag, denies ads/signals, sends one manual page view and exact sanitized events (2.314992ms)
+✔ revocation disables the SDK, clears only GA cookies, discards pending clicks and cannot restart this document (0.917765ms)
+✔ blocked, failed and stalled providers drop events without automatic retries (0.540886ms)
+✔ post-consent pending queue is bounded and broken cookie access cannot prevent withdrawal (2.741865ms)
+✔ consent storage is bounded and malformed, expired, blocked storage fail closed (0.62955ms)
+✔ GPC and current/legacy DNT signals override consent (0.202856ms)
+✔ Ads activation retains the exact approved destination and production-only origin (1.190145ms)
+✔ all consent combinations configure only granted top-level destinations with one shared loader (12.786676ms)
+✔ disabled Ads, previews, unknown paths and failed URL sanitization load no SDK (1.790351ms)
+✔ withdrawing either purpose requests full reload, drops queues and clears only revoked storage (0.985676ms)
+✔ send detects expiry/privacy-signal grant loss without focus/update and immediately initiates shutdown (0.660437ms)
+✔ consent loss before SDK load, rejected queues and provider failure cannot replay or retry (0.983674ms)
+✔ pending queue is bounded and payload rebuilt; pre-consent events are never replayed (1.537559ms)
+✔ click identifiers are bounded, excluding duplicates and arbitrary values (0.261394ms)
+✔ Ads cleanup independently clears documented linker storage, preserving unrelated storage and consent (0.601397ms)
+✔ separate preferences never inherit analytics consent and blocked storage fails closed (0.639214ms)
+✔ failed rejection removes stale acceptance; fully read-only storage cannot regrant after reload (0.507044ms)
+✔ refusal fallback survives local-storage recovery and only explicit acceptance clears it (0.346513ms)
+✔ analytics-only activation preserves the approved GA4 page-view and outbound-click payloads (1.446272ms)
+✔ all internal destinations resolve and affiliate links carry attribution (113.567616ms)
+✔ each curated model has a dedicated detail page and source (9.6067ms)
+✔ indexable pages have unique canonical URLs and sitemap coverage (22.949736ms)
+✔ seven direct destinations agree with identity evidence; uncertain references remain searches (4.081476ms)
+✔ all Amazon anchors have exact destinations, safe rel, disclosures and stable event metadata (34.315268ms)
+✔ sitemap exactly matches canonicals and internal fragments exist (72.089784ms)
+✔ comparison gives sourced exact variants and original accessible dimension diagrams (1.948278ms)
+✔ built browser sources match source files and privacy describes optional consent-based analytics (16.480697ms)
+✔ catalog has 30 distinct references with clear affiliate destinations and valid structured data (10.319145ms)
+✔ approved Search Console verification survives the build with exact bytes (0.746366ms)
+✔ every editorial page offers equal consent choices and an accessible later settings control (11.466945ms)
+✔ comparison shopping links follow the verdict and final guidance with disclosure (0.791403ms)
+✔ descriptive metadata, crawlable contextual links and honest structured data (13.998304ms)
+✔ all pages retain framing denial and no measurement helper is generated (1.527033ms)
+✔ production activation excludes the private test fixture and leaves shared campaign/account options unchanged (2.024704ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 490.291771
