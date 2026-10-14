@@ -1,0 +1,1286 @@
+{
+  "baseline_commit": "36462baedec5e0d7c2241508b29c43359e3bc66c",
+  "method": "Assistant-authored conversational Unslop Full using supplied installed 0.7.0 guidance; no humanize.py, CLI or API execution. Separate post-rewrite audit by the same assistant, not an external independent reviewer.",
+  "result": "PASS",
+  "indexable_pages": 41,
+  "additional_404_pages": 1,
+  "catalog_models": 30,
+  "affiliate_anchors_preserved": 267,
+  "changed_catalog_fields": 81,
+  "preserved_catalog_fields": "Every field except intro, why and tradeoff: exact identity/variant, dimensions, movement, strap, facts, ASIN/search, source and popularity URLs/notes/dates, image URL/alt and selection label.",
+  "shared_ui": {
+    "changed": [
+      "topline",
+      "footer slogan"
+    ],
+    "preserved": [
+      "All navigation/link/button names: concise action labels or exact model names.",
+      "Consent panel, choices, status messages and privacy policy: Auto-Clarity and exact enabled behavior.",
+      "Filter/search states, results counts and image-unavailable text: concise functional labels.",
+      "Disclosure and legal footer: required disclosure and literal qualifications.",
+      "Eyebrows, headings, product labels and alternative text: protected headings/names or concise descriptive text."
+    ]
+  },
+  "other_preserved_copy": [
+    "Guide light-powered operation and crystal paragraph: already concrete technical explanation.",
+    "Product research-date/no-hands-on/no-current-discount statement: exact sourcing qualification.",
+    "Popular collection methods: manufacturer sources, October 13, 2026 date, retained 2025 source-heading caveat, editorial order and no Amazon-ranking claim.",
+    "Comparison quick verdict, choice cards, specifications, diagram explanation, timed-routine criterion, water-use guidance and source note: precise comparison or Auto-Clarity.",
+    "Home and hub live-price/research qualifications: accurate disclosure."
+  ],
+  "unchanged_non_html_files": [
+    "src/consent-layout.js",
+    "src/app.js",
+    "src/analytics-config.js",
+    "src/ads-config.js",
+    "src/analytics.js",
+    "src/google-tag.js",
+    "src/ga4.js",
+    "src/consent.js",
+    "public/consent-layout.js",
+    "public/analytics-config.js",
+    "public/ads-config.js",
+    "public/analytics.js",
+    "public/google-tag.js",
+    "public/ga4.js",
+    "public/tracking-catalog.js",
+    "public/google216684202c8a020c.html",
+    "public/consent.js",
+    "public/style.css",
+    "public/sitemap.xml",
+    "public/robots.txt",
+    "public/favicon.svg",
+    "public/app.js"
+  ],
+  "excluded": [
+    "Legacy root index.html and deals.json: not active build inputs or deployed pages.",
+    "Search Console ownership HTML: exact verification bytes, not editorial content.",
+    "Internal planning and historical release documents: not live site copy; no new campaign-policy conclusions or release claims."
+  ],
+  "findings_addressed": [
+    "Removed unsupported SRE004 market-prevalence phrase: a size often dominated by quartz watches. No replacement market claim.",
+    "Removed SSB429 generalized steel-versus-rubber versatility claim; framed bracelet preference as reader choice.",
+    "Restored literal water-use qualifications under Auto-Clarity.",
+    "Preserved uncertainty about appearance, stopping after time unworn and radio reception.",
+    "Clarified F-91W 21 grams as watch weight, not case-only weight.",
+    "Corrected missing conjunction in About non-endorsement sentence."
+  ],
+  "limits": [
+    "Checks compare prose with existing manufacturer-linked records and the original source copy; manufacturer pages were not re-fetched and research dates were not advanced.",
+    "No live price, inventory, sales or current bestseller-rank validation.",
+    "No Amazon links activated and no real conversion requested.",
+    "Deployment/browser verification is recorded separately from these local source checks."
+  ],
+  "catalog": [
+    {
+      "slug": "citizen-tsuyosa",
+      "source": "https://www.citizenwatch.com/us/en/product/NJ0150-56X.html",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-marlin",
+      "source": "https://timex.com/products/marlin-chronograph-tachymeter-40mm-stainless-steel-bracelet-watch-tw2w10400",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "citizen-brycen",
+      "source": "https://www.citizenwatch.com/ca/en/product/CA0649-06X.html",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "casio-f91w",
+      "source": "https://www.casio.com/europe/watches/casio/product.F-91W-1/",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": false,
+          "reason": "Retained under Auto-Clarity: water-use guidance and qualifications need literal, careful wording."
+        }
+      }
+    },
+    {
+      "slug": "casio-ae1200",
+      "source": "https://www.casio.com/intl/watches/casio/product.AE-1200WHD-1AV/",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "gshock-ga2100",
+      "source": "https://www.casio.com/intl/watches/gshock/product.GA-2100-1A1/",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-srpd51",
+      "source": "https://seikousa.com/products/srpd51",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-srpj85",
+      "source": "https://seikousa.com/products/srpj85",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-srph33",
+      "source": "https://seikousa.com/products/srph33",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-ssb429",
+      "source": "https://seikousa.com/products/ssb429",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-sur527",
+      "source": "https://seikousa.com/products/sur527",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-srph87",
+      "source": "https://seikousa.com/products/srph87",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-srpe57",
+      "source": "https://seikousa.com/products/srpe57",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-sur633",
+      "source": "https://seikousa.com/products/sur633",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-swr085",
+      "source": "https://seikousa.com/products/swr085",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-ssg021",
+      "source": "https://seikousa.com/products/ssg021",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-sut068",
+      "source": "https://seikousa.com/products/sut068",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-sur440",
+      "source": "https://seikousa.com/products/sur440",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-sre004",
+      "source": "https://seikousa.com/products/sre004",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "seiko-swr046",
+      "source": "https://seikousa.com/products/swr046",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": false,
+          "reason": "Retained under Auto-Clarity: water-use guidance and qualifications need literal, careful wording."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2w33700",
+      "source": "https://timex.com/products/q-timex-falcon-eye-chronograph-40mm-stainless-steel-bracelet-watch-tw2w33700",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2w78500",
+      "source": "https://timex.com/products/cavatina-19mm-leather-strap-watch-tw2w78500",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2v00200",
+      "source": "https://timex.com/products/expedition-field-post-solar-36mm-eco-friendly-leather-strap-watch-tw2v00200",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2v68400",
+      "source": "https://timex.com/products/timex-legacy-day-and-date-36mm-stainless-steel-bracelet-watch-tw2v68400",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2w78200",
+      "source": "https://timex.com/products/expedition-titanium-38mm-leather-strap-watch-tw2w78200",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2r47900",
+      "source": "https://timex.com/products/marlin-1965-reissue-hand-wound-34mm-leather-strap-watch-tw2r47900",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2y07800",
+      "source": "https://timex.com/products/mk1-automatic-40mm-fabric-strap-watch-tw2y07800",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2w51000",
+      "source": "https://timex.com/products/marlin-moon-phase-40mm-leather-strap-watch-tw2w51000",
+      "fields": {
+        "intro": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2y40400",
+      "source": "https://timex.com/products/deepwater-meridian-200-38mm-hnbr-rubber-strap-watch-tw2y40400",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": false,
+          "reason": "Retained under Auto-Clarity: water-use guidance and qualifications need literal, careful wording."
+        }
+      }
+    },
+    {
+      "slug": "timex-tw2y12100",
+      "source": "https://timex.com/products/q-timex-continental-gmt-39mm-stainless-steel-bracelet-watch-tw2y12100",
+      "fields": {
+        "intro": {
+          "changed": false,
+          "reason": "Retained: concise, specific description already meets the editorial standard."
+        },
+        "why": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        },
+        "tradeoff": {
+          "changed": true,
+          "reason": "Rewritten for concrete details and more natural phrasing; facts checked against the original record."
+        }
+      }
+    }
+  ],
+  "pages": [
+    {
+      "path": "/404.html",
+      "kind": "404.html",
+      "sources": [
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 0
+    },
+    {
+      "path": "/about/",
+      "kind": "about",
+      "sources": [
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 0
+    },
+    {
+      "path": "/compare/casio-f91w-vs-ae1200/",
+      "kind": "comparison",
+      "sources": [
+        "scripts/comparison.mjs",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 4
+    },
+    {
+      "path": "/guide/",
+      "kind": "guide",
+      "sources": [
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 0
+    },
+    {
+      "path": "/",
+      "kind": "home",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 30
+    },
+    {
+      "path": "/popular-watches/",
+      "kind": "popular-watches",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 27
+    },
+    {
+      "path": "/privacy/",
+      "kind": "privacy",
+      "sources": [
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": false,
+      "main_copy_review": "Retained under Auto-Clarity: the privacy policy exactly describes enabled consent, storage and measurement behavior.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 0
+    },
+    {
+      "path": "/styles/digital/",
+      "kind": "style hub",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 2
+    },
+    {
+      "path": "/styles/dress/",
+      "kind": "style hub",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/styles/everyday/",
+      "kind": "style hub",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 12
+    },
+    {
+      "path": "/styles/sport/",
+      "kind": "style hub",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 5
+    },
+    {
+      "path": "/styles/vintage/",
+      "kind": "style hub",
+      "sources": [
+        "scripts/build.mjs",
+        "content/watches.json"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 5
+    },
+    {
+      "path": "/watches/casio-ae1200/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 4
+    },
+    {
+      "path": "/watches/casio-f91w/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 4
+    },
+    {
+      "path": "/watches/citizen-brycen/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/citizen-tsuyosa/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/gshock-ga2100/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-sre004/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-srpd51/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-srpe57/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-srph33/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-srph87/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-srpj85/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-ssb429/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-ssg021/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-sur440/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-sur527/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-sur633/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-sut068/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-swr046/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/seiko-swr085/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-marlin/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2r47900/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2v00200/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2v68400/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2w33700/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2w51000/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2w78200/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2w78500/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2y07800/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2y12100/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": true,
+      "metadata_review": "Updated from edited prose; model facts and caveats retained.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    },
+    {
+      "path": "/watches/timex-tw2y40400/",
+      "kind": "product guide",
+      "sources": [
+        "content/watches.json",
+        "scripts/build.mjs"
+      ],
+      "main_copy_changed": true,
+      "main_copy_review": "Rewritten and audited against original copy and protected source data.",
+      "metadata_description_changed": false,
+      "metadata_review": "Retained: exact model/specification summary or concise page-purpose label already accurate.",
+      "title_and_headings": "Reviewed and preserved exactly, as requested.",
+      "structure_attributes_links_and_specifications": "Unchanged; compared with baseline HTML parser tokens, headings, tables, diagrams, specification lists and structured data.",
+      "shared_copy_changed": true,
+      "affiliate_links": 6
+    }
+  ]
+}
