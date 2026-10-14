@@ -1,0 +1,12 @@
+{
+  "scope": "Local mock only; zero real SDK/collection requests or live test events",
+  "passed": [
+    "Opt-in required; GA4 off; one trusted mock conversion with labeled preview URL, no Amazon navigation; repeated/reload/cross-tab guard; withdrawal reload and storage cleanup preserve ledger",
+    "Production, www and other preview origins cannot initialize test mode or send Google requests",
+    "GPC, blocked storage and failed SDK fail closed without test-event replay",
+    "A newly appearing privacy signal unloads the initialized mock SDK without a test event, even when the test button becomes disabled",
+    "1165px desktop and 390px mobile have no horizontal overflow; screenshots captured"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

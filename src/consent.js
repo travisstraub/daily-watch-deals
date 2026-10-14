@@ -1,3 +1,5 @@
+import { testMode } from './tag-test-config.js';
+import { createTestOnce } from './tag-test-once.js';
 import { analytics } from './analytics-config.js';
 import { advertising } from './ads-config.js';
 import { installOutboundTracking } from './analytics.js';
@@ -63,19 +65,23 @@ export function installConsent({ window, document, catalog, pages }) {
   const settings = document.querySelector('#analytics-settings');
   const analyticsInput = panel.querySelector('[data-purpose="analytics"]');
   const adsInput = panel.querySelector('[data-purpose="advertising"]');
-  const adsEnabled = advertising.enabled === true;
+  const mode = testMode(window.location);
+  const config = mode ? { ...analytics, enabled: false, productionOrigin: mode.origin } : analytics;
+  const ads = mode ? { ...advertising, enabled: true } : advertising;
+  const allowedPages = mode ? [mode.path] : pages;
+  const adsEnabled = ads.enabled === true;
   let blocked = privacySignal(window), stopped = false, removeClicks = () => {};
   const choice = purpose => readChoice(window, Date.now(), purpose);
   const selected = { analytics: choice('analytics'), advertising: choice('advertising') };
   const grants = () => ({
-    analytics: !stopped && !privacySignal(window) && selected.analytics === 'accepted' && choice('analytics') === 'accepted',
+    analytics: config.enabled && !stopped && !privacySignal(window) && selected.analytics === 'accepted' && choice('analytics') === 'accepted',
     advertising: adsEnabled && !privacySignal(window) && selected.advertising === 'accepted' && choice('advertising') === 'accepted',
   });
   // The reviewed GA-only lifecycle remains unchanged while the Ads release gate is off.
   const provider = adsEnabled
-    ? createGoogleTag({ window, document, config: analytics, advertising, catalog, pages, consent: grants, restart })
-    : createGA4({ window, document, config: analytics, catalog, pages, consentGranted: () => grants().analytics });
-  const isProduction = window.location.origin === analytics.productionOrigin;
+    ? createGoogleTag({ window, document, config, advertising: ads, catalog, pages: allowedPages, consent: grants, restart })
+    : createGA4({ window, document, config, catalog, pages, consentGranted: () => grants().analytics });
+  const isProduction = window.location.origin === config.productionOrigin;
 
   let restarting = false;
   function restart(next) {
@@ -93,7 +99,7 @@ export function installConsent({ window, document, catalog, pages }) {
   function reflect() {
     blocked = privacySignal(window);
     accept.disabled = blocked;
-    if (analyticsInput) { analyticsInput.checked = selected.analytics === 'accepted' && !blocked; analyticsInput.disabled = blocked; }
+    if (analyticsInput) { analyticsInput.checked = config.enabled && selected.analytics === 'accepted' && !blocked; analyticsInput.disabled = blocked || Boolean(mode); }
     if (adsInput) { adsInput.checked = selected.advertising === 'accepted' && !blocked; adsInput.disabled = blocked; }
     status.textContent = blocked ? 'Optional measurement is off because your browser sends a privacy signal.'
       : adsEnabled ? `Analytics ${grants().analytics ? 'on' : 'off'}. Advertising measurement ${grants().advertising ? 'on' : 'off'}. You can change either choice at any time.`
@@ -109,14 +115,14 @@ export function installConsent({ window, document, catalog, pages }) {
     } else if (allowed.analytics) {
       provider.start().catch(() => provider.stop());
     } else provider.stop();
-    if (!restarting && (allowed.analytics || allowed.advertising)) {
+    if (!mode && !restarting && (allowed.analytics || allowed.advertising)) {
       removeClicks = installOutboundTracking({ document, location: window.location, catalog, pages, enabled: true, send: provider.send });
     }
   }
   function choose(next) {
     if (next === 'accepted' && privacySignal(window)) return;
     const previous = selected.analytics;
-    const selection = { analytics: next === 'accepted' && (!adsEnabled || analyticsInput?.checked) ? 'accepted' : 'rejected', advertising: next === 'accepted' && adsInput?.checked ? 'accepted' : 'rejected' };
+    const selection = { analytics: config.enabled && next === 'accepted' && (!adsEnabled || analyticsInput?.checked) ? 'accepted' : 'rejected', advertising: next === 'accepted' && adsInput?.checked ? 'accepted' : 'rejected' };
     for (const purpose of adsEnabled ? ['analytics','advertising'] : ['analytics']) {
       selected[purpose] = saveChoice(window, selection[purpose], purpose) ? selection[purpose] : 'rejected';
     }
@@ -156,6 +162,20 @@ export function installConsent({ window, document, catalog, pages }) {
   }
   reflect();
   const controller = { reject: () => choose('rejected') };
+  if (mode) controller.testAllowed = () => {
+    const allowed = !restarting && grants().advertising;
+    // The disabled button must not hide a lost grant from the running adapter.
+    if (!allowed && !restarting) provider.update().catch(() => provider.stop());
+    return allowed;
+  };
+  if (mode) controller.requestTest = createTestOnce({
+    window,
+    allowed: controller.testAllowed,
+    prepare: () => provider.update(),
+    // Same validated conversion adapter; synthetic control, never an Amazon visit.
+    // Test identity is the unique preview page_location/page_title, not purchase data.
+    send: () => provider.send({ event: 'outbound_amazon_click', model: catalog['casio-ae1200'].model, placement: 'comparison_final' }),
+  });
   installed.set(document, controller);
   return controller;
 }
