@@ -15,7 +15,10 @@ the code. Account operator details do not belong in this public repository.
   and localhost never contacts GA4. No URL parameter or environment flag overrides it.
 - Global Privacy Control or Do Not Track overrides stored acceptance. Rejection is
   synchronized across tabs and on return to a page. The preference and date are stored
-  locally for up to 180 days; unavailable or expired storage fails closed.
+  locally for up to 180 days; unavailable, read-only or expired storage fails closed.
+  Failed preference writes attempt removal of old permission and a minimal refusal
+  cookie, so restored local storage does not revive an old acceptance when that
+  cookie is available. The privacy page describes this fallback.
 - After consent the tag receives denied defaults, then grants only analytics storage.
   `ad_storage`, `ad_user_data` and `ad_personalization` stay denied. Google Signals and
   ad-personalization signals are false; URL passthrough is false and ads redaction true.
@@ -98,3 +101,11 @@ Official implementation references (reviewed October 13, 2026):
 - https://developers.google.com/tag-platform/security/guides/privacy
 - https://developers.google.com/analytics/devguides/collection/ga4/reference/config
 - https://developers.google.com/analytics/devguides/collection/ga4/views
+
+## Proposed Ads extension (disabled)
+
+The separate Ads opt-in implementation is documented in
+[ads-measurement-review.md](ads-measurement-review.md). `advertising.enabled` is
+false. This document's GA-only behavior remains the active build behavior; no Ads
+destination or account link is enabled. The enabled Ads design is tested in an
+isolated mocked build and needs separate review before activation or release.

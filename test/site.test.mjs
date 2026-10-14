@@ -84,7 +84,7 @@ test('comparison gives sourced exact variants and original accessible dimension 
 });
 
 test('built browser sources match source files and privacy describes optional consent-based analytics',async()=>{
- for(const name of ['app.js','analytics.js','analytics-config.js','consent.js','ga4.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
+ for(const name of ['app.js','analytics.js','analytics-config.js','ads-config.js','consent.js','ga4.js','google-tag.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
  const privacy=await readFile(new URL('privacy/index.html',root),'utf8');
  assert.match(privacy,/only after you choose Accept analytics/);assert.match(privacy,/A click is not an order/);assert.match(privacy,/Global Privacy Control and Do Not Track/);
  for(const page of await pages()){
@@ -147,4 +147,11 @@ test('descriptive metadata, crawlable contextual links and honest structured dat
  assert.match(hub,/<a[^>]+href="\/compare\/casio-f91w-vs-ae1200\/">F-91W vs steel-bracelet AE-1200/);
  const robots=await readFile(new URL('robots.txt',root),'utf8');
  assert.equal(robots,'User-agent: *\nAllow: /\nSitemap: https://dailywatchfinds.com/sitemap.xml\n');
+});
+
+test('all pages retain framing denial and no measurement helper is generated',async()=>{
+ const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));
+ assert.equal(config.headers.length,1);
+ assert.ok(config.headers[0].headers.some(h=>h.key==='X-Frame-Options'&&h.value==='DENY'));
+ await assert.rejects(readFile(new URL('measurement-frame.html',root)),{code:'ENOENT'});
 });
