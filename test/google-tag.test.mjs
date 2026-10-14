@@ -19,8 +19,8 @@ function fixture({choices={analytics:false,advertising:false},adsEnabled=true,or
  async function ready(){const promise=adapter.update();scripts.at(-1).onload();assert.equal(await promise,true);}
  return {adapter,scripts,expired,timers,window,document,storage,restarts,event,commands,ready,set(v){grants={...v}}};
 }
-test('Ads gate is off with exact operator-supplied public ID and label',()=>{
- assert.equal(advertising.enabled,false);assert.equal(advertising.conversionId+'/'+advertising.conversionLabel,'AW-18511081247/3QZeCKShgZwdEJ_e4vpE');
+test('Ads activation retains the exact approved destination and production-only origin',()=>{
+ assert.equal(advertising.enabled,true);assert.equal(config.productionOrigin,'https://dailywatchfinds.com');assert.equal(config.measurementId,'G-LSGXWGSM9T');assert.equal(advertising.conversionId+'/'+advertising.conversionLabel,'AW-18511081247/3QZeCKShgZwdEJ_e4vpE');
 });
 test('all consent combinations configure only granted top-level destinations with one shared loader',async()=>{
  for(const analytics of [false,true])for(const ads of [false,true]){
@@ -92,7 +92,7 @@ test('Ads cleanup independently clears documented linker storage, preserving unr
  const f=fixture();f.storage.set(consentKey,'keep');f.storage.set(advertisingConsentKey,'keep');f.storage.set('_gcl_unrelated','keep');
  clearMeasurementStorage(f.window,f.document,{advertising:true});
  assert.equal(f.storage.has('_gcl_ls'),false);assert.equal(f.storage.get('_gcl_unrelated'),'keep');assert.equal(f.storage.get(consentKey),'keep');assert.equal(f.storage.get(advertisingConsentKey),'keep');
- assert.ok(f.expired.every(c=>!c.startsWith('_ga=')));
+ assert.ok(f.expired.every(c=>!c.startsWith('_ga=')));assert.ok(f.expired.some(c=>c.startsWith('_gcl_au=')),'observed Google Ads cookie is removed');
  f.storage.set('_gcl_ls','again');clearMeasurementStorage(f.window,{get cookie(){throw Error('blocked')}},{advertising:true});assert.equal(f.storage.has('_gcl_ls'),false);
  f.window.localStorage.removeItem=()=>{throw Error('blocked')};f.expired.length=0;assert.doesNotThrow(()=>clearMeasurementStorage(f.window,f.document,{advertising:true}));assert.ok(f.expired.length>0);
 });
@@ -119,4 +119,14 @@ test('refusal fallback survives local-storage recovery and only explicit accepta
  const w={document,localStorage:{getItem:k=>data.get(k)||null,setItem:(k,v)=>{if(blocked)throw Error('read-only');data.set(k,v)},removeItem:k=>{if(blocked)throw Error('read-only');data.delete(k)}}};
  assert.equal(saveChoice(w,'rejected','advertising'),false);assert.equal(readChoice(w,Date.now(),'advertising'),'rejected');
  blocked=false;assert.equal(readChoice(w,Date.now(),'advertising'),'rejected');assert.equal(saveChoice(w,'accepted','advertising'),true);assert.equal(readChoice(w,Date.now(),'advertising'),'accepted');
+});
+
+test('analytics-only activation preserves the approved GA4 page-view and outbound-click payloads',async()=>{
+ const { createGA4 } = await import('../src/ga4.js');
+ const previous=fixture({choices:{analytics:true,advertising:false}});
+ const ga4=createGA4({window:previous.window,document:previous.document,config,catalog,pages,consentGranted:()=>true});
+ const loaded=ga4.start();previous.scripts[0].onload();await loaded;ga4.send(previous.event);ga4.send(previous.event);
+ const activated=fixture({choices:{analytics:true,advertising:false}});await activated.ready();activated.adapter.send(activated.event);activated.adapter.send(activated.event);
+ assert.deepEqual(activated.commands().filter(c=>c[0]==='event'),previous.commands().filter(c=>c[0]==='event'));
+ assert.deepEqual(activated.commands().filter(c=>c[0]==='config').map(c=>c[1]),[config.measurementId]);
 });

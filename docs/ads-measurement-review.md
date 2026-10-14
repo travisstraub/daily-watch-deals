@@ -1,6 +1,10 @@
-# Separate Google Ads measurement — disabled review build
+# Historical review: separate Google Ads measurement — disabled build
 
-This draft is stacked on PR #7 (`bcea4e0e4e58778d5f5b68b12d3fa9eb01aa59aa`).
+**Historical PR #8 evidence.** For the current activation proposal and the later
+operator-reported real-SDK privacy check, see [ads-activation-review.md](ads-activation-review.md).
+The disabled-state statements and pending gates below describe that earlier review.
+
+This draft was stacked on PR #7 (`bcea4e0e4e58778d5f5b68b12d3fa9eb01aa59aa`).
 Neither PR #7 nor production is merged or changed by this work.
 
 The operator supplied the public destination
