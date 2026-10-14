@@ -33,5 +33,6 @@ body,.watch-page{padding-bottom:calc(var(--consent-offset) + var(--shopping-offs
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .consent-open body{height:100vh;height:100dvh;overflow:hidden;padding-bottom:0}
-.consent-open #site-content{height:calc(100vh - var(--consent-offset) - var(--shopping-offset));height:calc(100dvh - var(--consent-offset) - var(--shopping-offset));overflow-y:auto;scroll-padding-block:24px 12px}
+/* Keep absolutely positioned screen-reader text inside the page scroll area. */
+.consent-open #site-content{position:relative;height:calc(100vh - var(--consent-offset) - var(--shopping-offset));height:calc(100dvh - var(--consent-offset) - var(--shopping-offset));overflow-y:auto;scroll-padding-block:24px 12px}
 @media(max-width:640px){.consent-floating .consent-copy{max-height:none}.watch-page{padding-bottom:calc(var(--consent-offset) + max(96px,var(--shopping-offset)))}.consent-open .watch-page{padding-bottom:0}}

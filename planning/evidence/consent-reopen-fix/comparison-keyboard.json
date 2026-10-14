@@ -1,0 +1,302 @@
+{
+  "cases": [
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 478,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "PageUp",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 478,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "Shift+Space",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 40,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "ArrowUp",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 439,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "PageUp",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 439,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "Shift+Space",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 40,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "ArrowUp",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "PageDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 227,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "PageUp",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "Space",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 227,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "Shift+Space",
+        "content": 0
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "key": "ArrowDown",
+      "before": {
+        "content": 0,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "after": {
+        "content": 40,
+        "document": 0,
+        "active": "BODY",
+        "checked": [
+          false,
+          false
+        ],
+        "visible": true
+      },
+      "pass": true,
+      "reverse": {
+        "key": "ArrowUp",
+        "content": 0
+      }
+    }
+  ],
+  "controlChecks": [
+    "1165px: reverse/Home/End keys, first Tab skip link, native checkbox/button Space, persisted rejection and normal document scroll",
+    "390px: reverse/Home/End keys, first Tab skip link, native checkbox/button Space, persisted rejection and normal document scroll",
+    "320px: reverse/Home/End keys, first Tab skip link, native checkbox/button Space, persisted rejection and normal document scroll"
+  ],
+  "errors": [],
+  "measurementRequests": [],
+  "failures": [],
+  "type": "Local files at simulated production origin; all measurement mocked",
+  "status": "PASS"
+}

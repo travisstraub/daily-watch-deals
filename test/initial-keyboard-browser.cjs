@@ -6,11 +6,11 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const output = process.argv[2] || '/tmp/dwf-initial-keyboard';
 const origin = 'https://dailywatchfinds.com';
-const comparison = '/compare/casio-f91w-vs-ae1200/';
+const pagePath = process.argv[3] || '/compare/casio-f91w-vs-ae1200/';
 (async () => {
   await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ executablePath:process.env.CHROMIUM_PATH || '/usr/bin/chromium', args:['--no-sandbox'] });
-  const report = { cases:[], controlChecks:[], errors:[], measurementRequests:[], failures:[], type:'Local files at simulated production origin; all measurement mocked' };
+  const report = { pagePath, cases:[], controlChecks:[], errors:[], measurementRequests:[], failures:[], type:'Local files at simulated production origin; all measurement mocked' };
   try {
     for (const viewport of [{width:1165,height:747},{width:390,height:844},{width:320,height:568}]) {
       for (const key of ['PageDown','Space','ArrowDown']) {
@@ -29,7 +29,7 @@ const comparison = '/compare/casio-f91w-vs-ae1200/';
         });
         const page = await context.newPage();
         page.on('pageerror',e => report.errors.push(e.message));
-        await page.goto(origin+comparison,{waitUntil:'networkidle'});
+        await page.goto(origin+pagePath,{waitUntil:'networkidle'});
         await page.waitForSelector('.consent-open #site-content');
         const state = () => page.evaluate(() => ({ content:document.querySelector('#site-content').scrollTop, document:scrollY, active:document.activeElement.tagName, checked:[...document.querySelectorAll('[data-purpose]')].map(el=>el.checked), visible:!document.querySelector('#analytics-consent').hidden }));
         const before = await state();
