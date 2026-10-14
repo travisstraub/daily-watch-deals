@@ -1,0 +1,25 @@
+{
+  "type": "Isolated enabled build with mock tag; no live Ads/GA4 receipt",
+  "passed": [
+    "initial choices off; pre-consent links and persisted rejection send zero Google requests",
+    "analytics=true, advertising=false: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "analytics=false, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "analytics=true, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "withdraw analytics: old context destroyed, other purpose continues, no duplicate view, reject-all stops requests and cookie-writing timer; regrant has no replay",
+    "withdraw advertising: old context destroyed, other purpose continues, no duplicate view, reject-all stops requests and cookie-writing timer; regrant has no replay",
+    "legacy analytics permission never authorizes advertising",
+    "gpc overrides both stored grants",
+    "dnt overrides both stored grants",
+    "blocked provider preserves native navigation and drops revoked queues",
+    "pending provider preserves native navigation and drops revoked queues",
+    "blocked storage cannot grant either purpose",
+    "preview origins never load measurement even in enabled fixture",
+    "cross-tab Ads withdrawal immediately preserves analytics-only operation",
+    "privacy signal appearing mid-page tears down both purposes without another ping",
+    "direct helper visit is inert; browser exercised actual framing header rules",
+    "1165px/390px no overflow, equal save/reject buttons, keyboard-operable separate purposes"
+  ],
+  "errors": [],
+  "fixtureRoot": "/tmp/dwf-ads-fixture-1YmDjO",
+  "status": "PASS"
+}

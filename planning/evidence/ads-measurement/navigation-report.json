@@ -1,0 +1,36 @@
+{
+  "baseURL": "http://127.0.0.1:4181",
+  "checked": [
+    "home: 1440px, no page overflow",
+    "comparison: 1440px, no page overflow",
+    "product: 1440px, no page overflow",
+    "digital: 1440px, no page overflow",
+    "privacy: 1440px, no page overflow",
+    "home: 390px, no page overflow",
+    "comparison: 390px, no page overflow",
+    "product: 390px, no page overflow",
+    "digital: 390px, no page overflow",
+    "privacy: 390px, no page overflow",
+    "middle activation emits once; headless Chromium does not open a tab for this action",
+    "final shopping links: one event each for pointer and keyboard activation",
+    "ordinary navigation with throw sender",
+    "ordinary navigation with reject sender",
+    "ordinary navigation with pending sender",
+    "ordinary navigation when consent controls fail to load",
+    "ordinary navigation with JavaScript disabled"
+  ],
+  "outboundNavigationsIntercepted": 10,
+  "imageFailures": [
+    "https://citizenwatch.widen.net/content/c155b5cxmk/webp?width=700&quality=85",
+    "https://cdn.shopify.com/s/files/1/0573/1198/5747/files/TW2W10400_dd5a6297-7759-46c7-b5c2-c167770b197b.png?v=1785863167&width=700",
+    "https://citizenwatch.widen.net/content/hzxrbozifk/webp/Brycen.webp?width=700&quality=85",
+    "https://www.casio.com/content/dam/casio/product-info/locales/europe/en-gb/timepiece/product/watch/F/F9/F91/F-91W-1/assets/F-91W-1_Seq1.png.transform/main-visual-sp/image.png",
+    "https://www.casio.com/content/dam/casio/product-info/locales/intl/en/timepiece/product/watch/A/AE/AE1/AE-1200WHD-1AV/assets/AE-1200WHD-1AV_Seq1.png.transform/main-visual-sp/image.png",
+    "https://www.casio.com/content/dam/casio/product-info/locales/intl/en/timepiece/product/watch/G/GA/GA2/GA-2100-1A1/assets/GA-2100-1A1_Seq01.png.transform/main-visual-sp/image.png",
+    "https://seikousa.com/cdn/shop/files/SRPD51_1_c3dcfe00-da32-4315-82ac-c47d3ad8543c.png?v=1786545448&width=700",
+    "https://seikousa.com/cdn/shop/files/SRPJ85_1_d35f12d2-86f7-42c9-a493-3e5640859af0.png?v=1786480568&width=700",
+    "https://cdn.shopify.com/s/files/1/0019/1184/9012/files/SRPH33_1_549eef81-7848-458c-a8f4-f4576fe2a961.png?v=1786480746&width=700"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

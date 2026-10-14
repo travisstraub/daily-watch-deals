@@ -98,3 +98,11 @@ Official implementation references (reviewed October 13, 2026):
 - https://developers.google.com/tag-platform/security/guides/privacy
 - https://developers.google.com/analytics/devguides/collection/ga4/reference/config
 - https://developers.google.com/analytics/devguides/collection/ga4/views
+
+## Proposed Ads extension (disabled)
+
+The separate Ads opt-in implementation is documented in
+[ads-measurement-review.md](ads-measurement-review.md). `advertising.enabled` is
+false. This document's GA-only behavior remains the active build behavior; no Ads
+destination or account link is enabled. The enabled Ads design is tested in an
+isolated mocked build and needs separate review before activation or release.
