@@ -1,0 +1,2074 @@
+{
+  "cases": [
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "route": "/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 9484,
+        "documentHeight": 10231,
+        "contentTop": -9484,
+        "contentBottom": 746.953125,
+        "contentScroll": 0,
+        "contentHeight": 10231,
+        "contentClient": 10231,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 433.796875,
+        "footerBottom": 746.953125,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 747,
+        "contentTop": 0,
+        "contentBottom": 546,
+        "contentScroll": 9484,
+        "contentHeight": 10231,
+        "contentClient": 546,
+        "panelTop": 558.859375,
+        "panelHidden": false,
+        "footerTop": 433.796875,
+        "footerBottom": 746.953125,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 9484,
+            "documentHeight": 10231,
+            "contentTop": -9484,
+            "contentBottom": 746.953125,
+            "contentScroll": 0,
+            "contentHeight": 10231,
+            "contentClient": 10231,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 9484,
+            "contentHeight": 10231,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 9484,
+            "documentHeight": 10231,
+            "contentTop": -9484,
+            "contentBottom": 746.953125,
+            "contentScroll": 0,
+            "contentHeight": 10231,
+            "contentClient": 10231,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 9484,
+            "contentHeight": 10231,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "route": "/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 9484,
+        "documentHeight": 10231,
+        "contentTop": -9484,
+        "contentBottom": 746.953125,
+        "contentScroll": 0,
+        "contentHeight": 10231,
+        "contentClient": 10231,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 433.796875,
+        "footerBottom": 746.953125,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 747,
+        "contentTop": 0,
+        "contentBottom": 546,
+        "contentScroll": 9484,
+        "contentHeight": 10231,
+        "contentClient": 546,
+        "panelTop": 558.859375,
+        "panelHidden": false,
+        "footerTop": 433.796875,
+        "footerBottom": 746.953125,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 9484,
+            "documentHeight": 10231,
+            "contentTop": -9484,
+            "contentBottom": 746.953125,
+            "contentScroll": 0,
+            "contentHeight": 10231,
+            "contentClient": 10231,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 9484,
+            "contentHeight": 10231,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 9484,
+            "documentHeight": 10231,
+            "contentTop": -9484,
+            "contentBottom": 746.953125,
+            "contentScroll": 0,
+            "contentHeight": 10231,
+            "contentClient": 10231,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 9484,
+            "contentHeight": 10231,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 433.796875,
+            "footerBottom": 746.953125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 2664,
+        "documentHeight": 3411,
+        "contentTop": -2664,
+        "contentBottom": 747.15625,
+        "contentScroll": 0,
+        "contentHeight": 3411,
+        "contentClient": 3411,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 434,
+        "footerBottom": 747.15625,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 747,
+        "contentTop": 0,
+        "contentBottom": 546,
+        "contentScroll": 2664,
+        "contentHeight": 3411,
+        "contentClient": 546,
+        "panelTop": 558.859375,
+        "panelHidden": false,
+        "footerTop": 434,
+        "footerBottom": 747.15625,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 2664,
+            "documentHeight": 3411,
+            "contentTop": -2664,
+            "contentBottom": 747.15625,
+            "contentScroll": 0,
+            "contentHeight": 3411,
+            "contentClient": 3411,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 2664,
+            "contentHeight": 3411,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 2664,
+            "documentHeight": 3411,
+            "contentTop": -2664,
+            "contentBottom": 747.15625,
+            "contentScroll": 0,
+            "contentHeight": 3411,
+            "contentClient": 3411,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 2664,
+            "contentHeight": 3411,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 2664,
+        "documentHeight": 3411,
+        "contentTop": -2664,
+        "contentBottom": 747.15625,
+        "contentScroll": 0,
+        "contentHeight": 3411,
+        "contentClient": 3411,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 434,
+        "footerBottom": 747.15625,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 747,
+        "contentTop": 0,
+        "contentBottom": 546,
+        "contentScroll": 2664,
+        "contentHeight": 3411,
+        "contentClient": 546,
+        "panelTop": 558.859375,
+        "panelHidden": false,
+        "footerTop": 434,
+        "footerBottom": 747.15625,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 2664,
+            "documentHeight": 3411,
+            "contentTop": -2664,
+            "contentBottom": 747.15625,
+            "contentScroll": 0,
+            "contentHeight": 3411,
+            "contentClient": 3411,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 2664,
+            "contentHeight": 3411,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 2664,
+            "documentHeight": 3411,
+            "contentTop": -2664,
+            "contentBottom": 747.15625,
+            "contentScroll": 0,
+            "contentHeight": 3411,
+            "contentClient": 3411,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 747,
+            "contentTop": 0,
+            "contentBottom": 546,
+            "contentScroll": 2664,
+            "contentHeight": 3411,
+            "contentClient": 546,
+            "panelTop": 558.859375,
+            "panelHidden": false,
+            "footerTop": 434,
+            "footerBottom": 747.15625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 9149,
+        "documentHeight": 10049,
+        "contentTop": -9149,
+        "contentBottom": 900.203125,
+        "contentScroll": 0,
+        "contentHeight": 10049,
+        "contentClient": 10049,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 587.046875,
+        "footerBottom": 900.203125,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 900,
+        "contentTop": 0,
+        "contentBottom": 699,
+        "contentScroll": 9149,
+        "contentHeight": 10049,
+        "contentClient": 699,
+        "panelTop": 711.859375,
+        "panelHidden": false,
+        "footerTop": 587.046875,
+        "footerBottom": 900.203125,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 9149,
+            "documentHeight": 10049,
+            "contentTop": -9149,
+            "contentBottom": 900.203125,
+            "contentScroll": 0,
+            "contentHeight": 10049,
+            "contentClient": 10049,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 9149,
+            "contentHeight": 10049,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 9149,
+            "documentHeight": 10049,
+            "contentTop": -9149,
+            "contentBottom": 900.203125,
+            "contentScroll": 0,
+            "contentHeight": 10049,
+            "contentClient": 10049,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 9149,
+            "contentHeight": 10049,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 9149,
+        "documentHeight": 10049,
+        "contentTop": -9149,
+        "contentBottom": 900.203125,
+        "contentScroll": 0,
+        "contentHeight": 10049,
+        "contentClient": 10049,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 587.046875,
+        "footerBottom": 900.203125,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 900,
+        "contentTop": 0,
+        "contentBottom": 699,
+        "contentScroll": 9149,
+        "contentHeight": 10049,
+        "contentClient": 699,
+        "panelTop": 711.859375,
+        "panelHidden": false,
+        "footerTop": 587.046875,
+        "footerBottom": 900.203125,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 9149,
+            "documentHeight": 10049,
+            "contentTop": -9149,
+            "contentBottom": 900.203125,
+            "contentScroll": 0,
+            "contentHeight": 10049,
+            "contentClient": 10049,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 9149,
+            "contentHeight": 10049,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 9149,
+            "documentHeight": 10049,
+            "contentTop": -9149,
+            "contentBottom": 900.203125,
+            "contentScroll": 0,
+            "contentHeight": 10049,
+            "contentClient": 10049,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 9149,
+            "contentHeight": 10049,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 587.046875,
+            "footerBottom": 900.203125,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 2538,
+        "documentHeight": 3438,
+        "contentTop": -2538,
+        "contentBottom": 899.546875,
+        "contentScroll": 0,
+        "contentHeight": 3438,
+        "contentClient": 3438,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 586.390625,
+        "footerBottom": 899.546875,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 900,
+        "contentTop": 0,
+        "contentBottom": 699,
+        "contentScroll": 2538,
+        "contentHeight": 3438,
+        "contentClient": 699,
+        "panelTop": 711.859375,
+        "panelHidden": false,
+        "footerTop": 586.390625,
+        "footerBottom": 899.546875,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 2538,
+            "documentHeight": 3438,
+            "contentTop": -2538,
+            "contentBottom": 899.546875,
+            "contentScroll": 0,
+            "contentHeight": 3438,
+            "contentClient": 3438,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 2538,
+            "contentHeight": 3438,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 2538,
+            "documentHeight": 3438,
+            "contentTop": -2538,
+            "contentBottom": 899.546875,
+            "contentScroll": 0,
+            "contentHeight": 3438,
+            "contentClient": 3438,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 2538,
+            "contentHeight": 3438,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 2538,
+        "documentHeight": 3438,
+        "contentTop": -2538,
+        "contentBottom": 899.546875,
+        "contentScroll": 0,
+        "contentHeight": 3438,
+        "contentClient": 3438,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 586.390625,
+        "footerBottom": 899.546875,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 900,
+        "contentTop": 0,
+        "contentBottom": 699,
+        "contentScroll": 2538,
+        "contentHeight": 3438,
+        "contentClient": 699,
+        "panelTop": 711.859375,
+        "panelHidden": false,
+        "footerTop": 586.390625,
+        "footerBottom": 899.546875,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 2538,
+            "documentHeight": 3438,
+            "contentTop": -2538,
+            "contentBottom": 899.546875,
+            "contentScroll": 0,
+            "contentHeight": 3438,
+            "contentClient": 3438,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 2538,
+            "contentHeight": 3438,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 2538,
+            "documentHeight": 3438,
+            "contentTop": -2538,
+            "contentBottom": 899.546875,
+            "contentScroll": 0,
+            "contentHeight": 3438,
+            "contentClient": 3438,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 900,
+            "contentTop": 0,
+            "contentBottom": 699,
+            "contentScroll": 2538,
+            "contentHeight": 3438,
+            "contentClient": 699,
+            "panelTop": 711.859375,
+            "panelHidden": false,
+            "footerTop": 586.390625,
+            "footerBottom": 899.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 24438,
+        "documentHeight": 25282,
+        "contentTop": -24438,
+        "contentBottom": 844.140625,
+        "contentScroll": 0,
+        "contentHeight": 25282,
+        "contentClient": 25282,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 416.078125,
+        "footerBottom": 844.140625,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 844,
+        "contentTop": 0,
+        "contentBottom": 502,
+        "contentScroll": 24438,
+        "contentHeight": 25282,
+        "contentClient": 502,
+        "panelTop": 514.5,
+        "panelHidden": false,
+        "footerTop": 416.078125,
+        "footerBottom": 844.140625,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 24438,
+            "documentHeight": 25282,
+            "contentTop": -24438,
+            "contentBottom": 844.140625,
+            "contentScroll": 0,
+            "contentHeight": 25282,
+            "contentClient": 25282,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 24438,
+            "contentHeight": 25282,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 24438,
+            "documentHeight": 25282,
+            "contentTop": -24438,
+            "contentBottom": 844.140625,
+            "contentScroll": 0,
+            "contentHeight": 25282,
+            "contentClient": 25282,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 24438,
+            "contentHeight": 25282,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 24438,
+        "documentHeight": 25282,
+        "contentTop": -24438,
+        "contentBottom": 844.140625,
+        "contentScroll": 0,
+        "contentHeight": 25282,
+        "contentClient": 25282,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 416.078125,
+        "footerBottom": 844.140625,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 844,
+        "contentTop": 0,
+        "contentBottom": 502,
+        "contentScroll": 24438,
+        "contentHeight": 25282,
+        "contentClient": 502,
+        "panelTop": 514.5,
+        "panelHidden": false,
+        "footerTop": 416.078125,
+        "footerBottom": 844.140625,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 24438,
+            "documentHeight": 25282,
+            "contentTop": -24438,
+            "contentBottom": 844.140625,
+            "contentScroll": 0,
+            "contentHeight": 25282,
+            "contentClient": 25282,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 24438,
+            "contentHeight": 25282,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 24438,
+            "documentHeight": 25282,
+            "contentTop": -24438,
+            "contentBottom": 844.140625,
+            "contentScroll": 0,
+            "contentHeight": 25282,
+            "contentClient": 25282,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 24438,
+            "contentHeight": 25282,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 416.078125,
+            "footerBottom": 844.140625,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 4321,
+        "documentHeight": 5165,
+        "contentTop": -4321,
+        "contentBottom": 843.734375,
+        "contentScroll": 0,
+        "contentHeight": 5165,
+        "contentClient": 5165,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 415.671875,
+        "footerBottom": 843.734375,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 844,
+        "contentTop": 0,
+        "contentBottom": 502,
+        "contentScroll": 4321,
+        "contentHeight": 5165,
+        "contentClient": 502,
+        "panelTop": 514.5,
+        "panelHidden": false,
+        "footerTop": 415.671875,
+        "footerBottom": 843.734375,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 4321,
+            "documentHeight": 5165,
+            "contentTop": -4321,
+            "contentBottom": 843.734375,
+            "contentScroll": 0,
+            "contentHeight": 5165,
+            "contentClient": 5165,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 4321,
+            "contentHeight": 5165,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 4321,
+            "documentHeight": 5165,
+            "contentTop": -4321,
+            "contentBottom": 843.734375,
+            "contentScroll": 0,
+            "contentHeight": 5165,
+            "contentClient": 5165,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 4321,
+            "contentHeight": 5165,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 4321,
+        "documentHeight": 5165,
+        "contentTop": -4321,
+        "contentBottom": 843.734375,
+        "contentScroll": 0,
+        "contentHeight": 5165,
+        "contentClient": 5165,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 415.671875,
+        "footerBottom": 843.734375,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 844,
+        "contentTop": 0,
+        "contentBottom": 502,
+        "contentScroll": 4321,
+        "contentHeight": 5165,
+        "contentClient": 502,
+        "panelTop": 514.5,
+        "panelHidden": false,
+        "footerTop": 415.671875,
+        "footerBottom": 843.734375,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 4321,
+            "documentHeight": 5165,
+            "contentTop": -4321,
+            "contentBottom": 843.734375,
+            "contentScroll": 0,
+            "contentHeight": 5165,
+            "contentClient": 5165,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 4321,
+            "contentHeight": 5165,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 4321,
+            "documentHeight": 5165,
+            "contentTop": -4321,
+            "contentBottom": 843.734375,
+            "contentScroll": 0,
+            "contentHeight": 5165,
+            "contentClient": 5165,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 844,
+            "contentTop": 0,
+            "contentBottom": 502,
+            "contentScroll": 4321,
+            "contentHeight": 5165,
+            "contentClient": 502,
+            "panelTop": 514.5,
+            "panelHidden": false,
+            "footerTop": 415.671875,
+            "footerBottom": 843.734375,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 25699,
+        "documentHeight": 26267,
+        "contentTop": -25699,
+        "contentBottom": 568.25,
+        "contentScroll": 0,
+        "contentHeight": 26267,
+        "contentClient": 26267,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 86.90625,
+        "footerBottom": 568.25,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 568,
+        "contentTop": 0,
+        "contentBottom": 259,
+        "contentScroll": 25699,
+        "contentHeight": 26267,
+        "contentClient": 259,
+        "panelTop": 271.609375,
+        "panelHidden": false,
+        "footerTop": 86.90625,
+        "footerBottom": 568.25,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 25699,
+            "documentHeight": 26267,
+            "contentTop": -25699,
+            "contentBottom": 568.25,
+            "contentScroll": 0,
+            "contentHeight": 26267,
+            "contentClient": 26267,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 25699,
+            "contentHeight": 26267,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 25699,
+            "documentHeight": 26267,
+            "contentTop": -25699,
+            "contentBottom": 568.25,
+            "contentScroll": 0,
+            "contentHeight": 26267,
+            "contentClient": 26267,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 25699,
+            "contentHeight": 26267,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 25699,
+        "documentHeight": 26267,
+        "contentTop": -25699,
+        "contentBottom": 568.25,
+        "contentScroll": 0,
+        "contentHeight": 26267,
+        "contentClient": 26267,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 86.90625,
+        "footerBottom": 568.25,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 568,
+        "contentTop": 0,
+        "contentBottom": 259,
+        "contentScroll": 25699,
+        "contentHeight": 26267,
+        "contentClient": 259,
+        "panelTop": 271.609375,
+        "panelHidden": false,
+        "footerTop": 86.90625,
+        "footerBottom": 568.25,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 25699,
+            "documentHeight": 26267,
+            "contentTop": -25699,
+            "contentBottom": 568.25,
+            "contentScroll": 0,
+            "contentHeight": 26267,
+            "contentClient": 26267,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 25699,
+            "contentHeight": 26267,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 25699,
+            "documentHeight": 26267,
+            "contentTop": -25699,
+            "contentBottom": 568.25,
+            "contentScroll": 0,
+            "contentHeight": 26267,
+            "contentClient": 26267,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 25699,
+            "contentHeight": 26267,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.90625,
+            "footerBottom": 568.25,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "pointer",
+      "before": {
+        "documentTop": 5030,
+        "documentHeight": 5598,
+        "contentTop": -5030,
+        "contentBottom": 567.546875,
+        "contentScroll": 0,
+        "contentHeight": 5598,
+        "contentClient": 5598,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 86.203125,
+        "footerBottom": 567.546875,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 568,
+        "contentTop": 0,
+        "contentBottom": 259,
+        "contentScroll": 5030,
+        "contentHeight": 5598,
+        "contentClient": 259,
+        "panelTop": 271.609375,
+        "panelHidden": false,
+        "footerTop": 86.203125,
+        "footerBottom": 567.546875,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 5030,
+            "documentHeight": 5598,
+            "contentTop": -5030,
+            "contentBottom": 567.546875,
+            "contentScroll": 0,
+            "contentHeight": 5598,
+            "contentClient": 5598,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 5030,
+            "contentHeight": 5598,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 5030,
+            "documentHeight": 5598,
+            "contentTop": -5030,
+            "contentBottom": 567.546875,
+            "contentScroll": 0,
+            "contentHeight": 5598,
+            "contentClient": 5598,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 5030,
+            "contentHeight": 5598,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/compare/casio-f91w-vs-ae1200/",
+      "interaction": "keyboard",
+      "before": {
+        "documentTop": 5030,
+        "documentHeight": 5598,
+        "contentTop": -5030,
+        "contentBottom": 567.546875,
+        "contentScroll": 0,
+        "contentHeight": 5598,
+        "contentClient": 5598,
+        "panelTop": 0,
+        "panelHidden": true,
+        "footerTop": 86.203125,
+        "footerBottom": 567.546875,
+        "paintedContent": true,
+        "active": "BODY",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "after": {
+        "documentTop": 0,
+        "documentHeight": 568,
+        "contentTop": 0,
+        "contentBottom": 259,
+        "contentScroll": 5030,
+        "contentHeight": 5598,
+        "contentClient": 259,
+        "panelTop": 271.609375,
+        "panelHidden": false,
+        "footerTop": 86.203125,
+        "footerBottom": 567.546875,
+        "paintedContent": true,
+        "active": "INPUT",
+        "choices": [
+          false,
+          false
+        ]
+      },
+      "pass": true,
+      "cycles": [
+        {
+          "closed": {
+            "documentTop": 5030,
+            "documentHeight": 5598,
+            "contentTop": -5030,
+            "contentBottom": 567.546875,
+            "contentScroll": 0,
+            "contentHeight": 5598,
+            "contentClient": 5598,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 5030,
+            "contentHeight": 5598,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "closed": {
+            "documentTop": 5030,
+            "documentHeight": 5598,
+            "contentTop": -5030,
+            "contentBottom": 567.546875,
+            "contentScroll": 0,
+            "contentHeight": 5598,
+            "contentClient": 5598,
+            "panelTop": 0,
+            "panelHidden": true,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "analytics-settings",
+            "choices": [
+              false,
+              false
+            ]
+          },
+          "reopened": {
+            "documentTop": 0,
+            "documentHeight": 568,
+            "contentTop": 0,
+            "contentBottom": 259,
+            "contentScroll": 5030,
+            "contentHeight": 5598,
+            "contentClient": 259,
+            "panelTop": 271.609375,
+            "panelHidden": false,
+            "footerTop": 86.203125,
+            "footerBottom": 567.546875,
+            "paintedContent": true,
+            "active": "INPUT",
+            "choices": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "measurementRequests": [],
+  "affiliateRequests": [],
+  "failures": [],
+  "type": "Local files, mocked images, persisted measurement rejection; no live requests",
+  "status": "PASS"
+}
