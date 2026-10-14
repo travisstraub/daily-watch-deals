@@ -86,7 +86,8 @@ test('comparison gives sourced exact variants and original accessible dimension 
 test('built browser sources match source files and privacy describes optional consent-based analytics',async()=>{
  for(const name of ['app.js','analytics.js','analytics-config.js','ads-config.js','consent.js','ga4.js','google-tag.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
  const privacy=await readFile(new URL('privacy/index.html',root),'utf8');
- assert.match(privacy,/only after you choose Accept analytics/);assert.match(privacy,/A click is not an order/);assert.match(privacy,/Global Privacy Control and Do Not Track/);
+ assert.match(privacy,/Google and DoubleClick services/);assert.match(privacy,/while Analytics is off/);assert.match(privacy,/_gcl_ls/);assert.match(privacy,/cookieless consent-status request/);assert.match(privacy,/The page reloads/);assert.doesNotMatch(privacy,/Google Ads measurement is disabled/);
+ assert.match(privacy,/only after you explicitly select Analytics and save your choices/);assert.match(privacy,/A click is not an order/);assert.match(privacy,/Global Privacy Control and Do Not Track/);
  for(const page of await pages()){
   const html=await readFile(page,'utf8');
   const sources=[...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]);
@@ -106,9 +107,10 @@ test('approved Search Console verification survives the build with exact bytes',
 test('every editorial page offers equal consent choices and an accessible later settings control',async()=>{
  for(const page of await pages()){const html=await readFile(page,'utf8');
   assert.match(html,/id="analytics-consent"[^>]+hidden/);
-  assert.match(html,/<button class="button" type="button" data-consent="accepted">Accept analytics<\/button>/);
-  assert.match(html,/<button class="button" type="button" data-consent="rejected">Reject analytics<\/button>/);
-  assert.match(html,/id="analytics-settings" type="button" hidden>Analytics choices/);
+  assert.match(html,/<button class="button" type="button" data-consent="accepted">Save choices<\/button>/);
+  assert.match(html,/<button class="button" type="button" data-consent="rejected">Reject all<\/button>/);
+  assert.match(html,/id="analytics-settings" type="button" hidden>Measurement choices/);
+  for(const purpose of ['analytics','advertising']){const input=html.match(new RegExp('<input[^>]*data-purpose="'+purpose+'"[^>]*>'))?.[0];assert.ok(input);assert.doesNotMatch(input,/checked/);}
   assert.doesNotMatch(html,/googletagmanager\.com|google-analytics\.com|rel="preconnect"/);
  }
 });
@@ -154,4 +156,10 @@ test('all pages retain framing denial and no measurement helper is generated',as
  assert.equal(config.headers.length,1);
  assert.ok(config.headers[0].headers.some(h=>h.key==='X-Frame-Options'&&h.value==='DENY'));
  await assert.rejects(readFile(new URL('measurement-frame.html',root)),{code:'ENOENT'});
+});
+
+test('production activation excludes the private test fixture and leaves shared campaign/account options unchanged',async()=>{
+ for(const path of ['tag-test.js','tag-test-config.js','tag-test-once.js','__tag-validation/dwf-ads-validation-20261014-01/index.html'])await assert.rejects(readFile(new URL(path,root)),{code:'ENOENT'});
+ const config=await import('../src/analytics-config.js');assert.equal(config.analytics.measurementId,'G-LSGXWGSM9T');assert.equal(config.analytics.productionOrigin,'https://dailywatchfinds.com');
+ const source=await readFile(new URL('../src/google-tag.js',import.meta.url),'utf8');assert.doesNotMatch(source,/DWF-ADS-VALIDATION|tag-test|transaction_id:|currency:|value:/);
 });

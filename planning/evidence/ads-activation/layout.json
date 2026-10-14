@@ -1,0 +1,138 @@
+{
+  "baseURL": "http://127.0.0.1:4182",
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "consent": {
+        "top": 127.9375,
+        "bottom": 327.53125,
+        "width": 1165,
+        "height": 199.59375
+      },
+      "choices": [
+        {
+          "top": 169.640625,
+          "bottom": 221.234375,
+          "width": 190,
+          "height": 51.59375
+        },
+        {
+          "top": 233.234375,
+          "bottom": 284.828125,
+          "width": 190,
+          "height": 51.59375
+        }
+      ],
+      "primary": [
+        {
+          "top": 672.71875,
+          "bottom": 721.515625,
+          "width": 449.75,
+          "height": 48.796875
+        },
+        {
+          "top": 672.71875,
+          "bottom": 721.515625,
+          "width": 449.75,
+          "height": 48.796875
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "consent": {
+        "top": 162.015625,
+        "bottom": 520.390625,
+        "width": 390,
+        "height": 358.375
+      },
+      "choices": [
+        {
+          "top": 453.796875,
+          "bottom": 503.390625,
+          "width": 169.5,
+          "height": 49.59375
+        },
+        {
+          "top": 453.796875,
+          "bottom": 503.390625,
+          "width": 169.5,
+          "height": 49.59375
+        }
+      ],
+      "primary": [
+        {
+          "top": 915.59375,
+          "bottom": 964.390625,
+          "width": 317,
+          "height": 48.796875
+        },
+        {
+          "top": 1129.625,
+          "bottom": 1178.421875,
+          "width": 317,
+          "height": 48.796875
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "consent": {
+        "top": 162.015625,
+        "bottom": 561.6875,
+        "width": 320,
+        "height": 399.671875
+      },
+      "choices": [
+        {
+          "top": 495.09375,
+          "bottom": 544.6875,
+          "width": 138,
+          "height": 49.59375
+        },
+        {
+          "top": 495.09375,
+          "bottom": 544.6875,
+          "width": 138,
+          "height": 49.59375
+        }
+      ],
+      "primary": [
+        {
+          "top": 1058.125,
+          "bottom": 1106.921875,
+          "width": 254,
+          "height": 48.796875
+        },
+        {
+          "top": 1293.15625,
+          "bottom": 1341.953125,
+          "width": 254,
+          "height": 48.796875
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "checked": [
+    "1165x747 primary buttons visible before consent choice",
+    "390px and 320px layouts have no page overflow",
+    "equal save/reject geometry; at least 44px high",
+    "skip link and consent choice/withdrawal keyboard focus",
+    "exact-model accessible link names at both placements",
+    "zero external requests on comparison"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

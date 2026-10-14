@@ -1,4 +1,4 @@
-// Build an isolated enabled fixture. The committed Ads configuration stays disabled.
+// Build an isolated copy of the activation candidate. No runtime/provider code overrides.
 // Every request is intercepted; no Google/Amazon traffic or real conversions.
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
@@ -32,8 +32,8 @@ const mockTag=`(() => {
  await fs.copyFile('public/favicon.svg',path.join(fixtureRoot,'public/favicon.svg'));
  const headerRules=JSON.parse(await fs.readFile('vercel.json','utf8')).headers;
  await fs.writeFile(path.join(fixtureRoot,'package.json'),'{"type":"module"}');
- const configPath=path.join(fixtureRoot,'src/ads-config.js');
- await fs.writeFile(configPath,(await fs.readFile(configPath,'utf8')).replace('enabled: false','enabled: true'));
+ const originalAdsConfig=await fs.readFile('src/ads-config.js','utf8');
+ assert.match(originalAdsConfig,/enabled: true/);
  execFileSync(process.execPath,['scripts/build.mjs'],{cwd:fixtureRoot,stdio:'pipe'});
  const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});
  const report={type:'Isolated enabled build with mock tag; no live Ads/GA4 receipt',passed:[],errors:[],fixtureRoot};
@@ -149,7 +149,7 @@ const mockTag=`(() => {
    await f.context.close();report.passed.push('rejection with '+readOnly+' blocked cannot regrant stale acceptance after reload');
   }
   for(const width of [1165,390]){const f=await fixture({width});assert.ok(await f.page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));if(width===1165)assert.ok(await f.page.locator('[data-placement="comparison_pick"]').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().bottom<=747)));const sizes=await f.page.locator('.consent-actions button').evaluateAll(es=>es.map(e=>({w:e.offsetWidth,h:e.offsetHeight})));assert.deepEqual(sizes[0],sizes[1]);assert.ok(sizes[0].h>=44);await f.page.screenshot({path:path.join(output,`consent-${width}.png`)});await f.page.locator('[data-purpose="analytics"]').focus();await f.page.keyboard.press('Space');await f.page.keyboard.press('Tab');assert.equal(await f.page.locator('[data-purpose="advertising"]').evaluate(e=>document.activeElement===e),true);await f.context.close();}report.passed.push('1165px/390px no overflow, equal save/reject buttons, keyboard-operable separate purposes');
-  assert.deepEqual(report.errors,[]);assert.match(await fs.readFile('src/ads-config.js','utf8'),/enabled: false/);report.status='PASS';
+  assert.deepEqual(report.errors,[]);assert.equal(await fs.readFile('src/ads-config.js','utf8'),originalAdsConfig);report.status='PASS';
  }catch(e){report.status='FAIL';report.failure=e.stack;process.exitCode=1;}
  finally{await browser.close();await fs.writeFile(path.join(output,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));}
 })();

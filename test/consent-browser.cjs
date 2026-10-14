@@ -1,8 +1,10 @@
-// Uses local files and a mock Google tag. No Google or Amazon request leaves the test.
+// Builds an isolated Ads-disabled rollback fixture and uses a mock Google tag. No Google or Amazon request leaves the test.
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
+const os = require('node:os');
+const { execFileSync } = require('node:child_process');
 const origin = 'https://dailywatchfinds.com';
 const comparison = '/compare/casio-f91w-vs-ae1200/';
 const output = process.argv[2] || '/tmp/dwf-consent-evidence';
@@ -24,8 +26,16 @@ const mockTag = `(() => {
 
 (async () => {
   await fs.mkdir(output, { recursive: true });
+  const fixtureRoot=await fs.mkdtemp(path.join(os.tmpdir(),'dwf-rollback-fixture-'));
+  for(const name of ['src','scripts','content'])await fs.cp(path.join(process.cwd(),name),path.join(fixtureRoot,name),{recursive:true});
+  await fs.mkdir(path.join(fixtureRoot,'public'));
+  for(const name of ['style.css','favicon.svg'])await fs.copyFile('public/'+name,path.join(fixtureRoot,'public',name));
+  await fs.writeFile(path.join(fixtureRoot,'package.json'),'{"type":"module"}');
+  const configPath=path.join(fixtureRoot,'src/ads-config.js');
+  await fs.writeFile(configPath,(await fs.readFile(configPath,'utf8')).replace('enabled: true','enabled: false'));
+  execFileSync(process.execPath,['scripts/build.mjs'],{cwd:fixtureRoot,stdio:'pipe'});
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', headless: true, args: ['--no-sandbox'] });
-  const report = { type: 'Mock tag; no live GA4 receipt claimed', passed: [], errors: [] };
+  const report = { type: 'Ads-disabled rollback fixture with mock tag; no live GA4 receipt claimed', passed: [], errors: [] };
   async function fixture({ signal, stored, mode = 'success', viewport = 390, site = origin, storageBlocked = false, staleAds = false } = {}) {
     const context = await browser.newContext({ viewport: { width: viewport, height: 900 } });
     const google = [], collected = [];
@@ -55,7 +65,7 @@ const mockTag = `(() => {
       }
       if (url.hostname === 'www.amazon.com') return route.fulfill({ status: 200, contentType: 'text/html', body: '<title>Local intercepted Amazon navigation</title>' });
       if (url.origin === site) {
-        const file = path.join(process.cwd(), 'public', url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname);
+        const file = path.join(fixtureRoot, 'public', url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname);
         const type = file.endsWith('.js') ? 'text/javascript' : file.endsWith('.css') ? 'text/css' : file.endsWith('.svg') ? 'image/svg+xml' : 'text/html';
         return route.fulfill({ status: 200, contentType: type, body: await fs.readFile(file) });
       }
