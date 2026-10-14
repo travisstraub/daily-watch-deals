@@ -1,0 +1,19 @@
+{
+  "type": "Ads-disabled rollback fixture with mock tag; no live GA4 receipt claimed",
+  "passed": [
+    "disabled Ads rollback clears linker storage and Ads cookies, preserving unrelated data and preferences",
+    "initial visit, pre-consent navigation and persisted rejection: zero Google requests/cookies",
+    "one tag/manual page view; repeated, keyboard and middle activations; sanitized fixed fields",
+    "revocation clears GA cookies, disables provider and listeners, persists with no later Google requests",
+    "reacceptance after withdrawal waits for the next document, with one page view",
+    "gpc overrides stored acceptance",
+    "dnt overrides stored acceptance",
+    "blocked provider: navigation works, revoke prevents queued replay/cookies",
+    "pending provider: navigation works, revoke prevents queued replay/cookies",
+    "preview acceptance sends no production analytics",
+    "blocked preference storage fails closed",
+    "cross-tab rejection stops an already active document"
+  ],
+  "errors": [],
+  "status": "PASS"
+}

@@ -1,4 +1,5 @@
 // Local consent controls load independently of filtering. No Google tag before opt-in.
+import('./consent-layout.js').then(({ installConsentLayout }) => installConsentLayout({ window, document })).catch(() => {});
 Promise.all([import('./consent.js'), import('./tracking-catalog.js')])
  .then(([{ installConsent }, { catalog, pages }]) => installConsent({ window, document, catalog, pages })).catch(() => {});
 

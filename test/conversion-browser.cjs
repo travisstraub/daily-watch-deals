@@ -25,7 +25,7 @@ const output = process.argv[3] || '/tmp/dwf-conversion-evidence';
       assert.equal(measurements.choices[0].width,measurements.choices[1].width);
       assert.equal(measurements.choices[0].height,measurements.choices[1].height);
       assert.ok(measurements.choices.every(r=>r.height>=44));
-      if(viewport.width===1165)assert.ok(measurements.primary.every(r=>r.top>=0&&r.bottom<=viewport.height),'both Amazon choices must fit with consent visible');
+      if(viewport.width===1165)assert.ok(measurements.primary.every(r=>r.top>=0&&r.bottom<=measurements.consent.top),'both Amazon choices must clear the floating panel');
       report.layouts.push({viewport,...measurements});
       await page.screenshot({path:path.join(output,`comparison-${viewport.width}.png`)});
       await page.keyboard.press('Tab');assert.equal(await page.locator('.skip').evaluate(e=>e===document.activeElement),true);
@@ -43,7 +43,7 @@ const output = process.argv[3] || '/tmp/dwf-conversion-evidence';
       if(viewport.width===390)await page.screenshot({path:path.join(output,'comparison-mobile-full.png'),fullPage:true});
       assert.equal(external.length,0);await context.close();
     }
-    report.checked.push('1165x747 primary buttons visible before consent choice','390px and 320px layouts have no page overflow','equal save/reject geometry; at least 44px high','skip link and consent choice/withdrawal keyboard focus','exact-model accessible link names at both placements','zero external requests on comparison');
+    report.checked.push('1165x747 primary buttons visible above the floating consent panel','390px and 320px layouts have no page overflow','equal save/reject geometry; at least 44px high','skip link and consent choice/withdrawal keyboard focus','exact-model accessible link names at both placements','zero external requests on comparison');
     assert.deepEqual(report.errors,[]);report.status='PASS';
   }catch(e){report.status='FAIL';report.failure=e.stack;process.exitCode=1;}
   finally{await browser.close();await fs.writeFile(path.join(output,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));}

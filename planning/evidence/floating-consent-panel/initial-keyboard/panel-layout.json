@@ -1,0 +1,402 @@
+{
+  "baseURL": "http://127.0.0.1:4184",
+  "layouts": [
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "page": "comparison",
+      "panel": {
+        "top": 558.859375,
+        "bottom": 735,
+        "left": 22.5,
+        "right": 1142.5,
+        "width": 1120,
+        "height": 176.140625
+      },
+      "content": {
+        "top": 0,
+        "bottom": 546,
+        "left": 0,
+        "right": 1165,
+        "width": 1165,
+        "height": 546
+      },
+      "buttons": [
+        {
+          "top": 597.734375,
+          "bottom": 641.921875,
+          "left": 973.5,
+          "right": 1121.5,
+          "width": 148,
+          "height": 44.1875
+        },
+        {
+          "top": 651.921875,
+          "bottom": 696.109375,
+          "left": 973.5,
+          "right": 1121.5,
+          "width": 148,
+          "height": 44.1875
+        }
+      ],
+      "bar": null,
+      "panelScrollable": false,
+      "horizontalOverflow": false,
+      "offset": 201
+    },
+    {
+      "viewport": {
+        "width": 1165,
+        "height": 747
+      },
+      "page": "product",
+      "panel": {
+        "top": 558.859375,
+        "bottom": 735,
+        "left": 22.5,
+        "right": 1142.5,
+        "width": 1120,
+        "height": 176.140625
+      },
+      "content": {
+        "top": 0,
+        "bottom": 546,
+        "left": 0,
+        "right": 1165,
+        "width": 1165,
+        "height": 546
+      },
+      "buttons": [
+        {
+          "top": 597.734375,
+          "bottom": 641.921875,
+          "left": 973.5,
+          "right": 1121.5,
+          "width": 148,
+          "height": 44.1875
+        },
+        {
+          "top": 651.921875,
+          "bottom": 696.109375,
+          "left": 973.5,
+          "right": 1121.5,
+          "width": 148,
+          "height": 44.1875
+        }
+      ],
+      "bar": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "panelScrollable": false,
+      "horizontalOverflow": false,
+      "offset": 201
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "page": "comparison",
+      "panel": {
+        "top": 514.5,
+        "bottom": 836,
+        "left": 8,
+        "right": 382,
+        "width": 374,
+        "height": 321.5
+      },
+      "content": {
+        "top": 0,
+        "bottom": 502,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 502
+      },
+      "buttons": [
+        {
+          "top": 780.8125,
+          "bottom": 825,
+          "left": 19,
+          "right": 190,
+          "width": 171,
+          "height": 44.1875
+        },
+        {
+          "top": 780.8125,
+          "bottom": 825,
+          "left": 200,
+          "right": 371,
+          "width": 171,
+          "height": 44.1875
+        }
+      ],
+      "bar": null,
+      "panelScrollable": false,
+      "horizontalOverflow": false,
+      "offset": 342
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "page": "product",
+      "panel": {
+        "top": 514.5,
+        "bottom": 836,
+        "left": 8,
+        "right": 382,
+        "width": 374,
+        "height": 321.5
+      },
+      "content": {
+        "top": 0,
+        "bottom": 423,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 423
+      },
+      "buttons": [
+        {
+          "top": 780.8125,
+          "bottom": 825,
+          "left": 19,
+          "right": 190,
+          "width": 171,
+          "height": 44.1875
+        },
+        {
+          "top": 780.8125,
+          "bottom": 825,
+          "left": 200,
+          "right": 371,
+          "width": 171,
+          "height": 44.1875
+        }
+      ],
+      "bar": {
+        "top": 435.609375,
+        "bottom": 502,
+        "left": 0,
+        "right": 390,
+        "width": 390,
+        "height": 66.390625
+      },
+      "panelScrollable": false,
+      "horizontalOverflow": false,
+      "offset": 342
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "page": "comparison",
+      "panel": {
+        "top": 271.609375,
+        "bottom": 560,
+        "left": 8,
+        "right": 312,
+        "width": 304,
+        "height": 288.390625
+      },
+      "content": {
+        "top": 0,
+        "bottom": 259,
+        "left": 0,
+        "right": 320,
+        "width": 320,
+        "height": 259
+      },
+      "buttons": [
+        {
+          "top": 504.8125,
+          "bottom": 549,
+          "left": 19,
+          "right": 155,
+          "width": 136,
+          "height": 44.1875
+        },
+        {
+          "top": 504.8125,
+          "bottom": 549,
+          "left": 165,
+          "right": 301,
+          "width": 136,
+          "height": 44.1875
+        }
+      ],
+      "bar": null,
+      "panelScrollable": true,
+      "horizontalOverflow": false,
+      "offset": 309
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "page": "product",
+      "panel": {
+        "top": 271.609375,
+        "bottom": 560,
+        "left": 8,
+        "right": 312,
+        "width": 304,
+        "height": 288.390625
+      },
+      "content": {
+        "top": 0,
+        "bottom": 180,
+        "left": 0,
+        "right": 320,
+        "width": 320,
+        "height": 180
+      },
+      "buttons": [
+        {
+          "top": 504.8125,
+          "bottom": 549,
+          "left": 19,
+          "right": 155,
+          "width": 136,
+          "height": 44.1875
+        },
+        {
+          "top": 504.8125,
+          "bottom": 549,
+          "left": 165,
+          "right": 301,
+          "width": 136,
+          "height": 44.1875
+        }
+      ],
+      "bar": {
+        "top": 192.609375,
+        "bottom": 259,
+        "left": 0,
+        "right": 320,
+        "width": 320,
+        "height": 66.390625
+      },
+      "panelScrollable": true,
+      "horizontalOverflow": false,
+      "offset": 309
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "page": "comparison",
+      "panel": {
+        "top": 193.5,
+        "bottom": 378,
+        "left": 12,
+        "right": 832,
+        "width": 820,
+        "height": 184.5
+      },
+      "content": {
+        "top": 0,
+        "bottom": 181,
+        "left": 0,
+        "right": 844,
+        "width": 844,
+        "height": 181
+      },
+      "buttons": [
+        {
+          "top": 236.5625,
+          "bottom": 280.75,
+          "left": 663,
+          "right": 811,
+          "width": 148,
+          "height": 44.1875
+        },
+        {
+          "top": 290.75,
+          "bottom": 334.9375,
+          "left": 663,
+          "right": 811,
+          "width": 148,
+          "height": 44.1875
+        }
+      ],
+      "bar": null,
+      "panelScrollable": true,
+      "horizontalOverflow": false,
+      "offset": 209
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "page": "product",
+      "panel": {
+        "top": 193.5,
+        "bottom": 378,
+        "left": 12,
+        "right": 832,
+        "width": 820,
+        "height": 184.5
+      },
+      "content": {
+        "top": 0,
+        "bottom": 181,
+        "left": 0,
+        "right": 844,
+        "width": 844,
+        "height": 181
+      },
+      "buttons": [
+        {
+          "top": 236.5625,
+          "bottom": 280.75,
+          "left": 663,
+          "right": 811,
+          "width": 148,
+          "height": 44.1875
+        },
+        {
+          "top": 290.75,
+          "bottom": 334.9375,
+          "left": 663,
+          "right": 811,
+          "width": 148,
+          "height": 44.1875
+        }
+      ],
+      "bar": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "panelScrollable": true,
+      "horizontalOverflow": false,
+      "offset": 209
+    }
+  ],
+  "passed": [
+    "unchecked defaults; independent saved choices and rejection persist after reload at four viewport sizes",
+    "page scroll area and sticky Amazon bar clear panel; primary/final/product links remain focusable and unobscured",
+    "equal visible Save/Reject buttons, skip link, keyboard selection, footer reopening and preserved reading position",
+    "enlarged explanatory text scrolls with both actions visible; blocked layout module retains working in-flow controls"
+  ],
+  "errors": [],
+  "measurementRequests": [],
+  "status": "PASS"
+}
