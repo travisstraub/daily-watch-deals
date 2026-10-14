@@ -4,7 +4,7 @@ import { readFile, readdir, access } from 'node:fs/promises';
 import { catalog, pages as canonicalPaths } from '../public/tracking-catalog.js';
 import { placements } from '../src/analytics.js';
 const root=new URL('../public/',import.meta.url);
-async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html')&&!['google216684202c8a020c.html','measurement-frame.html'].includes(entry.name))list.push(path);}return list;}
+async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html')&&entry.name!=='google216684202c8a020c.html')list.push(path);}return list;}
 test('all internal destinations resolve and affiliate links carry attribution',async()=>{let links=0;for(const page of await pages()){const html=await readFile(page,'utf8');assert.match(html,/As an Amazon Associate I earn from qualifying purchases/);for(const [,href] of html.matchAll(/href="([^"]+)"/g)){if(href.startsWith('/')&&!href.startsWith('//')){let path=href.split('#')[0];if(path.endsWith('/'))path+='index.html';await access(new URL(path.slice(1),root));}if(href.startsWith('https://www.amazon.com/')){assert.equal(new URL(href.replaceAll('&amp;','&')).searchParams.get('tag'),'straubmediagr-20');links++;}}assert.doesNotMatch(html,/\$\d|% OFF|HOT DEAL|SHEET_JSON_URL|AMAZON_CREATORS_CLIENT_SECRET/);}assert.ok(links>=6);});
 test('each curated model has a dedicated detail page and source',async()=>{const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(new Set(watches.map(w=>w.slug)).size,watches.length);for(const w of watches){const html=await readFile(new URL(`watches/${w.slug}/index.html`,root),'utf8');assert.ok(html.includes(w.model));assert.ok(html.includes(w.source));assert.ok(w.tradeoff.length>30);assert.ok(w.image.startsWith('https://'));}});
 
@@ -149,14 +149,9 @@ test('descriptive metadata, crawlable contextual links and honest structured dat
  assert.equal(robots,'User-agent: *\nAllow: /\nSitemap: https://dailywatchfinds.com/sitemap.xml\n');
 });
 
-test('measurement helper is inert and unindexed with the only same-origin frame exception',async()=>{
- const html=await readFile(new URL('measurement-frame.html',root),'utf8');
- assert.match(html,/name="robots" content="noindex,nofollow"/);assert.doesNotMatch(html,/<script|<img|canonical|google/);
- const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');assert.ok(!sitemap.includes('measurement-frame'));
+test('all pages retain framing denial and no measurement helper is generated',async()=>{
  const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));
- const deny=config.headers.find(rule=>rule.headers.some(h=>h.key==='X-Frame-Options'&&h.value==='DENY'));
- const pattern=new RegExp('^'+deny.source+'$');
- for(const path of canonicalPaths)assert.ok(pattern.test(path));
- assert.ok(pattern.test('/measurement-frame.html/other'));assert.equal(pattern.test('/measurement-frame.html'),false);
- assert.equal(config.headers.find(rule=>rule.source==='/measurement-frame.html').headers.find(h=>h.key==='X-Frame-Options').value,'SAMEORIGIN');
+ assert.equal(config.headers.length,1);
+ assert.ok(config.headers[0].headers.some(h=>h.key==='X-Frame-Options'&&h.value==='DENY'));
+ await assert.rejects(readFile(new URL('measurement-frame.html',root)),{code:'ENOENT'});
 });

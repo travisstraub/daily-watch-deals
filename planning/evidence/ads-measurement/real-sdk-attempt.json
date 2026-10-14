@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-14",
+  "status": "BLOCKED",
+  "stage": "Prerequisite SDK-only download, before any browser execution",
+  "request": "GET https://www.googletagmanager.com/gtag/js?id=AW-18511081247",
+  "result": "HTTP 403; curl exit 22; no downloaded file",
+  "sdkExecuted": false,
+  "collectionRequestsSent": 0,
+  "credentialsCreated": false,
+  "bypassAttempted": false,
+  "scope": "No real ad click, conversion submission, purchase or paid traffic",
+  "unverified": [
+    "Real SDK load and payload compatibility",
+    "Real cookie/linker behavior",
+    "Google receipt",
+    "Attribution"
+  ],
+  "nextCheck": "Only if SDK access is permitted: fresh isolated browser, cached SDK scripts, all collection endpoints blocked, inspect attempted payloads and withdrawal storage/reload."
+}

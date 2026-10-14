@@ -1,6 +1,7 @@
 {
   "type": "Mock tag; no live GA4 receipt claimed",
   "passed": [
+    "disabled Ads rollback clears linker storage and Ads cookies, preserving unrelated data and preferences",
     "initial visit, pre-consent navigation and persisted rejection: zero Google requests/cookies",
     "one tag/manual page view; repeated, keyboard and middle activations; sanitized fixed fields",
     "revocation clears GA cookies, disables provider and listeners, persists with no later Google requests",

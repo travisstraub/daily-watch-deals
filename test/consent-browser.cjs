@@ -26,17 +26,18 @@ const mockTag = `(() => {
   await fs.mkdir(output, { recursive: true });
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium', headless: true, args: ['--no-sandbox'] });
   const report = { type: 'Mock tag; no live GA4 receipt claimed', passed: [], errors: [] };
-  async function fixture({ signal, stored, mode = 'success', viewport = 390, site = origin, storageBlocked = false } = {}) {
+  async function fixture({ signal, stored, mode = 'success', viewport = 390, site = origin, storageBlocked = false, staleAds = false } = {}) {
     const context = await browser.newContext({ viewport: { width: viewport, height: 900 } });
     const google = [], collected = [];
-    await context.addInitScript(({ signal, stored, key, storageBlocked }) => {
+    await context.addInitScript(({ signal, stored, key, storageBlocked, staleAds }) => {
       if (signal === 'gpc') Object.defineProperty(navigator, 'globalPrivacyControl', { get: () => true });
       if (signal === 'dnt') Object.defineProperty(navigator, 'doNotTrack', { get: () => '1' });
       if (stored && !sessionStorage.getItem('test-seeded')) {
         localStorage.setItem(key, JSON.stringify({ choice: stored, at: Date.now() })); sessionStorage.setItem('test-seeded', 'yes');
       }
+      if (staleAds) { localStorage.setItem('_gcl_ls','stale-linker');localStorage.setItem('unrelated','keep');document.cookie='_gcl_aw=stale; Path=/; Secure'; }
       if (storageBlocked) Object.defineProperty(window, 'localStorage', { get() { throw new Error('blocked storage'); } });
-    }, { signal, stored, key, storageBlocked });
+    }, { signal, stored, key, storageBlocked, staleAds });
     let completeTag;
     const tagGate = new Promise(resolve => { completeTag = resolve; });
     await context.route('**/*', async route => {
@@ -73,6 +74,13 @@ const mockTag = `(() => {
     assert.equal(await opened.title(), 'Local intercepted Amazon navigation'); await opened.close();
   }
   try {
+    const rollback = await fixture({staleAds:true,stored:'rejected'});
+    assert.equal(rollback.google.length,0);
+    assert.equal(await rollback.page.evaluate(()=>localStorage.getItem('_gcl_ls')),null);
+    assert.equal(await rollback.page.evaluate(()=>localStorage.getItem('unrelated')),'keep');
+    assert.equal(await rollback.page.evaluate(k=>JSON.parse(localStorage.getItem(k)).choice,key),'rejected');
+    assert.equal((await rollback.context.cookies()).some(c=>c.name==='_gcl_aw'),false);
+    await rollback.context.close();report.passed.push('disabled Ads rollback clears linker storage and Ads cookies, preserving unrelated data and preferences');
     const f = await fixture();
     assert.equal(f.google.length, 0); assert.deepEqual(await f.context.cookies(), []);
     assert.equal(await f.page.locator('#analytics-consent').isVisible(), true);

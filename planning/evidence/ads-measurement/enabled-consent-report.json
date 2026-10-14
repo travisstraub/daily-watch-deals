@@ -5,8 +5,8 @@
     "analytics=true, advertising=false: exact destinations, four intentional activations, one shared loader, scoped cookies",
     "analytics=false, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
     "analytics=true, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
-    "withdraw analytics: old context destroyed, other purpose continues, no duplicate view, reject-all stops requests and cookie-writing timer; regrant has no replay",
-    "withdraw advertising: old context destroyed, other purpose continues, no duplicate view, reject-all stops requests and cookie-writing timer; regrant has no replay",
+    "withdraw analytics: full document reload, other purpose continues, one view per document, linker storage and cookie timer cleared; regrant has no replay",
+    "withdraw advertising: full document reload, other purpose continues, one view per document, linker storage and cookie timer cleared; regrant has no replay",
     "legacy analytics permission never authorizes advertising",
     "gpc overrides both stored grants",
     "dnt overrides both stored grants",
@@ -15,11 +15,13 @@
     "blocked storage cannot grant either purpose",
     "preview origins never load measurement even in enabled fixture",
     "cross-tab Ads withdrawal immediately preserves analytics-only operation",
-    "privacy signal appearing mid-page tears down both purposes without another ping",
-    "direct helper visit is inert; browser exercised actual framing header rules",
+    "gpc detected on click without focus/update: immediate shutdown and reload, native navigation preserved",
+    "expiry detected on click without focus/update: immediate shutdown and reload, native navigation preserved",
+    "rejection with writes blocked cannot regrant stale acceptance after reload",
+    "rejection with all blocked cannot regrant stale acceptance after reload",
     "1165px/390px no overflow, equal save/reject buttons, keyboard-operable separate purposes"
   ],
   "errors": [],
-  "fixtureRoot": "/tmp/dwf-ads-fixture-1YmDjO",
+  "fixtureRoot": "/tmp/dwf-ads-fixture-f67kwi",
   "status": "PASS"
 }

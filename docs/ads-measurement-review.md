@@ -1,137 +1,165 @@
 # Separate Google Ads measurement — disabled review build
 
-This branch is stacked on PR #7 at `bcea4e0e4e58778d5f5b68b12d3fa9eb01aa59aa`.
-PR #7 and production are not modified or merged by this work.
+This draft is stacked on PR #7 (`bcea4e0e4e58778d5f5b68b12d3fa9eb01aa59aa`).
+Neither PR #7 nor production is merged or changed by this work.
 
-The operator supplied and verified the following on October 13 Pacific:
+The operator supplied the public destination
+`AW-18511081247/3QZeCKShgZwdEJ_e4vpE` and verified action `7843369124`:
+Secondary, no value, Count One, excluded from account-level goals, no custom goals.
+It measures an outbound Amazon click, never a purchase, qualifying sale or revenue.
 
-- Destination: `AW-18511081247/3QZeCKShgZwdEJ_e4vpE` (public tag ID/label, not a credential).
-- Conversion action `7843369124`: Secondary, no value, Count One, excluded from
-  account-level goals; no custom goals. This is an outbound Amazon click, not a
-  purchase, qualifying sale, revenue or commission.
+`src/ads-config.js` remains `enabled: false`; no runtime override exists. The
+normal build retains the analytics-only interface and existing GA4 adapter. Its
+privacy page says Ads measurement is disabled. No account linking, conversion
+import, ad launch, paid traffic, paid service or production deployment is included.
 
-`src/ads-config.js` has `enabled: false`. There is no query, storage or environment
-switch to activate it. The normal build retains the current analytics-only notice
-and GA4 adapter. Its privacy page explicitly says Ads measurement is disabled.
-The enabled interface and SDK are exercised only in an isolated local test build.
-No credentials, account links, audience imports, ads or paid services were created.
+## Supported architecture and independent consent
 
-## Enabled design for review
+The iframe design has been removed, including its generated helper and framing
+header exception. All pages again use `X-Frame-Options: DENY`. Google explicitly
+advises against conversion tags in iframes; its reporting documentation also warns
+about parent URL attribution. The new, still-disabled adapter loads one shared
+Google tag in the **top-level document**, only after an explicit accepted purpose.
+Sources: [sitewide tagging guidance](https://support.google.com/google-ads/answer/9148089?hl=en),
+[conversion webpages limitations](https://support.google.com/google-ads/answer/15299266).
 
-- Analytics and Advertising measurement are separate unchecked choices. Save
-  choices and Reject all have equal styling and size. Each preference/date is
-  stored under its own key for up to 180 days. Existing analytics acceptance never
-  supplies Ads permission. A failed storage write cannot grant permission.
-- The enabled code configures only accepted destinations, and only on the known
-  production origin/canonical pages. Both purposes share one Google tag loader.
-  No consent means no Google request. Analytics-only never configures Ads;
-  Ads-only never configures GA4 or sends a GA4 page view.
-- Default consent is denied for every purpose. Only accepted analytics storage
-  and/or accepted ad storage/ad user data are granted before loading the tag.
-  `ad_personalization` remains denied. Google Signals, personalization signals,
-  enhanced conversions and URL passthrough stay off. No remarketing event or
-  audience/account linking is implemented.
-- A single existing validated click listener dispatches once to each accepted
-  purpose. GA4 retains `outbound_amazon_click` and its model/page/placement/type
-  dimensions. Ads receives `conversion` with the exact destination and sanitized
-  canonical context. It receives no invented value, currency, transaction ID,
-  user data or callback URL. Count One is an Ads reporting setting, not suppression
-  of intentional repeated browser clicks. No duplicate GA4 import is created.
-- Native Amazon anchors, tag/disclosure/rel attributes and navigation are unchanged.
-  Blocked, failed, pending or absent tracking cannot cancel or delay navigation.
+Analytics and Advertising measurement have separate unchecked choices and stored
+preferences. Save choices and Reject all have equal styling. Existing analytics
+acceptance never grants Ads permission. Configuration includes only accepted
+destinations on known production pages. Ads-only sends no GA4 page view;
+analytics-only configures no Ads destination. Before either opt-in, no Google
+script or measurement request is made. Both choices rejected on a fresh document
+also means no Google script or requests.
 
-## SDK lifetime and withdrawal
+All consent defaults are denied; accepted analytics storage and/or advertising
+storage/ad user data are granted before loading. Ad personalization remains
+denied. Signals, personalization signals, enhanced conversions and URL
+passthrough stay off. The site adds no remarketing event, audience import or
+account link. A future real-SDK review must inspect Google's automatic requests.
 
-An already executed Google Ads SDK cannot be unloaded by removing its script,
-and GA4's disable flag is not an Ads kill switch. The enabled path therefore runs
-one shared tag inside a hidden same-origin helper frame. The helper is inert
-when visited directly, has `noindex,nofollow`, and is absent from the sitemap.
-All ordinary pages retain `X-Frame-Options: DENY`; only `/measurement-frame.html`
-permits `SAMEORIGIN`, allowing the site's own tag context.
+The same validated native click listener supplies stable model/page/placement/
+destination-type and approved campaign dimensions to GA4. Ads receives only its
+exact conversion destination and canonical context, without value, currency,
+transaction ID, user data or an event callback. Intentional repeated clicks each
+send once to each accepted destination. Count One is an Ads reporting setting.
+Native navigation is never prevented or delayed by awaiting measurement.
 
-Changing granted purposes destroys the old frame, discards pending events and
-clears accessible root-path `_ga`/`_ga_*` cookies for revoked analytics and
-`_gcl_*`/`_gac_*` cookies for revoked advertising. A still-accepted purpose starts
-in a fresh frame. The top-level document tracks whether its one manual GA4 view
-was already sent, preventing another view when consent combinations change.
-No denied-consent update is sent to the old SDK during destruction. Already sent
-requests cannot be recalled. Mock browser coverage includes a cookie-writing
-SDK timer to check that teardown stops more than the site's click listener.
+## Withdrawal, failure and storage
 
-GPC/DNT override both grants; cross-tab withdrawal, returning to the page,
-preference expiry and periodic rechecks apply the same teardown. The click path
-also rechecks stored consent synchronously. Regrant starts a fresh context and
-never replays pre-consent or discarded clicks. Failure is terminal for that
-page's SDK instance; queues are capped at 20 and time out after eight seconds.
+Removing an executed script cannot unload its SDK, and GA4's disable flag does
+not stop Ads. Once the enabled adapter requests a tag, **any change of granted
+purposes reloads the full page**. Before reload, it stops dispatching, drops queued
+events, disables GA4, updates Google consent to denied, clears revoked-purpose
+storage and persists revocations. Reload is scheduled for the next task so an
+ordinary Amazon activation can finish. The refreshed document rechecks consent,
+cleans rejected-purpose storage again, and loads only still-accepted destinations.
+There is one manual GA4 view per document; a consent-triggered refresh can create
+a new page view when analytics remains accepted. It never replays the prior click.
 
-## Attribution and data scope
+Following [Google's consent update guidance](https://developers.google.com/tag-platform/security/guides/consent),
+the existing SDK is told about withdrawal before navigation. It **may send a
+cookieless consent-status request during withdrawal**, and requests already sent
+or in flight cannot be recalled. We do not claim script removal alone stops SDK
+timers or that withdrawal emits zero requests. If reload is browser-blocked, our
+own event dispatch remains terminally off, but SDK shutdown is not guaranteed.
+These tradeoffs and the enabled privacy wording require review before activation.
 
-Only after advertising opt-in may the helper URL contain a single `gclid`,
-`gbraid` or `wbraid`, bounded to 10–256 ASCII letters/digits/underscore/hyphen.
-Duplicate, malformed or other parameters are discarded. The helper request is
-same-origin, so hosting can process those consented pseudonymous IDs. The tag
-can use the helper URL for its standard click-linking behavior; the parent URL,
-fragment and referrer are not copied. Google request metadata/cookies remain
-pseudonymous, not anonymous. GA4 event context remains canonical and excludes
-click IDs and arbitrary queries. No identifiers are added to Amazon links.
+Cleanup is restricted to root-path `_ga`/`_ga_*` cookies for analytics and
+`_gcl_*`/`_gac_*` cookies plus the exact local-storage key `_gcl_ls` for Ads. It
+attempts host-only and current-domain cookies. Cookie and local-storage cleanup
+are independent, so one blocked store cannot skip the other. Unrelated storage
+and consent preferences are retained. The default linker key and root cookie
+scope follow [Google's conversion linker documentation](https://support.google.com/tagmanager/answer/7549390).
+There are no configured custom cookie prefixes or other Ads storage keys.
 
-This adapter is not a claim that Google has verified iframe-based attribution.
-The real SDK's handling of the helper URL, cookies, canonical event context and
-conversion attribution must be checked before enabling. The hidden SDK context
-also means automatic visibility/engagement behavior may differ from a top-level
-tag. The site's explicit page and click events are covered by tests. The current
-GA4 adapter is retained while the review flag is off.
+Preference writes that throw attempt removal of stale acceptance and set a
+minimal first-party refusal cookie (`dwf_analytics_denied` or
+`dwf_advertising_denied`, value `1`, up to 180 days). A later explicit successful
+acceptance clears that refusal. Reading an accepted local-storage record also
+checks writability by rewriting identical bytes, without extending its expiry.
+A readable but read-only store therefore cannot silently revive old permission
+on reload, even when removal is blocked. If all browser storage writes are blocked,
+no code can persist a new choice; measurement stays off while that restriction
+holds. A fallback refusal cookie protects against subsequent local-storage recovery
+when cookies are available. No refusal flag is sent as a measurement event.
 
-## Verification and release gate
+Every click and SDK-load callback rechecks consent and initiates shutdown on a
+mismatch, rather than merely dropping that event. Expiry and newly appearing
+GPC/DNT therefore work without focus/visibility events. Cross-tab withdrawal,
+focus, visibility and periodic checks provide additional reconciliation. SDK
+failure revokes both purposes and refreshes once; no retry loop or event replay.
+The post-consent pending queue is bounded to 20 and times out after eight seconds.
 
-Run `npm run build` and `npm test`. Browser commands require local Playwright and
-Chromium but install no dependencies:
+## URL scope and attribution tradeoffs
+
+Before loading the enabled top-level SDK, the address is sanitized with
+`history.replaceState`: only exact allowlisted campaign values survive; Ads
+opt-in additionally permits one bounded `gclid`, `gbraid` or `wbraid`. Arbitrary
+query text, duplicate/malformed IDs and fragments are removed. If sanitization
+fails, the SDK is not loaded. The SDK can itself inspect its top-level location,
+so event payload overrides alone are not used as the URL privacy boundary.
+
+Analytics-only strips click IDs. If Ads is accepted later, the removed identifier
+is not recovered or replayed, which can reduce attribution. URL fragments are
+also removed when measurement starts. Page/event context remains canonical and
+omits referrers; no identifiers are appended to Amazon links. Google technical
+request metadata and its cookies are pseudonymous, not anonymous.
+
+## Verification and remaining release gates
+
+Run `npm run build` and `npm test`. Browser commands require existing Playwright
+and Chromium, and install no dependencies:
 
 ```
-node test/consent-browser.cjs /tmp/dwf-ads-disabled-regression
-node test/ads-browser.cjs /tmp/dwf-ads-final-evidence
-node test/conversion-browser.cjs http://127.0.0.1:4181 /tmp/dwf-ads-layout
-node test/browser.cjs http://127.0.0.1:4181 /tmp/dwf-ads-navigation
+node test/consent-browser.cjs /tmp/dwf-ads-disabled-redesign
+node test/ads-browser.cjs /tmp/dwf-ads-redesign-final
+node test/conversion-browser.cjs http://127.0.0.1:4181 /tmp/dwf-ads-layout-final
+node test/browser.cjs http://127.0.0.1:4181 /tmp/dwf-ads-navigation-final
 ```
 
-The Ads browser harness copies only source/build inputs to a fresh temporary
-folder and enables the flag there. It does not modify the repository flag. All
-Google and Amazon traffic is intercepted. It exercises the generated enabled
-markup/privacy text and the same header rules used by the Vercel project.
+The Ads harness enables the gate only in a temporary copy of source/build inputs.
+Every external request is intercepted. Its mock deliberately writes Ads cookies
+and `_gcl_ls` repeatedly so cleanup is checked after a real document reload. It
+also covers independent purposes, repeated/pointer/keyboard/middle activation,
+expiry/GPC without focus, blocked writes/removal, provider failures, cross-tab
+revocation, native navigation and 1165px/390px rendering.
 
-Before any separately approved enablement/release, review the generated enabled
-privacy/UI and the new SDK architecture; confirm the action is still Secondary,
-valueless, Count One and not in a bidding/custom goal. Inspect actual preview
-headers where access permits. A later controlled, consented real-SDK test must
-check canonical data, cookie attribution, no denied or personalized traffic,
-withdrawal, and the exact Ads label with Tag Assistant. An Ads diagnostic/receipt
-is separate from evidence of a qualifying Amazon sale. No paid test traffic is
-needed or authorized. This PR does not grant activation or production release.
+A real-SDK compatibility attempt on October 14, 2026 stopped at the prerequisite
+SDK download: an ordinary unauthenticated GET of the approved Ads `gtag/js` URL
+returned **HTTP 403**. No SDK bytes were available or executed; no collection
+endpoint was contacted. No alternate path, credentials or protection bypass was
+attempted. [Attempt evidence](../planning/evidence/ads-measurement/real-sdk-attempt.json).
 
-Sources: [Google tag reuse](https://support.google.com/google-ads/answer/7548399),
-[consent modes](https://developers.google.com/tag-platform/security/concepts/consent-mode),
-[personalization controls](https://support.google.com/google-ads/answer/9606827),
-[secondary action caveat](https://support.google.com/google-ads/answer/11461796).
+The intended next isolated check is a fresh browser with service workers and
+WebSockets blocked, all requests intercepted, and only separately downloaded,
+reviewed Google JavaScript resources served locally. All collection/image/beacon/
+XHR/fetch endpoints must be blocked before leaving the browser; inspect attempted
+payloads, destination/label, canonical URL, consent flags and storage after reload.
+No real ad click, purchase or conversion submission is authorized. Even a passing
+blocked-collection compatibility check cannot prove Google receipt or attribution.
+
+Before enabling: review the reload/consent-status-ping tradeoff and updated privacy,
+complete actual-SDK inspection, reconfirm Secondary/no value/Count One/no bidding
+or custom goal, and obtain explicit activation/release approval. Preview is Vercel
+auth-protected; authenticated rendering remains a reviewer check. Protection and
+scoped-read denials are respected. Production verification and any authorized
+Tag Assistant/Google receipt check are separate from qualifying Amazon sales.
 
 ## Recorded results
 
-- Build passed; 45 automated tests passed, none failed or skipped.
-- Existing GA4 consent browser suite passed with Ads disabled.
-- Enabled Ads browser suite passed all 17 scenarios, including applying the
-  project's framing headers in Chromium. This includes pointer, repeated,
-  keyboard and middle activation, both independent withdrawals, no replay,
-  provider failure, privacy signals and cross-tab behavior.
-- Disabled-build comparison layout suite passed at 1165×747, 390×900 and 320×800.
-  Enabled consent was inspected at 1165×747 and 390×900; both comparison Amazon
-  buttons remain in the 747px desktop viewport, and neither layout overflows.
-- General site/navigation browser suite passed at 1440px/390px with ten
-  intercepted Amazon navigations, including tracking failures and no JavaScript.
-  Manufacturer image requests remain unavailable in this environment; their
-  production availability is not established by these tests.
-- All product destinations, disclosed affiliate tag, 41 sitemap entries,
-  ownership-file bytes and PR #7 comparison content remain unchanged.
+- Build and all 49 Node tests passed; no failures or skipped tests.
+- All four Chromium suites passed: 19 enabled Ads scenarios, 12 disabled GA4
+  scenarios, comparison layout/accessibility and general navigation.
+- Desktop 1165×747 and mobile 390×900 enabled controls were inspected; no overflow,
+  equal choice buttons, keyboard access and both desktop shopping buttons visible.
+  Disabled layout also passed at 320px; general pages passed at 1440px/390px.
+- Ten Amazon navigations were intercepted successfully. Manufacturer image
+  requests were unavailable in this environment, so live image availability is
+  not established by those local tests.
+- The 41 sitemap URLs, seven direct ASINs, affiliate tags/disclosures, ownership
+  file and PR #7 comparison content remain unchanged.
 
-[Reports, enabled-interface screenshots and enabled privacy output](../planning/evidence/ads-measurement/)
-are local/mock evidence. They do not establish real Google tag compatibility,
-Ads attribution, dashboard receipt, or live preview rendering. Those remain
-explicit release gates; the flag remains false.
+The committed evidence directory contains the latest reports and enabled privacy
+output. Mock results establish application behavior only. They do not establish
+real SDK compatibility, Google dashboard receipt, attribution or live preview
+rendering. Ads remains disabled.
