@@ -1,5 +1,7 @@
 # Private Google Ads tag validation — never merge this branch
 
+**Run consumed: one real conversion at `2026-10-14T13:11:17.375Z`. Do not send another event.**
+
 The user approved one clearly identified Google Ads test event without buying
 traffic, clicking an ad, visiting Amazon or making a purchase. They also approved
 the withdrawal behavior: a page reload and a possible cookie-free consent-status
@@ -45,7 +47,7 @@ runs before opt-in. Opt-in may generate Google's own initialization/consent
 traffic; the one-event guard limits the site's manual labeled conversion request,
 not the total number of Google HTTP requests.
 
-## Operator procedure — one real event only
+## Archived operator procedure — completed; do not repeat
 
 1. Open the exact test URL in the authorized, Vercel-authenticated browser. Check
    that the run is `DWF-ADS-VALIDATION-20261014-01`, the browser ledger says NOT SENT,
@@ -86,11 +88,30 @@ shared operator ledger and the one-event instruction govern those cases.
 
 | Run | Authorization | Real event status | UTC / evidence | Google receipt |
 | --- | --- | --- | --- | --- |
-| DWF-ADS-VALIDATION-20261014-01 | One manual Ads test event; withdrawal reload/status signal approved | **NOT SENT — coding preparation only** | Pending authorized tester | Unverified |
+| DWF-ADS-VALIDATION-20261014-01 | One manual Ads test event; withdrawal reload/status signal approved | **CONSUMED — one real conversion sent; no repeat authorized** | `2026-10-14T13:11:17.375Z`, authoritative operator report | Dashboard receipt/attribution not established by this ledger |
 
-Do not treat local mock test conversions as this real event. The coding agent has
-not fetched or executed the real SDK or clicked the live test control. The cloud
-browser operator owns the real event and ledger update.
+The operator-reported conversion above supersedes the former NOT SENT placeholder.
+No second conversion was sent during the subsequent privacy check. Local mock
+conversions are not additional real events. The coding agent has not operated the
+live conversion control and is updating documentation only.
+
+## Real SDK privacy check — operator-reported Mac Chrome DevTools evidence
+
+The user supplied these observations from ordinary Mac Chrome DevTools on October
+14, 2026. The coding agent did not independently reproduce this live check:
+
+| Stage | Network observed | Origin storage observed |
+| --- | --- | --- |
+| Before consent, including reload | No Google or DoubleClick requests | Empty origin localStorage; no `_g` cookies |
+| Ads-only opt-in, Analytics rejected | Real Google SDK 200; Google `ccm` `page_view` 200 with Ads destination and `npa=1`; DoubleClick `ccm` collect 204 | `_gcl_au` and `_gcl_ls` appeared |
+| Reject all | Page reloaded | Both `_gcl_au` and `_gcl_ls` removed |
+| Another reload after rejection | No Google requests resumed | Rejected preferences persisted; neither measurement store returned |
+
+Analytics remained rejected throughout. The observed Ads initialization page-view
+traffic is not a second manual conversion or a GA4 grant. These observations pass
+the requested real-SDK privacy gate for the tested Mac Chrome flow. They do not
+prove all-browser behavior, Ads dashboard attribution, or an Amazon sale. The
+single event at `2026-10-14T13:11:17.375Z` remains the authoritative consumed run.
 
 ## Local verification and limitations
 
@@ -105,9 +126,9 @@ browser operator owns the real event and ledger update.
   public pages, product claims, ASIN variants, sitemap 41 and ownership bytes remain
   unchanged; production main is not changed by this branch.
 - The test page is `noindex,nofollow`, absent from the sitemap and public navigation.
-- Real SDK behavior, Tag Assistant detection, request delivery, network/storage
-  privacy, Google receipt and attribution remain distinct pending observations.
-  No outcome here proves a qualifying Amazon sale. No Ads campaign, paid traffic,
+- The reported real SDK/privacy observations above supplement the local mocks.
+  Ads dashboard receipt/attribution and behavior outside the tested browser flow
+  remain unestablished. No outcome proves a qualifying Amazon sale. No Ads campaign, paid traffic,
   account linkage, credentials or production enablement is included.
 
 Commands: `npm run build`, `npm test`, `node test/tag-test-browser.cjs`,
