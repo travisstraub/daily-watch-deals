@@ -112,3 +112,39 @@ test('every editorial page offers equal consent choices and an accessible later 
   assert.doesNotMatch(html,/googletagmanager\.com|google-analytics\.com|rel="preconnect"/);
  }
 });
+
+test('comparison shopping links follow the verdict and final guidance with disclosure',async()=>{
+ const html=await readFile(new URL('compare/casio-f91w-vs-ae1200/index.html',root),'utf8');
+ assert.ok(html.indexOf('The quick choice:')<html.indexOf('data-placement="comparison_pick"'));
+ const final=html.slice(html.indexOf('<h2>Match the listing before buying</h2>'));
+ assert.ok(final.indexOf('As an Amazon Associate')<final.indexOf('data-placement="comparison_final"'));
+ assert.equal((html.match(/data-placement="comparison_pick"/g)||[]).length,2);
+ assert.equal((final.match(/data-placement="comparison_final"/g)||[]).length,2);
+ for(const model of ['F-91W-1','AE-1200WHD-1AV'])assert.ok(final.includes(`aria-label="Check on Amazon: Casio ${model}"`));
+ const data=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/)[1]);
+ assert.equal(data['@type'],'BreadcrumbList');
+ assert.deepEqual(data.itemListElement.map(e=>e.item),['https://dailywatchfinds.com/','https://dailywatchfinds.com/styles/digital/','https://dailywatchfinds.com/compare/casio-f91w-vs-ae1200/']);
+});
+
+test('descriptive metadata, crawlable contextual links and honest structured data',async()=>{
+ const titles=new Set(),descriptions=new Set();
+ for(const page of await pages()){
+  const html=await readFile(page,'utf8');if(page.pathname.endsWith('/404.html'))continue;
+  const title=html.match(/<title>(.*?)<\/title>/)[1];const description=html.match(/name="description" content="([^"]+)"/)[1];
+  assert.ok(title.trim()&&description.trim(),page.pathname);assert.ok(!titles.has(title));assert.ok(!descriptions.has(description));titles.add(title);descriptions.add(description);
+  assert.doesNotMatch(html,/<meta name="robots" content="noindex"/);
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  for(const [,raw] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g))assert.doesNotMatch(raw,/"@type":"(?:Offer|Product|Review|AggregateRating)"/);
+ }
+ for(const slug of ['casio-f91w','casio-ae1200']){
+  const html=await readFile(new URL(`watches/${slug}/index.html`,root),'utf8');
+  const related=html.slice(html.indexOf('<section class="related">'));
+  assert.match(related,/<a[^>]+href="\/compare\/casio-f91w-vs-ae1200\/">Compare the F-91W with the steel-bracelet AE-1200/);
+  assert.match(related,/href="\/styles\/digital\/"/);
+  assert.doesNotMatch(html,/<title>[^<]*F-91W-1 F-91W Digital/);
+ }
+ const hub=await readFile(new URL('styles/digital/index.html',root),'utf8');
+ assert.match(hub,/<a[^>]+href="\/compare\/casio-f91w-vs-ae1200\/">F-91W vs steel-bracelet AE-1200/);
+ const robots=await readFile(new URL('robots.txt',root),'utf8');
+ assert.equal(robots,'User-agent: *\nAllow: /\nSitemap: https://dailywatchfinds.com/sitemap.xml\n');
+});

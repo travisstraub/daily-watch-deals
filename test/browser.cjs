@@ -36,7 +36,7 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
         if (name === 'comparison') {
           assert.equal(await page.locator('.fit-drawing').count(), 2);
           assert.equal(await page.locator('a[data-placement="comparison_pick"]').count(), 2);
-          assert.equal(await page.locator('a[data-amazon-model="casio-ae1200"]').getAttribute('href'), 'https://www.amazon.com/dp/B0094B79CI?tag=straubmediagr-20');
+          assert.equal(await page.locator('a[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]').getAttribute('href'), 'https://www.amazon.com/dp/B0094B79CI?tag=straubmediagr-20');
           if (width === 390) assert.ok(await page.locator('.table-wrap').evaluate(el => el.scrollWidth > el.clientWidth));
         }
         if (name === 'product') assert.equal(await page.locator('.mobile-buy').isVisible(), width === 390);
@@ -64,7 +64,7 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
       window.testEvents = [];
       window.stopTestTracking = installOutboundTracking({ document, location, catalog, pages, enabled: true, send: event => window.testEvents.push(event) });
     });
-    const link = page.locator('[data-amazon-model="casio-ae1200"]');
+    const link = page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]');
     async function navigate(action) {
       const popupPromise = page.waitForEvent('popup');
       await action();
@@ -89,6 +89,12 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
       utm_source: 'google', utm_medium: 'cpc', utm_campaign: 'first50', utm_content: 'comparison',
     });
     assert.ok(!JSON.stringify(events).includes('private'));
+    const finalLink = page.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_final"]');
+    await navigate(() => finalLink.click());
+    await finalLink.focus(); await navigate(() => page.keyboard.press('Enter'));
+    const finalEvents = await page.evaluate(() => window.testEvents.slice(4));
+    assert.equal(finalEvents.length, 2); assert.ok(finalEvents.every(e => e.placement === 'comparison_final'));
+    report.checked.push('final shopping links: one event each for pointer and keyboard activation');
     for (const mode of ['throw', 'reject', 'pending']) {
       await page.evaluate(async mode => {
         window.stopTestTracking();
@@ -100,7 +106,7 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
           return new Promise(() => {});
         } });
       }, mode);
-      await navigate(() => link.click());
+      await navigate(() => finalLink.click());
       report.checked.push(`ordinary navigation with ${mode} sender`);
     }
     await page.evaluate(() => window.stopTestTracking());
@@ -114,7 +120,7 @@ const output = process.argv[3] || '/tmp/dwf-browser-evidence';
     const plain = await noJS.newPage();
     await plain.goto(baseURL + comparison);
     const popupPromise = plain.waitForEvent('popup');
-    await plain.locator('[data-amazon-model="casio-ae1200"]').click();
+    await plain.locator('[data-amazon-model="casio-ae1200"][data-placement="comparison_pick"]').click();
     const popup = await popupPromise;
     await popup.waitForLoadState('domcontentloaded');
     assert.equal(popup.url(), 'https://www.amazon.com/dp/B0094B79CI?tag=straubmediagr-20');
