@@ -1,0 +1,27 @@
+{
+  "type": "Isolated enabled build with mock tag; no live Ads/GA4 receipt",
+  "passed": [
+    "initial choices off; pre-consent links and persisted rejection send zero Google requests",
+    "analytics=true, advertising=false: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "analytics=false, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "analytics=true, advertising=true: exact destinations, four intentional activations, one shared loader, scoped cookies",
+    "withdraw analytics: full document reload, other purpose continues, one view per document, linker storage and cookie timer cleared; regrant has no replay",
+    "withdraw advertising: full document reload, other purpose continues, one view per document, linker storage and cookie timer cleared; regrant has no replay",
+    "legacy analytics permission never authorizes advertising",
+    "gpc overrides both stored grants",
+    "dnt overrides both stored grants",
+    "blocked provider preserves native navigation and drops revoked queues",
+    "pending provider preserves native navigation and drops revoked queues",
+    "blocked storage cannot grant either purpose",
+    "preview origins never load measurement even in enabled fixture",
+    "cross-tab Ads withdrawal immediately preserves analytics-only operation",
+    "gpc detected on click without focus/update: immediate shutdown and reload, native navigation preserved",
+    "expiry detected on click without focus/update: immediate shutdown and reload, native navigation preserved",
+    "rejection with writes blocked cannot regrant stale acceptance after reload",
+    "rejection with all blocked cannot regrant stale acceptance after reload",
+    "1165px/390px no overflow, equal save/reject buttons, keyboard-operable separate purposes"
+  ],
+  "errors": [],
+  "fixtureRoot": "/tmp/dwf-ads-fixture-GzFxVc",
+  "status": "PASS"
+}

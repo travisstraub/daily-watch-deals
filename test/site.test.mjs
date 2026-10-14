@@ -84,7 +84,7 @@ test('comparison gives sourced exact variants and original accessible dimension 
 });
 
 test('built browser sources match source files and privacy describes optional consent-based analytics',async()=>{
- for(const name of ['app.js','analytics.js','analytics-config.js','ads-config.js','consent.js','ga4.js','google-tag.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
+ for(const name of ['app.js','analytics.js','analytics-config.js','ads-config.js','consent.js','consent-layout.js','ga4.js','google-tag.js'])assert.equal(await readFile(new URL(name,root),'utf8'),await readFile(new URL('../src/'+name,import.meta.url),'utf8'));
  const privacy=await readFile(new URL('privacy/index.html',root),'utf8');
  assert.match(privacy,/Google and DoubleClick services/);assert.match(privacy,/while Analytics is off/);assert.match(privacy,/_gcl_ls/);assert.match(privacy,/cookieless consent-status request/);assert.match(privacy,/The page reloads/);assert.doesNotMatch(privacy,/Google Ads measurement is disabled/);
  assert.match(privacy,/only after you explicitly select Analytics and save your choices/);assert.match(privacy,/A click is not an order/);assert.match(privacy,/Global Privacy Control and Do Not Track/);

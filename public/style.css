@@ -15,3 +15,23 @@
 .comparison{max-width:1100px;padding-top:24px}.comparison h1{font-size:48px;letter-spacing:-1.5px;margin:12px 0}.comparison .quick-verdict{font-size:18px;line-height:1.45;margin-bottom:10px}.comparison .research-note{font-size:13px;margin-bottom:10px}.comparison .disclosure{font-size:12px;margin-bottom:12px}.comparison .eyebrow{font-size:10px;margin-bottom:8px}.comparison .decision-picks{gap:16px}.comparison .decision-picks>div{padding:16px;background:#fffefa;min-width:0;display:flex;flex-direction:column}.comparison .decision-picks h2{margin:0 0 8px;font-size:25px}.comparison .decision-picks p{font-size:14px;line-height:1.5;margin-bottom:12px}.comparison .decision-picks .buy{margin-top:auto;min-height:48px}.comparison .decision-picks .text-link{margin-top:10px}.comparison .variant-context{margin-top:24px}.comparison .final-picks{margin-bottom:24px}.comparison .final-picks h3{font-size:18px;letter-spacing:0;margin-bottom:10px}@media(max-width:640px){.comparison h1{font-size:36px;line-height:1.1}.comparison .quick-verdict{font-size:17px}.comparison .decision-picks{gap:14px}.comparison .decision-picks h2{font-size:24px}}
 
 .consent-purposes{display:grid;gap:10px;margin-top:10px}.consent-purposes label{display:flex;align-items:start;gap:10px;font-size:14px;line-height:1.45;cursor:pointer}.consent-purposes input{width:20px;height:20px;flex-shrink:0;accent-color:var(--green);margin:2px 0}.consent-purposes label:has(input:focus-visible){outline:2px solid #a7632a;outline-offset:4px}
+
+/* The floating notice reserves page-end space and keeps sticky shopping links above it. */
+:root{--consent-offset:0px;--shopping-offset:0px}
+html{scroll-padding-bottom:calc(var(--consent-offset) + var(--shopping-offset) + 12px)}
+body,.watch-page{padding-bottom:calc(var(--consent-offset) + var(--shopping-offset))}
+.consent-floating{position:fixed;z-index:30;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));max-width:1120px;max-height:calc(55vh - 24px);max-height:calc(55dvh - 24px);padding:16px 20px;gap:20px;border:1px solid #b9c4b1;border-radius:14px;box-shadow:0 6px 32px #202d2730;align-items:center}
+.consent-floating .consent-copy{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;max-height:calc(55vh - 64px);max-height:calc(55dvh - 64px);padding:4px 6px}
+.consent-floating h2{font-size:18px;margin-bottom:5px}
+.consent-floating p,.consent-floating .consent-purposes label{font-size:13px;line-height:1.4}
+.consent-floating .consent-purposes{grid-template-columns:1fr 1.5fr;gap:14px;margin-top:10px}
+.consent-floating .consent-purposes label{min-height:44px}
+.consent-floating #analytics-status{font-size:12px}
+.consent-floating .consent-actions{flex-shrink:0;min-width:148px;gap:10px}
+.consent-floating .consent-actions .button{min-height:44px;padding:12px 14px;font-size:13px}
+@media(max-width:640px){.mobile-buy{bottom:var(--consent-offset)}.consent-floating{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));padding:10px;gap:8px;align-items:stretch}.consent-floating .consent-purposes{grid-template-columns:1fr;gap:8px}.consent-floating .consent-actions{flex-wrap:nowrap;min-width:0;gap:10px}.consent-floating .consent-actions .button{flex:1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.consent-open body{height:100vh;height:100dvh;overflow:hidden;padding-bottom:0}
+.consent-open #site-content{height:calc(100vh - var(--consent-offset) - var(--shopping-offset));height:calc(100dvh - var(--consent-offset) - var(--shopping-offset));overflow-y:auto;scroll-padding-block:24px 12px}
+@media(max-width:640px){.consent-floating .consent-copy{max-height:none}.watch-page{padding-bottom:calc(var(--consent-offset) + max(96px,var(--shopping-offset)))}.consent-open .watch-page{padding-bottom:0}}
