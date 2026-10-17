@@ -149,6 +149,101 @@ export const catalog = {
     "model": "TW2Y12100",
     "destination": "https://www.amazon.com/s?k=Timex%20TW2Y12100&tag=straubmediagr-20",
     "destination_type": "model_search"
+  },
+  "orient-bambino-v7": {
+    "model": "RA-AC0M03S30B",
+    "destination": "https://www.amazon.com/dp/B0DB6Q413F?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "orient-kamasu": {
+    "model": "RA-AA0004E39B",
+    "destination": "https://www.amazon.com/dp/B0DB6ZQ4M2?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "seiko-srpk15": {
+    "model": "SRPK15",
+    "destination": "https://www.amazon.com/s?k=Seiko%20SRPK15&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "citizen-zenshin": {
+    "model": "NJ0180-80L",
+    "destination": "https://www.amazon.com/s?k=Citizen%20NJ0180-80L&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "citizen-chandler": {
+    "model": "BM8180-03E",
+    "destination": "https://www.amazon.com/s?k=Citizen%20BM8180-03E&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "citizen-promaster-diver": {
+    "model": "BN0151-09L",
+    "destination": "https://www.amazon.com/dp/B00PXVU3GM?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "bulova-surveyor": {
+    "model": "96A275",
+    "destination": "https://www.amazon.com/dp/B0BVGS29V8?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "tissot-prx": {
+    "model": "T137.407.11.041.00",
+    "destination": "https://www.amazon.com/s?k=Tissot%20T137.407.11.041.00&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "timex-waterbury": {
+    "model": "TW2W50600",
+    "destination": "https://www.amazon.com/s?k=Timex%20TW2W50600&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "timex-weekender": {
+    "model": "T2N647",
+    "destination": "https://www.amazon.com/s?k=Timex%20T2N647&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "casio-a168w": {
+    "model": "A168W-1",
+    "destination": "https://www.amazon.com/dp/B00067LYHU?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "casio-a158wa": {
+    "model": "A158WA-1",
+    "destination": "https://www.amazon.com/s?k=Casio%20A158WA-1&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "casio-w217h": {
+    "model": "W-217H-1AV",
+    "destination": "https://www.amazon.com/s?k=Casio%20W-217H-1AV&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "casio-f105w": {
+    "model": "F-105W-1A",
+    "destination": "https://www.amazon.com/s?k=Casio%20F-105W-1A&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "casio-ws1600h": {
+    "model": "WS-1600H-1AV",
+    "destination": "https://www.amazon.com/s?k=Casio%20WS-1600H-1AV&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "casio-edifice-efr574": {
+    "model": "EFR-574DE-7AV",
+    "destination": "https://www.amazon.com/s?k=Casio%20EFR-574DE-7AV&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "gshock-dw5600e": {
+    "model": "DW-5600E-1V",
+    "destination": "https://www.amazon.com/s?k=Casio%20G-Shock%20DW-5600E-1V&tag=straubmediagr-20",
+    "destination_type": "model_search"
+  },
+  "gshock-gab2100": {
+    "model": "GA-B2100-1A",
+    "destination": "https://www.amazon.com/dp/B0B5VS1PFH?tag=straubmediagr-20",
+    "destination_type": "direct_product"
+  },
+  "gshock-gm2100": {
+    "model": "GM-2100-1A",
+    "destination": "https://www.amazon.com/s?k=Casio%20G-Shock%20GM-2100-1A&tag=straubmediagr-20",
+    "destination_type": "model_search"
   }
 };
-export const pages = ["/","/popular-watches/","/guide/","/guide/best-watches-for-small-wrists/","/about/","/privacy/","/compare/casio-f91w-vs-ae1200/","/compare/citizen-tsuyosa-vs-seiko-5-sports/","/styles/everyday/","/styles/vintage/","/styles/digital/","/styles/sport/","/styles/dress/","/watches/citizen-tsuyosa/","/watches/timex-marlin/","/watches/citizen-brycen/","/watches/casio-f91w/","/watches/casio-ae1200/","/watches/gshock-ga2100/","/watches/seiko-srpd51/","/watches/seiko-srpj85/","/watches/seiko-srph33/","/watches/seiko-ssb429/","/watches/seiko-sur527/","/watches/seiko-srph87/","/watches/seiko-srpe57/","/watches/seiko-sur633/","/watches/seiko-swr085/","/watches/seiko-ssg021/","/watches/seiko-sut068/","/watches/seiko-sur440/","/watches/seiko-sre004/","/watches/seiko-swr046/","/watches/timex-tw2w33700/","/watches/timex-tw2w78500/","/watches/timex-tw2v00200/","/watches/timex-tw2v68400/","/watches/timex-tw2w78200/","/watches/timex-tw2r47900/","/watches/timex-tw2y07800/","/watches/timex-tw2w51000/","/watches/timex-tw2y40400/","/watches/timex-tw2y12100/","/from-instagram/"];
+export const pages = ["/","/popular-watches/","/guide/","/guide/best-watches-for-small-wrists/","/about/","/privacy/","/compare/casio-f91w-vs-ae1200/","/compare/citizen-tsuyosa-vs-seiko-5-sports/","/styles/everyday/","/styles/vintage/","/styles/digital/","/styles/sport/","/styles/dress/","/watches/citizen-tsuyosa/","/watches/timex-marlin/","/watches/citizen-brycen/","/watches/casio-f91w/","/watches/casio-ae1200/","/watches/gshock-ga2100/","/watches/seiko-srpd51/","/watches/seiko-srpj85/","/watches/seiko-srph33/","/watches/seiko-ssb429/","/watches/seiko-sur527/","/watches/seiko-srph87/","/watches/seiko-srpe57/","/watches/seiko-sur633/","/watches/seiko-swr085/","/watches/seiko-ssg021/","/watches/seiko-sut068/","/watches/seiko-sur440/","/watches/seiko-sre004/","/watches/seiko-swr046/","/watches/timex-tw2w33700/","/watches/timex-tw2w78500/","/watches/timex-tw2v00200/","/watches/timex-tw2v68400/","/watches/timex-tw2w78200/","/watches/timex-tw2r47900/","/watches/timex-tw2y07800/","/watches/timex-tw2w51000/","/watches/timex-tw2y40400/","/watches/timex-tw2y12100/","/watches/orient-bambino-v7/","/watches/orient-kamasu/","/watches/seiko-srpk15/","/watches/citizen-zenshin/","/watches/citizen-chandler/","/watches/citizen-promaster-diver/","/watches/bulova-surveyor/","/watches/tissot-prx/","/watches/timex-waterbury/","/watches/timex-weekender/","/watches/casio-a168w/","/watches/casio-a158wa/","/watches/casio-w217h/","/watches/casio-f105w/","/watches/casio-ws1600h/","/watches/casio-edifice-efr574/","/watches/gshock-dw5600e/","/watches/gshock-gab2100/","/watches/gshock-gm2100/","/from-instagram/"];

@@ -24,11 +24,11 @@ test('indexable pages have unique canonical URLs and sitemap coverage',async()=>
  assert.deepEqual(canonicalPaths.filter(p=>noindexPages.includes(p)),noindexPages);
 });
 
-test('seven direct destinations agree with identity evidence; uncertain references remain searches',async()=>{
+test('direct destinations agree with identity evidence; uncertain references remain searches',async()=>{
  const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));
  const evidence=JSON.parse(await readFile(new URL('../content/amazon-link-evidence.json',import.meta.url)));
- assert.equal(watches.filter(w=>w.asin).length,7);
- assert.equal(watches.filter(w=>w.search).length,23);
+ assert.equal(watches.filter(w=>w.asin).length,evidence.approved.length);
+ assert.equal(watches.filter(w=>w.search).length,watches.length-evidence.approved.length);
  for(const w of watches){
   assert.notEqual(Boolean(w.asin),Boolean(w.search),'one destination type per watch');
   if(w.asin){
@@ -102,8 +102,8 @@ test('built browser sources match source files and privacy describes optional co
  }
 });
 
-test('catalog has 30 distinct references with clear affiliate destinations and valid structured data',async()=>{
- const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(watches.length,30);assert.equal(new Set(watches.map(w=>w.model)).size,30);
+test('catalog has distinct references with clear affiliate destinations and valid structured data',async()=>{
+ const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.ok(watches.length>=30);assert.equal(new Set(watches.map(w=>w.model)).size,watches.length);
  for(const page of await pages()){const html=await readFile(page,'utf8');for(const [,raw] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)){const data=JSON.parse(raw);assert.equal(data['@context'],'https://schema.org');}assert.doesNotMatch(html,/010 \/ THE SHORTLIST|Five watches/);}
 });
 
