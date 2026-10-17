@@ -5,6 +5,9 @@ import { catalog, pages as canonicalPaths } from '../public/tracking-catalog.js'
 import { placements } from '../src/analytics.js';
 const root=new URL('../public/',import.meta.url);
 async function pages(dir=root){const list=[];for(const entry of await readdir(dir,{withFileTypes:true})){const path=new URL(entry.name+(entry.isDirectory()?'/':''),dir);if(entry.isDirectory())list.push(...await pages(path));else if(entry.name.endsWith('.html')&&entry.name!=='google216684202c8a020c.html')list.push(path);}return list;}
+// Explicit, short list of pages that are deliberately noindex and out of the sitemap.
+const noindexPages=['/from-instagram/'];
+const urlPath=page=>'/'+page.pathname.slice(root.pathname.length).replace(/index\.html$/,'');
 test('all internal destinations resolve and affiliate links carry attribution',async()=>{let links=0;for(const page of await pages()){const html=await readFile(page,'utf8');assert.match(html,/As an Amazon Associate I earn from qualifying purchases/);for(const [,href] of html.matchAll(/href="([^"]+)"/g)){if(href.startsWith('/')&&!href.startsWith('//')){let path=href.split('#')[0];if(path.endsWith('/'))path+='index.html';await access(new URL(path.slice(1),root));}if(href.startsWith('https://www.amazon.com/')){assert.equal(new URL(href.replaceAll('&amp;','&')).searchParams.get('tag'),'straubmediagr-20');links++;}}assert.doesNotMatch(html,/\$\d|% OFF|HOT DEAL|SHEET_JSON_URL|AMAZON_CREATORS_CLIENT_SECRET/);}assert.ok(links>=6);});
 test('each curated model has a dedicated detail page and source',async()=>{const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(new Set(watches.map(w=>w.slug)).size,watches.length);for(const w of watches){const html=await readFile(new URL(`watches/${w.slug}/index.html`,root),'utf8');assert.ok(html.includes(w.model));assert.ok(html.includes(w.source));assert.ok(w.tradeoff.length>30);assert.ok(w.image.startsWith('https://'));}});
 
@@ -12,10 +15,13 @@ test('indexable pages have unique canonical URLs and sitemap coverage',async()=>
  const seen=new Set();const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
  for(const page of await pages()){
   const html=await readFile(page,'utf8');if(page.pathname.endsWith('/404.html')){assert.match(html,/name="robots" content="noindex"/);continue;}
+  if(noindexPages.includes(urlPath(page))){assert.match(html,/<meta name="robots" content="noindex,follow">/);assert.doesNotMatch(html,/rel="canonical"/);assert.ok(!sitemap.includes(`https://dailywatchfinds.com${urlPath(page)}`));continue;}
   const canonical=html.match(/rel="canonical" href="([^"]+)"/)[1];assert.ok(canonical.startsWith('https://dailywatchfinds.com/'));assert.ok(!seen.has(canonical));seen.add(canonical);assert.ok(sitemap.includes(`<loc>${canonical}</loc>`));
   if(page.pathname.includes('/watches/')){assert.match(html,/class="mobile-buy"/);assert.match(html,/Amazon affiliate link/);}
  }
- const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));assert.equal(seen.size,watches.length+11);
+ const watches=JSON.parse(await readFile(new URL('../content/watches.json',import.meta.url)));const indexable=canonicalPaths.filter(p=>!noindexPages.includes(p));assert.equal(seen.size,indexable.length);
+ for(const w of watches)assert.ok(indexable.includes(`/watches/${w.slug}/`));
+ assert.deepEqual(canonicalPaths.filter(p=>noindexPages.includes(p)),noindexPages);
 });
 
 test('seven direct destinations agree with identity evidence; uncertain references remain searches',async()=>{
@@ -62,8 +68,9 @@ test('all Amazon anchors have exact destinations, safe rel, disclosures and stab
 test('sitemap exactly matches canonicals and internal fragments exist',async()=>{
  const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
  const locations=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
- assert.equal(locations.length,41);assert.equal(new Set(locations).size,41);
- assert.deepEqual(locations.sort(),canonicalPaths.map(p=>'https://dailywatchfinds.com'+p).sort());
+ const indexable=canonicalPaths.filter(p=>!noindexPages.includes(p));
+ assert.equal(locations.length,indexable.length);assert.equal(new Set(locations).size,locations.length);
+ assert.deepEqual(locations.sort(),indexable.map(p=>'https://dailywatchfinds.com'+p).sort());
  for(const page of await pages()){
   const html=await readFile(page,'utf8');
   for(const [,href] of html.matchAll(/href="([^"]+)"/g)){

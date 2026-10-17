@@ -2,6 +2,7 @@
 export const placements = Object.freeze([
   'catalog_card', 'related_card', 'product_primary', 'product_details',
   'product_mobile', 'comparison_pick', 'comparison_final',
+  'instagram_landing',
 ]);
 
 // Values, not just parameter names, must be reviewed. This draft campaign is NOT live.
