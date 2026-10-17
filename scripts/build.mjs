@@ -75,7 +75,8 @@ const instagramEntry=post=>{
  const isCompare=post.slugs.length===1&&!picks.length;
  if(!isCompare&&picks.length!==post.slugs.length)throw new Error(`content/instagram.json: unknown slug in "${post.title}"`);
  const href=isCompare?`/compare/${post.slugs[0]}/`:`/watches/${post.slugs[0]}/`;
- const models=isCompare?[f91,ae]:picks;
+ const group=lookalikes.find(g=>g.slug===post.slugs[0]);
+ const models=!isCompare?picks:group?group.picks.map(p=>watches.find(w=>w.slug===p.slug)):post.slugs[0]==='citizen-tsuyosa-vs-seiko-5-sports'?[tsu,srpd]:[f91,ae];
  return `<article class="card"><a class="card-photo" href="${href}"><img src="${esc(models[0].image)}" alt="${esc(models[0].alt)}" loading="lazy" width="700" height="700"></a><div class="card-body"><p class="eyebrow">${esc(post.date)}</p><h2><a href="${href}">${esc(post.title)}</a></h2>${models.map(w=>buy(w,'instagram_landing')).join('')}<a class="text-link" href="${href}">Read the full guide <span aria-hidden="true">→</span></a></div></article>`;
 };
 const instagramBody=`<section class="section"><p class="eyebrow">FROM INSTAGRAM</p><h1>From our <em>Instagram</em></h1><p class="lead">These are the watches from our recent posts, with the full guide for each.</p>${disclosure}<div class="product-grid">${instagram.map(instagramEntry).join('')}</div></section>`;
