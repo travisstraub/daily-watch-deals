@@ -62,3 +62,29 @@ nav{gap:18px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width
 .card.is-pick{box-shadow:0 0 0 2px #c9a227}
 .card.is-pick .button.buy{background:#c9a227;border-color:#c9a227;color:#1d1a10}
 .card.is-pick .button.buy:hover{background:#b48f1c;color:#1d1a10}
+@media(max-width:640px){
+.consent-floating{padding:8px 10px;gap:6px;border-radius:12px}
+.consent-floating .consent-copy{padding:0 2px}
+.consent-floating h2{font-size:15px;margin-bottom:2px}
+.consent-floating p,.consent-floating .consent-purposes label{font-size:11.5px;line-height:1.35}
+.consent-floating .consent-purposes{gap:4px;margin-top:4px}
+.consent-floating .consent-purposes label{min-height:44px;align-items:center}
+.consent-floating #analytics-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.consent-floating .consent-actions .button{min-height:44px;padding:8px 12px;font-size:13px}
+}
+/* More ways to reach the listing (2026-10-17) */
+.product-image-link{display:block;position:relative}
+.image-cta{position:absolute;right:12px;bottom:12px;white-space:nowrap;background:var(--green);color:#fff;font-size:12px;font-weight:700;padding:8px 12px;border-radius:999px}
+.product-image-link:hover .image-cta{background:#0f2a22}
+.inline-cta{margin:-4px 0 18px}
+.home-picks{padding-top:40px;padding-bottom:24px}
+.pick-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.pick-mini{border:1px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:8px;background:#fffefa;box-shadow:0 0 0 2px #c9a227}
+.pick-mini-photo img{width:100%;height:170px;object-fit:contain}
+.pick-mini .badge{align-self:flex-start}
+.pick-mini h3{font-size:17px;line-height:1.25;margin:0}
+.pick-mini p{font-size:12px;color:var(--muted);margin:0}
+.pick-mini .button.buy{margin-top:auto;background:#c9a227;border-color:#c9a227;color:#1d1a10;font-size:12px;padding:12px}
+.comparison td .button.buy{width:100%;font-size:11px;padding:10px;white-space:nowrap}
+@media(max-width:1000px){.pick-strip{grid-template-columns:repeat(5,72%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.pick-mini{scroll-snap-align:start}}
+@media(max-width:640px){body:has(.comparison ~ .mobile-buy){padding-bottom:96px}.comparison ~ .mobile-buy{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;align-items:center;gap:10px;padding:12px 5% calc(12px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -3px 15px #202d2710}.home-picks{padding-top:24px}.image-cta{font-size:11px}}

@@ -120,7 +120,7 @@ export const lookalikes = [
   }
 ];
 
-export function lookalikePage({ group, watches, buy, disclosure, styleName, badges = () => '' }) {
+export function lookalikePage({ group, watches, buy, disclosure, styleName, badges = () => '', ourPicks = {} }) {
   const picks = group.picks.map(p => {
     const w = watches.find(x => x.slug === p.slug);
     if (!w) throw new Error(`lookalikes: unknown slug ${p.slug}`);
@@ -139,6 +139,7 @@ ${disclosure}
 <h2>The specifications side by side</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Watch specifications; scroll horizontally on small screens"><table><caption>Manufacturer specifications ${picks.map((p, i) => `<a href="#source-${p.w.slug}">[${i + 1}]</a>`).join(' ')}</caption><thead><tr><th scope="col">Feature</th>${picks.map(p => `<th scope="col">${name(p.w)}<br>${p.w.model}</th>`).join('')}</tr></thead><tbody>
 ${group.rows.map((row, r) => `<tr><th scope="row">${row}</th>${picks.map(p => `<td>${p.specs[r]}</td>`).join('')}</tr>`).join('\n')}
+<tr><th scope="row">Amazon</th>${picks.map(p => `<td>${buy(p.w, 'comparison_table')}</td>`).join('')}</tr>
 </tbody></table></div>
 <h2>Which one to choose</h2>
 <ul class="decision-criteria">${group.criteria.map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`).join('')}</ul>
@@ -148,7 +149,7 @@ ${disclosure}
 <div class="decision-picks final-picks">${picks.map(p => `<div><h3>${name(p.w)} · ${p.w.model}</h3><p>${p.final}</p>${buy(p.w, 'comparison_final')}</div>`).join('')}</div>
 <p><a href="/compare/">See all our watch comparisons</a>, <a href="/styles/${group.style}/">browse ${styleName.toLowerCase()} watch guides</a> or use the <a href="/guide/">first-watch buying guide</a> to check fit, movement and seller terms.</p>
 <p class="micro">Sources reviewed October 17, 2026. ${sources}. “${NA}” means the manufacturer page we used doesn’t state it. Groupings and decision criteria are our analysis of those specifications, not measurements from watches we tested.</p>
-</article>`;
+</article>${(() => { const top = picks.find(p => ourPicks[p.w.slug]) || picks[0]; return `<aside class="mobile-buy" aria-label="Amazon purchase link"><span>${top.w.brand} ${top.w.model}<small>${ourPicks[top.w.slug] || 'Amazon affiliate link'}</small></span>${buy(top.w, 'product_mobile')}</aside>`; })()}`;
 }
 
 export function compareHubPage({ lookalikes, extra }) {
