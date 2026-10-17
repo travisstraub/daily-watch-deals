@@ -37,3 +37,36 @@ ${disclosure}
 <p class="micro">Sources reviewed October 13, 2026. <a id="source-f91" href="${f91.source}">[1] Casio F-91W-1 specifications</a>; <a id="source-ae" href="${ae.source}">[2] Casio AE-1200WHD-1AV specifications</a>. Size comparisons and decision criteria are our analysis of those specifications, not measurements from watches we tested.</p>
 </article>`;
 }
+
+export function tsuyosaSeikoPage({ tsu, seiko, buy, disclosure }) {
+  return `<article class="article section comparison"><p class="eyebrow"><a href="/styles/everyday/">EVERYDAY WATCHES</a> / EXACT-VARIANT COMPARISON</p>
+<h1>Citizen Tsuyosa vs Seiko 5 Sports</h1>
+<p class="lead quick-verdict"><strong>The quick choice:</strong> Tsuyosa NJ0150-56X for a 40 mm case, sapphire crystal and a green dial. Seiko SRPD51 for 100 m water resistance, a rotating bezel and a see-through caseback.</p>
+<p class="research-note">Based on Citizen’s and Seiko’s published specifications, not hands-on testing.</p>
+${disclosure}
+<div class="decision-picks"><div><h2>Citizen Tsuyosa NJ0150-56X</h2><p><strong>Automatic · 40 mm · Green dial</strong><br>Sapphire crystal and a steel bracelet.</p>${buy(tsu, 'comparison_pick')}<a class="text-link" href="/watches/citizen-tsuyosa/">Read the Tsuyosa guide →</a></div><div><h2>Seiko 5 Sports SRPD51</h2><p><strong>Automatic · 42.5 mm · Blue dial</strong><br>100 m water resistance and a steel bracelet.</p>${buy(seiko, 'comparison_pick')}<a class="text-link" href="/watches/seiko-srpd51/">Read the SRPD51 guide →</a></div></div>
+<p class="variant-context">This comparison covers the <strong>Citizen NJ0150-56X</strong> with its green dial and the <strong>Seiko SRPD51</strong> with its blue sunray dial. Both are automatics on stainless-steel bracelets, so the choice comes down to case, crystal, water rating and look.</p>
+<h2>The specifications behind the choice</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Watch specifications; scroll horizontally on small screens"><table><caption>Manufacturer specifications for these two references <a href="#source-tsu">[1]</a> <a href="#source-seiko">[2]</a></caption><thead><tr><th scope="col">Feature</th><th scope="col">Citizen NJ0150-56X<br>Tsuyosa</th><th scope="col">Seiko SRPD51<br>5 Sports</th></tr></thead><tbody>
+<tr><th scope="row">Movement</th><td>Caliber 8210 automatic</td><td>Caliber 4R36 automatic, with manual winding</td></tr>
+<tr><th scope="row">Power reserve</th><td>42 hours</td><td>Approximately 41 hours</td></tr>
+<tr><th scope="row">Case size</th><td>40 mm wide</td><td>42.5 mm diameter, 13.4 mm thick</td></tr>
+<tr><th scope="row">Crystal</th><td>Sapphire</td><td>Hardlex</td></tr>
+<tr><th scope="row">Water resistance</th><td>50 m (5 bar), rated for still-water swimming</td><td>100 m (10 bar)</td></tr>
+<tr><th scope="row">Dial</th><td>Green sunray, with date</td><td>Blue sunray, with day and date</td></tr>
+<tr><th scope="row">Bracelet</th><td>Stainless steel, fold-over clasp with push buttons</td><td>Stainless steel</td></tr>
+<tr><th scope="row">Caseback</th><td>Not listed</td><td>See-through</td></tr>
+</tbody></table></div>
+<p>Citizen doesn’t list a case thickness for the Tsuyosa, so this comparison can’t say which watch sits lower on the wrist. The Seiko’s 13.4 mm is worth checking against your cuffs.</p>
+<h2>Which one to choose</h2>
+<ul class="decision-criteria"><li><strong>For a smaller case:</strong> the Tsuyosa is 2.5 mm narrower. Try a watch of a similar diameter before you order.</li><li><strong>For more water resistance:</strong> the SRPD51 is rated to 100 m against the Tsuyosa’s 50 m. Follow each maker’s usage guidance rather than treating a rating as permission for any water activity.</li><li><strong>For a harder crystal:</strong> the Tsuyosa has sapphire; the SRPD51 has Hardlex. Sapphire is known for scratch resistance, though no crystal makes a watch indestructible.</li><li><strong>For a sporty look:</strong> the SRPD51 has a rotating bezel and a see-through caseback that shows the movement. The Tsuyosa is the plainer design.</li><li><strong>For wearing it irregularly:</strong> both are automatics with roughly two days of power reserve (42 and about 41 hours), so either may need resetting after time off the wrist.</li></ul>
+<h2>What “5 Sports” means</h2>
+<p>Seiko’s own product page titles the SRPD51 “Men’s Seiko 5 Sports” and lists its collection as Seiko 5 Sports. That’s the line name, and SRPD51 is the specific reference. Match the reference before you buy, since a listing may show a different 5 Sports model.</p>
+<h2>Match the listing before buying</h2>
+<p>These Amazon links open identity-matched product listings. Confirm the selected reference, color, seller, condition and return terms. We haven’t verified live prices or availability. An Amazon listing may switch between variants.</p>
+${disclosure}
+<div class="decision-picks final-picks"><div><h3>Citizen Tsuyosa NJ0150-56X</h3><p>Choose the smaller case and sapphire crystal.</p>${buy(tsu, 'comparison_final')}</div><div><h3>Seiko 5 Sports SRPD51</h3><p>Choose the 100 m rating and rotating bezel.</p>${buy(seiko, 'comparison_final')}</div></div>
+<p><a href="/styles/everyday/">Browse our everyday watch guides</a> for more options, see how a <a href="/compare/casio-f91w-vs-ae1200/">smaller and larger Casio compare</a>, or use the <a href="/guide/">first-watch buying guide</a> to check fit, movement and seller terms.</p>
+<p class="micro">Sources reviewed October 17, 2026. <a id="source-tsu" href="${tsu.source}">[1] Citizen NJ0150-56X specifications</a>; <a id="source-seiko" href="${seiko.source}">[2] Seiko SRPD51 specifications</a>. Decision criteria are our analysis of those specifications, not measurements from watches we tested.</p>
+</article>`;
+}
