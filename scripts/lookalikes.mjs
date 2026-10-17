@@ -120,7 +120,7 @@ export const lookalikes = [
   }
 ];
 
-export function lookalikePage({ group, watches, buy, disclosure, styleName }) {
+export function lookalikePage({ group, watches, buy, disclosure, styleName, badges = () => '' }) {
   const picks = group.picks.map(p => {
     const w = watches.find(x => x.slug === p.slug);
     if (!w) throw new Error(`lookalikes: unknown slug ${p.slug}`);
@@ -134,7 +134,7 @@ export function lookalikePage({ group, watches, buy, disclosure, styleName }) {
 <p class="lead quick-verdict"><strong>The quick choice:</strong> ${group.verdict}</p>
 <p class="research-note">Based on each maker’s published specifications, not hands-on testing.</p>
 ${disclosure}
-<div class="decision-picks">${picks.map(p => `<div><a class="pick-photo" href="/watches/${p.w.slug}/" tabindex="-1" aria-hidden="true"><img src="${p.w.image}" alt="" loading="lazy" width="700" height="700"></a><h2>${name(p.w)}</h2><p><strong>${p.head}</strong><br>${p.line}</p>${buy(p.w, 'comparison_pick')}<a class="text-link" href="/watches/${p.w.slug}/">Read the ${p.w.model} guide →</a></div>`).join('')}</div>
+<div class="decision-picks">${picks.map(p => `<div><a class="pick-photo" href="/watches/${p.w.slug}/" tabindex="-1" aria-hidden="true"><img src="${p.w.image}" alt="" loading="lazy" width="700" height="700"></a>${badges(p.w)}<h2>${name(p.w)}</h2><p><strong>${p.head}</strong><br>${p.line}</p>${buy(p.w, 'comparison_pick')}<a class="text-link" href="/watches/${p.w.slug}/">Read the ${p.w.model} guide →</a></div>`).join('')}</div>
 <p>${group.intro}</p>
 <h2>The specifications side by side</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Watch specifications; scroll horizontally on small screens"><table><caption>Manufacturer specifications ${picks.map((p, i) => `<a href="#source-${p.w.slug}">[${i + 1}]</a>`).join(' ')}</caption><thead><tr><th scope="col">Feature</th>${picks.map(p => `<th scope="col">${name(p.w)}<br>${p.w.model}</th>`).join('')}</tr></thead><tbody>

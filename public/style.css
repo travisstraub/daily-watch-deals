@@ -54,3 +54,11 @@ nav{gap:18px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width
 .button.buy{background:var(--green);color:#fff;border-color:var(--green)}
 .button.buy:hover{background:#0f2a22;color:#fff}
 .button.buy:focus-visible{outline:3px solid #c9a227;outline-offset:2px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;line-height:1;padding:6px 9px;border-radius:999px;white-space:nowrap}
+.badge-pick{background:#c9a227;color:#1d1a10}
+.badge-hot{background:#a8432a;color:#fff}
+.badge-best{background:#e2e8dc;color:#193a30;border:1px solid #b9c4b1}
+.card.is-pick{box-shadow:0 0 0 2px #c9a227}
+.card.is-pick .button.buy{background:#c9a227;border-color:#c9a227;color:#1d1a10}
+.card.is-pick .button.buy:hover{background:#b48f1c;color:#1d1a10}

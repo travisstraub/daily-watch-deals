@@ -1,0 +1,1 @@
+{ "note": "Generated from GA4 outbound Amazon clicks; empty until a model has enough clicks. Never hand-edit to add a model.", "window": "last 28 days", "minClicks": 5, "models": [] }
