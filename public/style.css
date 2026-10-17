@@ -50,9 +50,6 @@ nav{gap:18px;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width
 .product-image img{height:240px;width:100%;object-fit:contain}.product h1{font-size:36px;margin-top:6px}
 .breadcrumb{display:none}
 .pick-photo{margin:-16px -16px 12px}.pick-photo img{height:170px}
-.consent-panel{padding:12px 4%;gap:8px}.consent-panel h2{font-size:16px;margin-bottom:4px}
-.consent-panel p,.consent-purposes label{font-size:12px;line-height:1.4}
-.consent-purposes{gap:6px}.consent-actions .button{min-height:40px;padding:8px 12px}
 }
 .button.buy{background:var(--green);color:#fff;border-color:var(--green)}
 .button.buy:hover{background:#0f2a22;color:#fff}
