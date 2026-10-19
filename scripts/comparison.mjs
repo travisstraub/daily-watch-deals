@@ -70,3 +70,39 @@ ${disclosure}
 <p class="micro">Sources reviewed October 17, 2026. <a id="source-tsu" href="${tsu.source}">[1] Citizen NJ0150-56X specifications</a>; <a id="source-seiko" href="${seiko.source}">[2] Seiko SRPD51 specifications</a>. Decision criteria are our analysis of those specifications, not measurements from watches we tested.</p>
 </article>`;
 }
+
+export function casioTrioPage({ f91, a168, a158, buy, disclosure }) {
+  return `<article class="article section comparison"><p class="eyebrow"><a href="/styles/digital/">DIGITAL WATCHES</a> / THREE-WAY COMPARISON</p>
+<h1>Casio A168W vs A158WA vs F-91W</h1>
+<p class="lead quick-verdict"><strong>The quick choice:</strong> F-91W for the lightest watch on a resin strap. A158WA for the slimmest steel-bracelet case. A168W for the widest of the three, with the electro-luminescent backlight.</p>
+<p class="research-note">Based on Casio’s published specifications as recorded in our watch guides, not hands-on testing.</p>
+${disclosure}
+<div class="decision-picks"><div><h2>F-91W-1</h2><p><strong>21 g · Resin strap</strong><br>Smallest and lightest of the three.</p>${buy(f91, 'comparison_pick')}<a class="text-link" href="/watches/casio-f91w/">Read the F-91W guide →</a></div><div><h2>A168W-1</h2><p><strong>50 g · Steel bracelet</strong><br>Electro-luminescent backlight, 36.3 mm wide.</p>${buy(a168, 'comparison_pick')}<a class="text-link" href="/watches/casio-a168w/">Read the A168W guide →</a></div><div><h2>A158WA-1</h2><p><strong>46 g · Steel bracelet</strong><br>8.2 mm thick, with an LED light.</p>${buy(a158, 'comparison_pick')}<a class="text-link" href="/watches/casio-a158wa/">Read the A158WA guide →</a></div></div>
+<p class="variant-context">This comparison covers the <strong>F-91W-1</strong>, the <strong>A168W-1</strong> and the <strong>A158WA-1</strong>. Casio’s US page for the A168W-1 is listed as <a href="${a168.source}">A168WA-1</a>. Wondering about a bigger Casio digital with world time? See the <a href="/watches/casio-ae1200/">AE-1200</a> and our <a href="/compare/casio-f91w-vs-ae1200/">F-91W vs AE-1200 comparison</a>.</p>
+<h2>Compare the space on your wrist</h2>
+<figure class="fit-figure"><div class="fit-panels">${caseDiagram({model:'F-91W-1',width:35.2,length:38.2,thickness:8.5,weight:21,color:'#d9edaa'})}${caseDiagram({model:'A168W-1',width:36.3,length:38.6,thickness:9.6,weight:50,color:'#d9ddd3'})}${caseDiagram({model:'A158WA-1',width:33.2,length:36.8,thickness:8.2,weight:46,color:'#e4e0d0'})}</div><figcaption>Original dimension diagram from Casio’s published case measurements <a href="#source-f91">[1]</a> <a href="#source-a168">[2]</a> <a href="#source-a158">[3]</a>. Rectangles show case envelopes at a shared relative scale, not exact silhouettes, strap shapes or a life-size ruler. Weight includes the supplied band.</figcaption></figure>
+<p>The A168W is the widest at 36.3 mm, the F-91W is 35.2 mm and the A158WA is the narrowest at 33.2 mm. The A158WA is also the thinnest (8.2 mm against 8.5 mm and 9.6 mm) and the shortest case (36.8 mm). The weight gap comes mostly from the band: the F-91W weighs 21 g, while the two steel-bracelet models weigh 46 g and 50 g. Compare these numbers with a watch you already wear, including its length. They help you judge size, but can’t guarantee comfort. A bracelet may also need sizing.</p>
+<h2>The specifications behind the choice</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Casio specifications; scroll horizontally on small screens"><table><caption>Specifications for these three references <a href="#source-f91">[1]</a> <a href="#source-a168">[2]</a> <a href="#source-a158">[3]</a></caption><thead><tr><th scope="col">Feature</th><th scope="col">F-91W-1<br>Resin strap</th><th scope="col">A168W-1<br>Steel bracelet</th><th scope="col">A158WA-1<br>Steel bracelet</th></tr></thead><tbody>
+<tr><th scope="row">Case length × width × thickness</th><td>38.2 × 35.2 × 8.5 mm</td><td>38.6 × 36.3 × 9.6 mm</td><td>36.8 × 33.2 × 8.2 mm</td></tr>
+<tr><th scope="row">Weight</th><td>21 g</td><td>50 g</td><td>46 g</td></tr>
+<tr><th scope="row">Case</th><td>Resin</td><td>Chrome-plated metal</td><td>Metal</td></tr>
+<tr><th scope="row">Glass</th><td>Resin</td><td>Resin</td><td>Resin</td></tr>
+<tr><th scope="row">Band</th><td>Resin strap</td><td>Steel bracelet</td><td>Steel bracelet</td></tr>
+<tr><th scope="row">Backlight</th><td>Not listed in our guide</td><td>Electro-luminescent</td><td>LED light</td></tr>
+<tr><th scope="row">Alarm and timing</th><td>Daily alarm, stopwatch</td><td>Daily alarm, 1/100-second stopwatch</td><td>Daily alarm, hourly signal, 1/100-second stopwatch</td></tr>
+<tr><th scope="row">Water resistance</th><td>Basic</td><td>Basic</td><td>Basic</td></tr>
+<tr><th scope="row">Battery</th><td>About 7 years</td><td>About 7 years (CR2016)</td><td>About 7 years (CR2016)</td></tr>
+</tbody></table></div>
+<p>Where a cell says “not listed”, our guide doesn’t record that detail, so we haven’t stated it. Check Casio’s page for the exact reference before you decide on that point.</p>
+<h2>Which one to choose</h2>
+<ul class="decision-criteria"><li><strong>For the lightest watch:</strong> the F-91W at 21 g. It’s the only resin-strap model of the three, and the only one with a resin case.</li><li><strong>For the slimmest metal watch:</strong> the A158WA at 8.2 mm thick and 33.2 mm wide, the narrowest of the three. Its LED light is weaker than an electro-luminescent backlight.</li><li><strong>For the strongest backlight:</strong> the A168W has an electro-luminescent backlight. It’s also the widest and thickest, at 36.3 × 9.6 mm.</li><li><strong>For a steel look:</strong> the A168W and A158WA both come on steel bracelets. The A158WA is the smaller of the two; the A168W has the chrome-plated case.</li><li><strong>For the basics:</strong> all three have a daily alarm, a stopwatch and about seven years of battery life.</li></ul>
+<p>All three carry only the basic water-resistance rating and resin glass, so none is a swimming watch and all call for care around scratches. Follow Casio’s usage guidance rather than treating a rating as permission for any water activity.</p>
+<h2>Match the listing before buying</h2>
+<p>These Amazon links open identity-matched product listings or model searches. Confirm the selected reference, band, color, seller, condition and return terms. We haven’t verified live prices or availability. An Amazon listing may switch between variants.</p>
+${disclosure}
+<div class="decision-picks final-picks"><div><h3>F-91W-1 · Resin strap</h3><p>Choose the lightest option for basic timekeeping.</p>${buy(f91, 'comparison_final')}</div><div><h3>A168W-1 · Steel bracelet</h3><p>Choose the electro-luminescent backlight.</p>${buy(a168, 'comparison_final')}</div><div><h3>A158WA-1 · Steel bracelet</h3><p>Choose the slimmest metal case.</p>${buy(a158, 'comparison_final')}</div></div>
+<p><a href="/styles/digital/">Browse our digital watch guides</a> for more on each model, or use the <a href="/guide/">first-watch buying guide</a> to check fit, movement and seller terms.</p>
+<p class="micro">Sources reviewed October 19, 2026. <a id="source-f91" href="${f91.source}">[1] Casio F-91W-1 specifications</a>; <a id="source-a168" href="${a168.source}">[2] Casio A168WA-1 specifications</a>; <a id="source-a158" href="${a158.source}">[3] Casio A158WA-1 specifications</a>. Figures are those recorded in our guides, checked against Casio’s pages when those guides were written. Casio’s site blocked our automated fetch on this date, so we couldn’t re-read the pages. Size comparisons and decision criteria are our analysis, not measurements from watches we tested.</p>
+</article>`;
+}
