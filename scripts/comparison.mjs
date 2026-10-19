@@ -71,6 +71,41 @@ ${disclosure}
 </article>`;
 }
 
+export function kamasuSeikoPage({ kam, seiko, buy, disclosure }) {
+  return `<article class="article section comparison"><p class="eyebrow"><a href="/styles/sport/">SPORT WATCHES</a> / EXACT-VARIANT COMPARISON</p>
+<h1>Orient Kamasu vs Seiko 5 Sports</h1>
+<p class="lead quick-verdict"><strong>The quick choice:</strong> Orient Kamasu for 200 m water resistance, a sapphire crystal and a slightly smaller case. Seiko SRPD51 for a blue sunray dial, a see-through caseback and a stated 13.4 mm thickness to check against your cuffs.</p>
+<p class="research-note">Based on Orient’s and Seiko’s published specifications as recorded in our watch guides, not hands-on testing.</p>
+${disclosure}
+<div class="decision-picks"><div><h2>Orient Kamasu RA-AA0004E39B</h2><p><strong>Automatic · 41.8 mm · Green dial</strong><br>200 m, sapphire crystal and a steel bracelet.</p>${buy(kam, 'comparison_pick')}<a class="text-link" href="/watches/orient-kamasu/">Read the Kamasu guide →</a></div><div><h2>Seiko 5 Sports SRPD51</h2><p><strong>Automatic · 42.5 mm · Blue dial</strong><br>100 m, Hardlex crystal and a steel bracelet.</p>${buy(seiko, 'comparison_pick')}<a class="text-link" href="/watches/seiko-srpd51/">Read the SRPD51 guide →</a></div></div>
+<p class="variant-context">This comparison covers the <strong>Orient RA-AA0004E39B</strong> Kamasu with its green dial and the <strong>Seiko SRPD51</strong> with its blue sunray dial. Both are automatics with day-and-date displays on stainless-steel bracelets, so the choice comes down to water rating, crystal, case and look. If you’re also weighing the Citizen Tsuyosa, see our <a href="/compare/citizen-tsuyosa-vs-seiko-5-sports/">Tsuyosa vs Seiko 5 Sports comparison</a>.</p>
+<h2>The specifications behind the choice</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Watch specifications; scroll horizontally on small screens"><table><caption>Specifications for these two references <a href="#source-kam">[1]</a> <a href="#source-seiko">[2]</a></caption><thead><tr><th scope="col">Feature</th><th scope="col">Orient RA-AA0004E39B<br>Kamasu</th><th scope="col">Seiko SRPD51<br>5 Sports</th></tr></thead><tbody>
+<tr><th scope="row">Movement</th><td>In-house F6922 automatic; hacks and hand-winds</td><td>Caliber 4R36 automatic, with manual winding</td></tr>
+<tr><th scope="row">Power reserve</th><td>40 hours</td><td>Approximately 41 hours</td></tr>
+<tr><th scope="row">Case size</th><td>About 41.8 mm, stainless steel</td><td>42.5 mm diameter, 13.4 mm thick, steel</td></tr>
+<tr><th scope="row">Crystal</th><td>Sapphire</td><td>Hardlex</td></tr>
+<tr><th scope="row">Water resistance</th><td>200 m</td><td>100 m (10 bar)</td></tr>
+<tr><th scope="row">Dial</th><td>Green, with day and date</td><td>Blue sunray, with day and date</td></tr>
+<tr><th scope="row">Bracelet</th><td>Stainless steel, 22 mm</td><td>Stainless steel</td></tr>
+<tr><th scope="row">Caseback</th><td>Not listed in our guide</td><td>See-through</td></tr>
+</tbody></table></div>
+<p>Where a cell says “not listed”, our guide doesn’t record that detail, so we haven’t stated it. Our guide also doesn’t record a case thickness for the Kamasu, so this comparison can’t say which watch sits lower on the wrist.</p>
+<h2>Which one to choose</h2>
+<ul class="decision-criteria"><li><strong>For more water resistance:</strong> the Kamasu is rated to 200 m against the SRPD51’s 100 m. Follow each maker’s usage guidance rather than treating a rating as permission for any water activity.</li><li><strong>For a harder crystal:</strong> the Kamasu has sapphire; the SRPD51 has Hardlex. Sapphire is known for scratch resistance, though no crystal makes a watch indestructible.</li><li><strong>For a smaller case:</strong> the Kamasu is about 0.7 mm narrower. That’s a small gap, and its 22 mm bracelet still gives it a full-size diver’s presence, so try a watch of similar diameter before you order.</li><li><strong>For seeing the movement:</strong> the SRPD51 has a see-through caseback. Our Kamasu guide doesn’t record one.</li><li><strong>For wearing it irregularly:</strong> both are automatics with roughly two days of power reserve (40 and about 41 hours), and both can be hand-wound, so either may need winding and resetting after time off the wrist.</li></ul>
+<h2>Who each suits</h2>
+<p>The Kamasu suits someone who wants a diver’s water rating and sapphire in an automatic, and doesn’t mind a full-size look. The SRPD51 suits someone who likes the Seiko 5 Sports styling, with its rotating bezel and visible movement, and wants to check a 13.4 mm case against their cuffs. Neither comparison is a test of real-world durability or comfort.</p>
+<h2>What “5 Sports” means</h2>
+<p>Seiko’s own product page titles the SRPD51 “Men’s Seiko 5 Sports” and lists its collection as Seiko 5 Sports. That’s the line name, and SRPD51 is the specific reference. Match the reference before you buy, since a listing may show a different 5 Sports model. The same applies to the Kamasu: confirm the RA-AA0004E39B reference and green dial.</p>
+<h2>Match the listing before buying</h2>
+<p>These Amazon links open identity-matched product listings. Confirm the selected reference, color, seller, condition and return terms. We haven’t verified live prices or availability. An Amazon listing may switch between variants.</p>
+${disclosure}
+<div class="decision-picks final-picks"><div><h3>Orient Kamasu RA-AA0004E39B</h3><p>Choose the 200 m rating and sapphire crystal.</p>${buy(kam, 'comparison_final')}</div><div><h3>Seiko 5 Sports SRPD51</h3><p>Choose the blue sunray dial and see-through caseback.</p>${buy(seiko, 'comparison_final')}</div></div>
+<p><a href="/styles/sport/">Browse our sport watch guides</a> for more options, see how other divers stack up in <a href="/compare/dive-watches-compared/">dive watches compared</a>, or use the <a href="/guide/">first-watch buying guide</a> to check fit, movement and seller terms.</p>
+<p class="micro">Sources reviewed October 19, 2026. <a id="source-kam" href="${kam.source}">[1] Orient RA-AA0004E39B specifications</a>; <a id="source-seiko" href="${seiko.source}">[2] Seiko SRPD51 specifications</a>. Figures are those recorded in our guides, checked against the makers’ pages when those guides were written. Both sites returned a rate-limit error to our automated fetch on this date, so we couldn’t re-read the pages. Decision criteria are our analysis, not measurements from watches we tested.</p>
+</article>`;
+}
+
 export function casioTrioPage({ f91, a168, a158, buy, disclosure }) {
   return `<article class="article section comparison"><p class="eyebrow"><a href="/styles/digital/">DIGITAL WATCHES</a> / THREE-WAY COMPARISON</p>
 <h1>Casio A168W vs A158WA vs F-91W</h1>
